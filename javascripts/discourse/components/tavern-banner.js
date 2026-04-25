@@ -33,8 +33,13 @@ export default class TavernBanner extends Component {
   async loadData() {
     try {
       const period = settings.trending_period || "daily";
-      const topRes = await ajax(`/top.json?period=${period}`).catch(() => null);
-      const topics = topRes?.topic_list?.topics || [];
+      // Try /top first; if the forum is new and has no "top" yet, fall back to /latest
+      let topRes = await ajax(`/top.json?period=${period}`).catch(() => null);
+      let topics = topRes?.topic_list?.topics || [];
+      if (topics.length === 0) {
+        const latestRes = await ajax("/latest.json").catch(() => null);
+        topics = latestRes?.topic_list?.topics || [];
+      }
       this.featured = topics[0] || null;
       this.trending = topics.slice(1, 4);
 
