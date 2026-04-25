@@ -1,0 +1,71 @@
+{{#if this.shouldShow}}
+  <section class="tavern-banner">
+    <div class="tavern-banner__grid">
+      <div class="tavern-banner__main">
+        <h1 class="tavern-banner__title">{{settings.banner_title}}</h1>
+        <p class="tavern-banner__subtitle">{{settings.banner_subtitle}}</p>
+        <a href="/new-topic" class="tavern-banner__cta">Pull a stool</a>
+        <a href="/faq" class="tavern-banner__cta tavern-banner__cta--ghost">{{i18n (theme-prefix "liberty_tavern.banner.read_house_rules")}}</a>
+
+        {{#if settings.show_trending_strip}}
+          <div class="tavern-banner__trending">
+            <div class="heading">{{i18n (theme-prefix "liberty_tavern.banner.trending_now")}}</div>
+            {{#if this.loading}}
+              <div class="items items--loading">
+                <div class="item skeleton"></div>
+                <div class="item skeleton"></div>
+                <div class="item skeleton"></div>
+              </div>
+            {{else}}
+              <div class="items">
+                {{#each this.trending as |t|}}
+                  <div class="item">
+                    <a href={{this.topicUrl t}}>{{t.fancy_title}}</a>
+                    <div class="meta">
+                      {{this.categoryBadge t.category_id}}
+                      · {{t.posts_count}} replies · {{t.views}} views
+                    </div>
+                  </div>
+                {{/each}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+
+      <aside class="tavern-banner__aside">
+        {{#if this.featured}}
+          <div class="tavern-banner__feature">
+            <div class="label">{{i18n (theme-prefix "liberty_tavern.banner.project_of_the_night")}}</div>
+            <a href={{this.topicUrl this.featured}} style="color:inherit;text-decoration:none;">
+              <h3 style="font-family:var(--font-display);font-style:italic;font-weight:900;font-size:24px;margin:8px 0 4px;">
+                {{this.featured.fancy_title}}
+              </h3>
+            </a>
+            <div class="stats">
+              <span class="stat-label">replies</span>
+              <span class="stat-value">{{this.featured.posts_count}}</span>
+              <span class="stat-label">views</span>
+              <span class="stat-value">{{this.featured.views}}</span>
+              <span class="stat-label">likes</span>
+              <span class="stat-value">{{this.featured.like_count}}</span>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if (and settings.show_badges_card this.badges.length)}}
+          <div class="tavern-banner__badges">
+            <div class="heading">{{i18n (theme-prefix "liberty_tavern.banner.badges_recent")}}</div>
+            {{#each this.badges as |b|}}
+              <div class="badge-row">
+                <span class="badge-icon badge-icon--{{b.tier}}">{{b.initial}}</span>
+                <span class="badge-name">{{b.name}}</span>
+                <span class="badge-count">×{{b.count}}</span>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+      </aside>
+    </div>
+  </section>
+{{/if}}

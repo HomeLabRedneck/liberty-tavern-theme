@@ -1,0 +1,389 @@
+// =============================================================
+// Liberty Tavern — common.scss
+// Restyles Discourse's real DOM. No layout overrides outside header,
+// sidebar, search-menu, topic-list, category-list, and the homepage banner.
+// =============================================================
+
+// ---- 1. Typography ------------------------------------------
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-display: "Playfair Display", "Times New Roman", serif;
+  --font-serif:   "Spectral", Georgia, serif;
+  --font-ui:      "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --tavern-ink:   #2a1f17;
+  --tavern-cream: #f5ebd9;
+  --tavern-oxblood: #7a1f1f;
+  --tavern-brass: #c8941a;
+  --tavern-rule:  rgba(42, 31, 23, .15);
+}
+
+html, body {
+  font-family: var(--font-serif);
+  font-feature-settings: "kern", "liga", "onum";
+}
+
+h1, h2, h3, .topic-list .main-link .title, .category-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+h2, h3 { font-style: italic; }
+
+.btn, .nav-pills, .badge-wrapper, .topic-list-item .num,
+.d-header .icons, .nav .nav-pills, button {
+  font-family: var(--font-ui);
+}
+
+// ---- 2. Header (.d-header) ----------------------------------
+
+.d-header {
+  background: var(--header_background);
+  border-bottom: 1px solid var(--tavern-brass);
+  box-shadow: 0 2px 0 rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.25);
+
+  .title a, #site-text-logo {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 900;
+    color: var(--header_primary);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-item-link, .icon, .d-header-icons .icon {
+    color: var(--header_primary);
+    opacity: .85;
+    &:hover { opacity: 1; color: var(--tavern-brass); }
+  }
+
+  .btn-primary, .sign-up-button {
+    background: var(--tavern-brass);
+    color: var(--header_background);
+    font-family: var(--font-ui);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    border-radius: 2px;
+    border: none;
+    &:hover { background: lighten(#c8941a, 6%); }
+  }
+}
+
+// ---- 3. Sidebar (.sidebar-wrapper) --------------------------
+
+.sidebar-wrapper {
+  background: var(--secondary-low, #ede0c7);
+  border-right: 1px solid var(--tavern-rule);
+  font-family: var(--font-ui);
+
+  .sidebar-section-header {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary-medium);
+  }
+
+  .sidebar-section-link {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    padding-left: 9px;
+    color: var(--primary);
+
+    &.active, &--active {
+      background: var(--secondary);
+      border-left-color: var(--tertiary);
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+    &:hover { background: var(--hover); }
+
+    .sidebar-section-link-prefix.icon { color: var(--primary-medium); }
+    .sidebar-section-link-suffix.unread { color: var(--tertiary); font-weight: 700; font-size: 11px; }
+  }
+
+  // Category swatches — colored circles instead of squares
+  .sidebar-section-link[data-category-id] .sidebar-section-link-prefix {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--category-color, var(--tertiary));
+  }
+}
+
+// ---- 4. Search menu (.search-menu) --------------------------
+
+.search-menu, .search-menu-panel {
+  background: var(--secondary);
+  border: 1px solid var(--tavern-rule);
+  box-shadow: 0 16px 40px rgba(0,0,0,.18);
+  font-family: var(--font-serif);
+  border-radius: 2px;
+
+  .heading, .search-menu-recent .heading {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--primary-medium);
+    font-size: 13px;
+  }
+
+  .search-link, .search-menu-assistant-item {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    border-radius: 0;
+    &:hover, &.selected { background: var(--hover); color: var(--tertiary); }
+  }
+
+  .filter, kbd {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    background: var(--primary-very-low);
+    color: var(--tertiary);
+    border-radius: 2px;
+    padding: 1px 6px;
+    font-size: 11px;
+  }
+}
+
+#search-button.icon { color: var(--header_primary); }
+
+// ---- 5. Topic list (.topic-list) ----------------------------
+
+.topic-list {
+  font-family: var(--font-serif);
+  border-collapse: collapse;
+
+  thead .topic-list-header-link {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--primary-medium);
+  }
+
+  .topic-list-item {
+    border-bottom: 1px solid var(--tavern-rule);
+    &:hover { background: var(--hover); }
+  }
+
+  .main-link .title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.005em;
+    color: var(--primary);
+    &:hover { color: var(--tertiary); }
+  }
+
+  .num.posts a, .num.views {
+    font-family: var(--font-ui);
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    color: var(--primary-medium);
+  }
+
+  .topic-statuses .pinned { color: var(--tavern-brass); }
+}
+
+// ---- 6. Categories (.category-list / .category-boxes) -------
+
+.category-list .category, .category-boxes .category-box {
+  border-left: 4px solid var(--category-color, var(--tertiary));
+  background: var(--secondary);
+
+  .category-title-link h3 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 22px;
+  }
+  .category-description {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--primary-medium);
+  }
+}
+
+// Category badge as filled circle with letter
+.badge-category__wrapper .badge-category {
+  background: transparent !important;
+  position: relative;
+  padding-left: 22px;
+  &::before {
+    content: '';
+    position: absolute; left: 0; top: 50%;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--category-badge-color);
+    transform: translateY(-50%);
+  }
+}
+
+// ---- 7. Buttons --------------------------------------------
+
+.btn {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  border-radius: 2px;
+  border: 1px solid var(--tavern-rule);
+}
+.btn-primary {
+  background: var(--tavern-oxblood);
+  color: var(--secondary);
+  border: none;
+  &:hover { background: darken(#7a1f1f, 6%); }
+}
+
+// ---- 8. Homepage banner (Pull up a chair) -------------------
+
+.tavern-banner {
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(200,148,26,.08), transparent 50%),
+    var(--tavern-cream);
+  padding: 56px 64px 48px;
+  border-bottom: 1px solid var(--tavern-brass);
+  position: relative;
+  font-family: var(--font-serif);
+
+  &::before {
+    content: '★ A NIGHTLY PRIMER ★';
+    position: absolute; top: 24px; left: 64px;
+    font-family: var(--font-ui);
+    font-size: 10px; letter-spacing: 0.4em; font-weight: 700;
+    color: var(--tavern-oxblood);
+  }
+
+  &__grid {
+    display: grid; grid-template-columns: 1fr 280px; gap: 48px;
+    align-items: start;
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 900;
+    font-size: 88px; line-height: 0.95;
+    color: var(--tavern-ink);
+    margin: 24px 0 16px;
+  }
+
+  &__subtitle {
+    font-size: 16px; line-height: 1.55;
+    color: var(--tavern-ink); opacity: 0.8;
+    max-width: 540px; margin-bottom: 32px;
+  }
+
+  &__cta {
+    display: inline-block;
+    background: var(--tavern-brass);
+    color: var(--tavern-ink);
+    padding: 14px 28px;
+    font-family: var(--font-ui);
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    text-decoration: none; border-radius: 2px;
+    margin-right: 12px;
+    &:hover { background: lighten(#c8941a, 6%); }
+  }
+
+  &__cta--ghost {
+    background: transparent;
+    color: var(--tavern-ink);
+    border-bottom: 2px solid var(--tavern-ink);
+    padding: 14px 0;
+    border-radius: 0;
+    margin-right: 0;
+  }
+
+  // Project of the Night card (right column)
+  &__feature {
+    background: var(--tavern-ink);
+    color: var(--tavern-cream);
+    padding: 24px;
+    border-radius: 2px;
+    border: 1px solid var(--tavern-brass);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+
+    .label {
+      font-family: var(--font-ui);
+      font-size: 9px; letter-spacing: 0.3em; font-weight: 700;
+      color: var(--tavern-brass); text-transform: uppercase;
+    }
+    .stats { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; margin-top: 16px; }
+    .stat-label { font-family: var(--font-serif); font-style: italic; font-size: 13px; opacity: 0.7; }
+    .stat-value { font-family: var(--font-display); font-weight: 700; font-size: 20px; text-align: right; }
+  }
+
+  // Trending tonight strip
+  &__trending {
+    margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid var(--tavern-rule);
+
+    .heading {
+      font-family: var(--font-display);
+      font-style: italic; font-weight: 700;
+      font-size: 13px; color: var(--tavern-oxblood);
+      text-transform: uppercase; letter-spacing: 0.16em;
+      margin-bottom: 14px;
+      &::before { content: '✦ '; color: var(--tavern-brass); }
+    }
+    .items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .item {
+      font-family: var(--font-serif);
+      a {
+        font-family: var(--font-display);
+        font-weight: 700; font-size: 15px;
+        color: var(--tavern-ink); text-decoration: none;
+        line-height: 1.3; display: block; margin-bottom: 6px;
+        &:hover { color: var(--tavern-oxblood); }
+      }
+      .meta { font-size: 12px; color: var(--primary-medium); font-style: italic; }
+    }
+  }
+
+  // Recent badges card (right column, below feature)
+  &__badges {
+    margin-top: 16px;
+    padding: 20px;
+    background: var(--secondary);
+    border: 1px solid var(--tavern-rule);
+    border-radius: 2px;
+
+    .heading {
+      font-family: var(--font-display);
+      font-style: italic; font-weight: 700;
+      font-size: 14px; color: var(--tavern-oxblood);
+      margin-bottom: 12px;
+    }
+    .badge-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 0;
+      font-family: var(--font-serif); font-size: 13px;
+      .badge-icon {
+        width: 28px; height: 28px; border-radius: 50%;
+        background: var(--tavern-brass); color: var(--tavern-ink);
+        display: inline-flex; align-items: center; justify-content: center;
+        font-family: var(--font-display); font-weight: 900; font-size: 14px;
+        flex-shrink: 0;
+      }
+      .badge-icon--rare { background: #4a6b8a; color: #fff; }
+      .badge-icon--epic { background: var(--tavern-oxblood); color: #fff; }
+      .badge-icon--legendary { background: #2a1f17; color: var(--tavern-brass); border: 1px solid var(--tavern-brass); }
+      .badge-name { font-weight: 600; color: var(--primary); }
+      .badge-count { margin-left: auto; color: var(--primary-medium); font-style: italic; font-size: 12px; }
+    }
+  }
+}
+
+// Hide banner on routes that aren't the homepage
+body:not(.navigation-topics):not(.navigation-categories):not(.archetype-regular) .tavern-banner,
+body.archetype-regular .tavern-banner { display: none; }

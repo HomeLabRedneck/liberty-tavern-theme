@@ -1,0 +1,36 @@
+{
+  "name": "Liberty Tavern",
+  "about_url": "https://github.com/your-org/liberty-tavern-theme",
+  "license_url": "https://github.com/your-org/liberty-tavern-theme/blob/main/LICENSE",
+  "component": false,
+  "color_schemes": {
+    "Liberty Tavern": {
+      "primary":              "#2a1f17",
+      "secondary":            "#f5ebd9",
+      "tertiary":             "#7a1f1f",
+      "quaternary":           "#c8941a",
+      "header_background":    "#1a120c",
+      "header_primary":       "#f5ebd9",
+      "highlight":            "#c8941a",
+      "danger":               "#9a2a1a",
+      "success":              "#3d6b3d",
+      "love":                 "#7a1f1f",
+      "selected":             "#e8dcc4",
+      "hover":                "#ede0c7"
+    },
+    "Liberty Tavern Dark": {
+      "primary":              "#f0e6d2",
+      "secondary":            "#1a120c",
+      "tertiary":             "#d4a548",
+      "quaternary":           "#c8941a",
+      "header_background":    "#0f0a06",
+      "header_primary":       "#f0e6d2",
+      "highlight":            "#d4a548",
+      "danger":               "#c44a3a",
+      "success":              "#5a8a5a",
+      "love":                 "#c44a3a",
+      "selected":             "#2a1f17",
+      "hover":                "#241a12"
+    }
+  }
+}

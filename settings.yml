@@ -1,0 +1,60 @@
+accent_hue:
+  type: integer
+  default: 25
+  min: 0
+  max: 360
+  description: "Hue used for category accent colors and brass highlights (0–360)."
+
+show_homepage_banner:
+  type: bool
+  default: true
+  description: "Show the 'Pull up a chair' banner on the homepage."
+
+banner_title:
+  type: string
+  default: "Pull up a chair."
+  description: "Headline for the homepage banner."
+
+banner_subtitle:
+  type: string
+  default: "A local tavern serving up conversations and discourse — politics, philosophy, hobbies, and the occasional argument about bourbon. Mind your manners. Argue ideas, not the man."
+  description: "Subhead for the homepage banner."
+
+show_trending_strip:
+  type: bool
+  default: true
+  description: "Show the live 'Trending tonight' strip in the homepage banner."
+
+show_badges_card:
+  type: bool
+  default: true
+  description: "Show the 'Project of the Night' / badges card in the homepage banner."
+
+trending_period:
+  type: enum
+  default: daily
+  choices:
+    - all
+    - yearly
+    - quarterly
+    - monthly
+    - weekly
+    - daily
+  description: "Time window for the trending strip (passed to /top.json)."
+
+honored_patrons_enabled:
+  type: bool
+  default: true
+  description: "Show the Honored Patrons section in the left sidebar."
+
+honored_patrons_group:
+  type: string
+  default: "trust_level_4"
+  description: "Group name to source Honored Patrons from. Use 'trust_level_4' for regulars, or any custom group."
+
+honored_patrons_count:
+  type: integer
+  default: 4
+  min: 1
+  max: 10
+  description: "How many patrons to show."
