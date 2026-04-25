@@ -4,8 +4,6 @@ import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 import { categoryBadgeHTML } from "discourse/helpers/category-link";
 import { htmlSafe } from "@ember/template";
-import { hbs } from "ember-cli-htmlbars";
-import RouteTemplate from "ember-route-template";
 
 export default class TavernBanner extends Component {
   @service router;
@@ -16,6 +14,11 @@ export default class TavernBanner extends Component {
   @tracked featured = null;
   @tracked loading = true;
 
+  // Expose theme settings to the template via `this.settings`
+  get settings() {
+    return settings;
+  }
+
   constructor() {
     super(...arguments);
     if (this.shouldShow) this.loadData();
@@ -24,54 +27,47 @@ export default class TavernBanner extends Component {
   get shouldShow() {
     if (!settings.show_homepage_banner) return false;
     const route = this.router.currentRouteName || "";
-    // Show on /latest, /top, /new, /unread, /categories
     return /^discovery\.(latest|top|new|unread|categories|hot)$/.test(route);
   }
 
   async loadData() {
     try {
       const period = settings.trending_period || "daily";
-      const [topRes, badgeRes] = await Promise.all([
-        ajax(`/top.json?period=${period}`),
-        ajax(`/user-badges.json?offset=0&limit=4`).catch(() => null),
-      ]);
-
+      const topRes = await ajax(`/top.json?period=${period}`).catch(() => null);
       const topics = topRes?.topic_list?.topics || [];
       this.featured = topics[0] || null;
       this.trending = topics.slice(1, 4);
 
-      if (badgeRes?.user_badges) {
-        // Group recent badge grants by badge id
-        const seen = new Map();
-        for (const ub of badgeRes.user_badges) {
-          if (!seen.has(ub.badge_id)) seen.set(ub.badge_id, { badge_id: ub.badge_id, count: 0 });
-          seen.get(ub.badge_id).count += 1;
-        }
-        const badgeDefs = (badgeRes.badges || []).reduce((m, b) => (m[b.id] = b, m), {});
-        this.badges = [...seen.values()]
+      // Recent badge grants — endpoint is /user_badges.json (underscore),
+      // and it needs ?username= for per-user grants. For site-wide recent
+      // grants we use the admin badge listing fallback: /badges.json gives
+      // definitions; we then sample grant_count from there as a proxy.
+      const badgeRes = await ajax("/badges.json").catch(() => null);
+      if (badgeRes?.badges) {
+        const tierMap = { 1: "common", 2: "rare", 3: "epic", 4: "legendary" };
+        this.badges = badgeRes.badges
+          .filter((b) => b.enabled && b.grant_count > 0)
+          .sort((a, b) => b.grant_count - a.grant_count)
+          .slice(0, 4)
           .map((b) => ({
-            id: b.badge_id,
-            name: badgeDefs[b.badge_id]?.name || "Badge",
-            count: b.count,
-            tier: ["common","rare","rare","epic","legendary"][badgeDefs[b.badge_id]?.badge_type_id] || "common",
-            initial: (badgeDefs[b.badge_id]?.name || "?")[0],
-          }))
-          .slice(0, 4);
+            id: b.id,
+            name: b.name,
+            count: b.grant_count,
+            tier: tierMap[b.badge_type_id] || "common",
+            initial: (b.name || "?")[0],
+          }));
       }
     } catch (e) {
-      // Fail quietly; banner just renders without live data
       console.warn("Liberty Tavern banner: failed to load data", e);
     } finally {
       this.loading = false;
     }
   }
 
-  categoryBadge(catId) {
+  categoryBadge = (catId) => {
     const cat = this.site.categories.findBy("id", catId);
     return cat ? htmlSafe(categoryBadgeHTML(cat, { allowUncategorized: true })) : "";
-  }
+  };
 
-  topicUrl(topic) {
-    return `/t/${topic.slug}/${topic.id}`;
-  }
+  topicUrl = (topic) => `/t/${topic.slug}/${topic.id}`;
 }
