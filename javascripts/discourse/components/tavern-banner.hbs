@@ -5,11 +5,11 @@
         <h1 class="tavern-banner__title">{{this.settings.banner_title}}</h1>
         <p class="tavern-banner__subtitle">{{this.settings.banner_subtitle}}</p>
         <a href="/new-topic" class="tavern-banner__cta">Pull a stool</a>
-        <a href="/faq" class="tavern-banner__cta tavern-banner__cta--ghost">{{i18n (theme-prefix "liberty_tavern.banner.read_house_rules")}}</a>
+        <a href="/faq" class="tavern-banner__cta tavern-banner__cta--ghost">Read the House Rules</a>
 
         {{#if this.settings.show_trending_strip}}
           <div class="tavern-banner__trending">
-            <div class="heading">{{i18n (theme-prefix "liberty_tavern.banner.trending_now")}}</div>
+            <div class="heading">Trending Tonight</div>
             {{#unless this.loading}}
               <div class="items">
                 {{#each this.trending as |t|}}
@@ -30,7 +30,7 @@
       <aside class="tavern-banner__aside">
         {{#if this.featured}}
           <div class="tavern-banner__feature">
-            <div class="label">{{i18n (theme-prefix "liberty_tavern.banner.project_of_the_night")}}</div>
+            <div class="label">Project of the Night</div>
             <a href={{this.topicUrl this.featured}} style="color:inherit;text-decoration:none;">
               <h3 style="font-family:var(--font-display);font-style:italic;font-weight:900;font-size:24px;margin:8px 0 4px;">
                 {{this.featured.fancy_title}}
@@ -47,9 +47,9 @@
           </div>
         {{/if}}
 
-        {{#if (and this.settings.show_badges_card this.badges.length)}}
+        {{#if this.showBadges}}
           <div class="tavern-banner__badges">
-            <div class="heading">{{i18n (theme-prefix "liberty_tavern.banner.badges_recent")}}</div>
+            <div class="heading">Recent Badges Awarded</div>
             {{#each this.badges as |b|}}
               <div class="badge-row">
                 <span class="badge-icon badge-icon--{{b.tier}}">{{b.initial}}</span>
