@@ -12,9 +12,9 @@
 ## Current Position
 
 - **Milestone:** v1 (initial release matching Image 1)
-- **Phase:** 1 — Foundation Repair (planned — 3 plans ready, awaiting `/gsd-execute-phase 1`)
-- **Plan:** None started
-- **Status:** Ready to execute
+- **Phase:** 1 — Foundation Repair (in progress — plan 04 complete, plans 01–03 pending)
+- **Plan:** 04 complete
+- **Status:** In progress
 - **Progress:** `[----] 0/4 phases complete`
 
 ## Performance Metrics
@@ -23,8 +23,8 @@
 |--------|-------|
 | Phases planned | 1 / 4 |
 | Phases complete | 0 / 4 |
-| Requirements validated | 0 / 26 |
-| Plans complete | 0 / 3 |
+| Requirements validated | 2 / 26 |
+| Plans complete | 1 / 4 |
 
 ## Accumulated Context
 
@@ -33,6 +33,12 @@
 - **Coarse granularity, 4 phases** — Project scope is bounded by Image 1 fidelity, not arbitrary scaling; 4 phases match natural delivery boundaries (foundation → header → homepage content → right column).
 - **YOLO mode** — Single non-technical owner; no review gates between phases.
 - **Phase ordering driven by blast radius** — Foundation first (kills the most visible bug and validates the new outlet pattern), right-column last (touches `#main-outlet-wrapper` grid).
+
+### Decisions Locked (01-04)
+
+- **honored_patrons_group default empty** — sidebar hidden until admin configures a real publicly-visible group; avoids 403 from restricted system groups
+- **filter: brightness(1.15) for hover states** — lighten() cannot operate on CSS custom properties (runtime values); brightness() preserves accent_hue responsiveness on hover
+- **var(--tavern-cream) for sidebar background** — --secondary-low resolves dark on this Discourse install; explicit cream variable is always correct
 
 ### Decisions Pending
 
@@ -50,9 +56,9 @@ None.
 
 ## Session Continuity
 
-**Last action:** Created ROADMAP.md and STATE.md; locked traceability in REQUIREMENTS.md.
+**Last action:** Executed plan 01-04 — 4 UAT fixes (honored patrons guard, accent_hue wiring, eyebrow text, sidebar background). Commits: d1a3fdc, 52d20e2, dfb9e3b.
 
-**Next action:** Run `/gsd-plan-phase 1` to decompose Phase 1 (Foundation Repair) into executable plans.
+**Next action:** Execute plans 01-01, 01-02, 01-03 (banner outlet fix, CTA + inline styles, SCSS cleanup).
 
 **Files of record:**
 - `.planning/PROJECT.md` — vision, constraints, decisions

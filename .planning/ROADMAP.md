@@ -28,12 +28,13 @@ Repair and complete the Liberty Tavern Discourse theme so the homepage matches t
   2. Clicking "Pull a Stool" opens the Discourse new-topic composer for logged-in users (and routes anonymous users to login) — never returns 404.
   3. Honored Patrons sidebar section populates patron avatars on first load, including on slow connections, without depending on the undocumented `sidebar:refresh` event.
   4. Google Fonts load exactly once per page (verified by checking network tab for a single Playfair/Spectral/Inter request) and the `accent_hue` admin setting visibly changes the brass accent color.
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
 - [ ] 01-01-PLAN.md — Banner outlet fix: create theme-setup.js with api.renderInOutlet, disable WelcomeBanner in about.json, delete connector file
 - [ ] 01-02-PLAN.md — CTA + inline styles: fix /new-topic 404 with composer action, remove inline style= from banner template
 - [ ] 01-03-PLAN.md — SCSS cleanup: fix sidebar @tracked reactivity, remove Google Fonts @import, wire accent_hue to --tavern-brass, add BEM classes
+- [x] 01-04-PLAN.md — UAT fixes: honored_patrons_group empty default + guard, all #c8941a → var(--tavern-brass), eyebrow text, sidebar background
 
 ### Phase 2: Custom Header
 **Goal**: Replace Discourse's default header chrome with the tavern header bar shown in Image 1, while preserving native search and user-menu functionality.
@@ -75,7 +76,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation Repair | 0/3 | Not started | - |
+| 1. Foundation Repair | 1/4 | In progress | - |
 | 2. Custom Header | 0/0 | Not started | - |
 | 3. Homepage Content | 0/0 | Not started | - |
 | 4. Right Column | 0/0 | Not started | - |

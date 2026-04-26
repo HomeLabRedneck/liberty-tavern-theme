@@ -11,10 +11,10 @@
 - [ ] **FOUND-02**: Discourse's native WelcomeBanner disabled so it does not conflict with our banner
 - [ ] **FOUND-03**: Banner mount moved from `below-site-header` outlet to `discovery-list-container-top` via `api.renderInOutlet()` in an api-initializer
 - [ ] **FOUND-04**: "Pull a Stool" CTA button opens the Discourse new-topic composer instead of navigating to `/new-topic` (which returns 404)
-- [ ] **FOUND-05**: Honored Patrons sidebar section populates reliably on slow connections using `@tracked` reactivity (not the undocumented `sidebar:refresh` event)
+- [x] **FOUND-05**: Honored Patrons sidebar section populates reliably on slow connections using `@tracked` reactivity (not the undocumented `sidebar:refresh` event)
 - [ ] **FOUND-06**: Google Fonts loaded exactly once — `@import` removed from `common/common.scss`, `<link>` in `head_tag.html` kept
 - [ ] **FOUND-07**: Inline `style="..."` attributes removed from `tavern-banner.hbs`; moved to SCSS classes
-- [ ] **FOUND-08**: `accent_hue` theme setting wired to `--tavern-brass` CSS variable so admin color changes take effect
+- [x] **FOUND-08**: `accent_hue` theme setting wired to `--tavern-brass` CSS variable so admin color changes take effect
 
 ### Header
 
@@ -78,10 +78,10 @@ Phase assignments finalized 2026-04-26 via roadmap creation. Locked.
 | FOUND-02 | Phase 1 | Pending |
 | FOUND-03 | Phase 1 | Pending |
 | FOUND-04 | Phase 1 | Pending |
-| FOUND-05 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Complete |
 | FOUND-06 | Phase 1 | Pending |
 | FOUND-07 | Phase 1 | Pending |
-| FOUND-08 | Phase 1 | Pending |
+| FOUND-08 | Phase 1 | Complete |
 | HEAD-01 | Phase 2 | Pending |
 | HEAD-02 | Phase 2 | Pending |
 | HEAD-03 | Phase 2 | Pending |
