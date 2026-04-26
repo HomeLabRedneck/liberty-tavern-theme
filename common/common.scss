@@ -74,7 +74,7 @@ h2, h3 { font-style: italic; }
 // ---- 3. Sidebar (.sidebar-wrapper) --------------------------
 
 .sidebar-wrapper {
-  background: var(--secondary-low, #ede0c7);
+  background: var(--tavern-cream);
   border-right: 1px solid var(--tavern-rule);
   font-family: var(--font-ui);
 
@@ -257,7 +257,7 @@ h2, h3 { font-style: italic; }
 
 // Ribbon only on the real banner section, not the outlet wrapper
 section.tavern-banner::before {
-  content: '★ A NIGHTLY PRIMER ★';
+  content: '✦ WELCOME, FRIEND ✦';
   position: absolute; top: 24px; left: 64px;
   font-family: var(--font-ui);
   font-size: 10px; letter-spacing: 0.4em; font-weight: 700;
