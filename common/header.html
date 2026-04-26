@@ -1,0 +1,34 @@
+<style>
+.d-header {
+  display: none;
+}
+</style>
+
+<header class="tavern-header">
+  <div class="tavern-header__container">
+    <div class="tavern-header__logo">
+      <svg class="tavern-header__logo-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#f5ebd9"/>
+        <text x="50" y="50" text-anchor="middle" dy=".3em" font-size="60" font-weight="bold" font-family="serif" fill="#1a120c">🍺</text>
+      </svg>
+      <div class="tavern-header__title-block">
+        <h1 class="tavern-header__title">The Liberty Tavern</h1>
+        <p class="tavern-header__tagline">Free Speech · Est. MDCCXCI</p>
+      </div>
+    </div>
+
+    <nav class="tavern-header__nav">
+      <a href="/latest" class="tavern-header__nav-link">Trending</a>
+      <a href="/c/lounge" class="tavern-header__nav-link">Rooms</a>
+      <a href="/latest" class="tavern-header__nav-link">Latest at the Bar</a>
+      <a href="/top" class="tavern-header__nav-link">Top Shelf</a>
+    </nav>
+
+    <div class="tavern-header__actions">
+      <button class="tavern-header__search-btn" onclick="document.querySelector('[data-trigger-id=search]')?.click?.()" title="Search">
+        🔍
+      </button>
+      <a href="/login" class="tavern-header__signin-btn">SIGN IN</a>
+    </div>
+  </div>
+</header>
