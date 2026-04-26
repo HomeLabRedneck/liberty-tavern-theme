@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
+import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 import { categoryBadgeHTML } from "discourse/helpers/category-link";
@@ -8,6 +9,8 @@ import { htmlSafe } from "@ember/template";
 export default class TavernBanner extends Component {
   @service router;
   @service site;
+  @service currentUser;
+  @service composer;
 
   @tracked trending = [];
   @tracked badges = [];
@@ -17,6 +20,15 @@ export default class TavernBanner extends Component {
   // Expose theme settings to the template via `this.settings`
   get settings() {
     return settings;
+  }
+
+  @action
+  openNewTopic() {
+    if (this.currentUser) {
+      this.composer.openNewTopic({});
+    } else {
+      this.router.transitionTo("login");
+    }
   }
 
   constructor() {
