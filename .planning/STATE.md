@@ -7,14 +7,14 @@
 
 **Core Value:** The homepage must look and function like the Image 1 design — custom header, styled banner with live stats, trending section, and room cards.
 
-**Current Focus:** Project initialized. Ready to plan Phase 1 (Foundation Repair).
+**Current Focus:** Phase 1 context captured. Ready to plan Phase 1 (Foundation Repair).
 
 ## Current Position
 
 - **Milestone:** v1 (initial release matching Image 1)
-- **Phase:** None active — awaiting `/gsd-plan-phase 1`
+- **Phase:** 1 — Foundation Repair (context gathered, awaiting `/gsd-plan-phase 1`)
 - **Plan:** None
-- **Status:** Roadmap complete, planning not yet started
+- **Status:** Phase 1 context ready
 - **Progress:** `[----] 0/4 phases complete`
 
 ## Performance Metrics
