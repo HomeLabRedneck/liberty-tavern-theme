@@ -246,7 +246,7 @@ h2, h3 { font-style: italic; }
 
 // ---- 8. Homepage banner (Pull up a chair) -------------------
 
-.tavern-banner {
+section.tavern-banner {
   background:
     radial-gradient(ellipse at 30% 30%, rgba(200,148,26,.08), transparent 50%),
     var(--tavern-cream);
@@ -385,5 +385,5 @@ h2, h3 { font-style: italic; }
 }
 
 // Hide banner on routes that aren't the homepage
-body:not(.navigation-topics):not(.navigation-categories):not(.archetype-regular) .tavern-banner,
-body.archetype-regular .tavern-banner { display: none; }
+body:not(.navigation-topics):not(.navigation-categories):not(.archetype-regular) section.tavern-banner,
+body.archetype-regular section.tavern-banner { display: none; }
