@@ -40,7 +40,7 @@ h2, h3 { font-style: italic; }
 
 .d-header {
   background: #1a120c;
-  border-bottom: 1px solid #c8941a;
+  border-bottom: 1px solid var(--tavern-brass);
   box-shadow: 0 2px 0 rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.25);
 
   .title a, #site-text-logo {
@@ -54,11 +54,11 @@ h2, h3 { font-style: italic; }
   .nav-item-link, .icon, .d-header-icons .icon {
     color: #f5ebd9;
     opacity: .85;
-    &:hover { opacity: 1; color: #c8941a; }
+    &:hover { opacity: 1; color: var(--tavern-brass); }
   }
 
   .btn-primary, .sign-up-button {
-    background: #c8941a;
+    background: var(--tavern-brass);
     color: #1a120c;
     font-family: var(--font-ui);
     font-weight: 700;
@@ -67,7 +67,7 @@ h2, h3 { font-style: italic; }
     font-size: 11px;
     border-radius: 2px;
     border: none;
-    &:hover { background: lighten(#c8941a, 6%); }
+    &:hover { filter: brightness(1.15); }
   }
 }
 
@@ -250,7 +250,7 @@ h2, h3 { font-style: italic; }
     radial-gradient(ellipse at 30% 30%, rgba(200,148,26,.08), transparent 50%),
     #f5ebd9;
   padding: 56px 64px 48px;
-  border-bottom: 1px solid #c8941a;
+  border-bottom: 1px solid var(--tavern-brass);
   position: relative;
   font-family: var(--font-serif);
 }
@@ -287,7 +287,7 @@ section.tavern-banner::before {
 
   &__cta {
     display: inline-block;
-    background: #c8941a;
+    background: var(--tavern-brass);
     color: #2a1f17;
     padding: 14px 28px;
     font-family: var(--font-ui);
@@ -295,7 +295,7 @@ section.tavern-banner::before {
     text-transform: uppercase; letter-spacing: 0.14em;
     text-decoration: none; border-radius: 2px;
     margin-right: 12px;
-    &:hover { background: lighten(#c8941a, 6%); }
+    &:hover { filter: brightness(1.15); }
   }
 
   &__cta--ghost {
@@ -313,13 +313,13 @@ section.tavern-banner::before {
     color: #f5ebd9;
     padding: 24px;
     border-radius: 2px;
-    border: 1px solid #c8941a;
+    border: 1px solid var(--tavern-brass);
     box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 
     .label {
       font-family: var(--font-ui);
       font-size: 9px; letter-spacing: 0.3em; font-weight: 700;
-      color: #c8941a; text-transform: uppercase;
+      color: var(--tavern-brass); text-transform: uppercase;
     }
     .stats { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; margin-top: 16px; }
     .stat-label { font-family: var(--font-serif); font-style: italic; font-size: 13px; opacity: 0.7; }
@@ -350,7 +350,7 @@ section.tavern-banner::before {
       font-size: 13px; color: #7a1f1f;
       text-transform: uppercase; letter-spacing: 0.16em;
       margin-bottom: 14px;
-      &::before { content: '✦ '; color: #c8941a; }
+      &::before { content: '✦ '; color: var(--tavern-brass); }
     }
     .items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .item {
@@ -386,14 +386,14 @@ section.tavern-banner::before {
       font-family: var(--font-serif); font-size: 13px;
       .badge-icon {
         width: 28px; height: 28px; border-radius: 50%;
-        background: #c8941a; color: #2a1f17;
+        background: var(--tavern-brass); color: #2a1f17;
         display: inline-flex; align-items: center; justify-content: center;
         font-family: var(--font-display); font-weight: 900; font-size: 14px;
         flex-shrink: 0;
       }
       .badge-icon--rare { background: #4a6b8a; color: #fff; }
       .badge-icon--epic { background: #7a1f1f; color: #fff; }
-      .badge-icon--legendary { background: #2a1f17; color: #c8941a; border: 1px solid #c8941a; }
+      .badge-icon--legendary { background: #2a1f17; color: var(--tavern-brass); border: 1px solid var(--tavern-brass); }
       .badge-name { font-weight: 600; color: var(--primary); }
       .badge-count { margin-left: auto; color: var(--primary-medium); font-style: italic; font-size: 12px; }
     }
