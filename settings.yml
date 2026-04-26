@@ -49,8 +49,8 @@ honored_patrons_enabled:
 
 honored_patrons_group:
   type: string
-  default: "trust_level_4"
-  description: "Group name to source Honored Patrons from. Use 'trust_level_4' for regulars, or any custom group."
+  default: ""
+  description: "Group name for Honored Patrons sidebar. Must be a publicly visible Discourse group. Leave empty to hide the section entirely."
 
 honored_patrons_count:
   type: integer

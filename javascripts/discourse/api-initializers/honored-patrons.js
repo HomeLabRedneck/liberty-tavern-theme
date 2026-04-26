@@ -5,7 +5,8 @@ import { tracked } from "@glimmer/tracking";
 export default apiInitializer("1.13.0", (api) => {
   if (!settings.honored_patrons_enabled) return;
 
-  const groupName = settings.honored_patrons_group || "trust_level_4";
+  const groupName = settings.honored_patrons_group;
+  if (!groupName) return;
   const limit = settings.honored_patrons_count || 4;
 
   // Cache of group members fetched once per page load.
