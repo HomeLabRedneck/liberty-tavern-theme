@@ -246,7 +246,7 @@ h2, h3 { font-style: italic; }
 
 // ---- 8. Homepage banner (Pull up a chair) -------------------
 
-section.tavern-banner {
+.tavern-banner {
   background:
     radial-gradient(ellipse at 30% 30%, rgba(200,148,26,.08), transparent 50%),
     var(--tavern-cream);
@@ -254,14 +254,18 @@ section.tavern-banner {
   border-bottom: 1px solid var(--tavern-brass);
   position: relative;
   font-family: var(--font-serif);
+}
 
-  &::before {
-    content: '★ A NIGHTLY PRIMER ★';
-    position: absolute; top: 24px; left: 64px;
-    font-family: var(--font-ui);
-    font-size: 10px; letter-spacing: 0.4em; font-weight: 700;
-    color: var(--tavern-oxblood);
-  }
+// Ribbon only on the real banner section, not the outlet wrapper
+section.tavern-banner::before {
+  content: '★ A NIGHTLY PRIMER ★';
+  position: absolute; top: 24px; left: 64px;
+  font-family: var(--font-ui);
+  font-size: 10px; letter-spacing: 0.4em; font-weight: 700;
+  color: var(--tavern-oxblood);
+}
+
+.tavern-banner {
 
   &__grid {
     display: grid; grid-template-columns: 1fr 280px; gap: 48px;
@@ -385,5 +389,5 @@ section.tavern-banner {
 }
 
 // Hide banner on routes that aren't the homepage
-body:not(.navigation-topics):not(.navigation-categories):not(.archetype-regular) section.tavern-banner,
-body.archetype-regular section.tavern-banner { display: none; }
+body:not(.navigation-topics):not(.navigation-categories):not(.archetype-regular) .tavern-banner,
+body.archetype-regular .tavern-banner { display: none; }
