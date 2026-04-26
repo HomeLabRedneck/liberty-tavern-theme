@@ -70,6 +70,8 @@
 
 ## Traceability
 
+Phase assignments finalized 2026-04-26 via roadmap creation. Locked.
+
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | FOUND-01 | Phase 1 | Pending |
@@ -106,4 +108,4 @@
 
 ---
 *Requirements defined: 2026-04-26*
-*Last updated: 2026-04-26 after initial definition*
+*Last updated: 2026-04-26 — phase assignments finalized in ROADMAP.md*
