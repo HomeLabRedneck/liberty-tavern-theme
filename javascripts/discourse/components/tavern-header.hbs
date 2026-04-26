@@ -1,0 +1,27 @@
+<header class="tavern-header">
+  <div class="tavern-header__container">
+    <div class="tavern-header__logo">
+      {{#if this.logoUrl}}
+        <img src={{this.logoUrl}} alt="Logo" class="tavern-header__logo-img">
+      {{/if}}
+      <div class="tavern-header__title-block">
+        <h1 class="tavern-header__title">{{this.siteTitle}}</h1>
+        <p class="tavern-header__tagline">{{this.siteTagline}}</p>
+      </div>
+    </div>
+
+    <nav class="tavern-header__nav">
+      <a href="/latest" class="tavern-header__nav-link">Trending</a>
+      <a href="/c/lounge" class="tavern-header__nav-link">Rooms</a>
+      <a href="/latest" class="tavern-header__nav-link">Latest at the Bar</a>
+      <a href="/top" class="tavern-header__nav-link">Top Shelf</a>
+    </nav>
+
+    <div class="tavern-header__actions">
+      <button class="tavern-header__search-btn" title="Search">
+        <span class="icon">🔍</span>
+      </button>
+      <button class="tavern-header__signin-btn">SIGN IN</button>
+    </div>
+  </div>
+</header>
