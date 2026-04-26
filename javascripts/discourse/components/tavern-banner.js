@@ -37,12 +37,22 @@ export default class TavernBanner extends Component {
   async loadData() {
     try {
       const period = settings.trending_period || "daily";
-      // Try /top first; if the forum is new and has no "top" yet, fall back to /latest
+      // Try /top first; merge in /latest if we don't have enough topics
+      // for both the featured slot AND a 3-up trending strip (need 4+).
       let topRes = await ajax(`/top.json?period=${period}`).catch(() => null);
       let topics = topRes?.topic_list?.topics || [];
-      if (topics.length === 0) {
+      if (topics.length < 4) {
         const latestRes = await ajax("/latest.json").catch(() => null);
-        topics = latestRes?.topic_list?.topics || [];
+        const latest = latestRes?.topic_list?.topics || [];
+        // Append any latest topics we don't already have
+        const seen = new Set(topics.map((t) => t.id));
+        for (const t of latest) {
+          if (!seen.has(t.id)) {
+            topics.push(t);
+            seen.add(t.id);
+          }
+          if (topics.length >= 4) break;
+        }
       }
       this.featured = topics[0] || null;
       this.trending = topics.slice(1, 4);
