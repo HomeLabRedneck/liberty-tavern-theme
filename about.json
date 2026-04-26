@@ -32,5 +32,8 @@
       "selected":             "#2a1f17",
       "hover":                "#241a12"
     }
+  },
+  "theme_site_settings": {
+    "enable_welcome_banner": false
   }
 }
