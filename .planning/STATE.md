@@ -12,19 +12,19 @@
 ## Current Position
 
 - **Milestone:** v1 (initial release matching Image 1)
-- **Phase:** 1 — Foundation Repair (context gathered, awaiting `/gsd-plan-phase 1`)
-- **Plan:** None
-- **Status:** Phase 1 context ready
+- **Phase:** 1 — Foundation Repair (planned — 3 plans ready, awaiting `/gsd-execute-phase 1`)
+- **Plan:** None started
+- **Status:** Ready to execute
 - **Progress:** `[----] 0/4 phases complete`
 
 ## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
-| Phases planned | 0 / 4 |
+| Phases planned | 1 / 4 |
 | Phases complete | 0 / 4 |
 | Requirements validated | 0 / 26 |
-| Plans complete | 0 / 0 |
+| Plans complete | 0 / 3 |
 
 ## Accumulated Context
 
@@ -40,7 +40,8 @@
 
 ### Open Todos
 
-- [ ] Plan Phase 1 via `/gsd-plan-phase 1`
+- [x] Plan Phase 1 via `/gsd-plan-phase 1`
+- [ ] Execute Phase 1 via `/gsd-execute-phase 1`
 - [ ] (Optional) Verify the 5 open questions in `research/SUMMARY.md` section 5 against the live forum
 
 ### Blockers
