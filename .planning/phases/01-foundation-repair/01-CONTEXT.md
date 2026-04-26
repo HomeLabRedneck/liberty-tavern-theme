@@ -22,6 +22,12 @@ Fix the 8 visible bugs blocking all other phases: banner duplication, 404 CTA, f
 ### api-initializer Structure
 - **D-03:** Create a new file `javascripts/discourse/api-initializers/theme-setup.js` for the banner mount (`api.renderInOutlet`). Do NOT fold into `honored-patrons.js`. This file will grow as Phases 2–4 add header and layout setup.
 
+### Banner Eyebrow Text
+- **D-04:** Change `section.tavern-banner::before` CSS content from `'★ A NIGHTLY PRIMER ★'` to `'✦ WELCOME, FRIEND ✦'` in `common.scss` line 260. The eyebrow label in the design reads "WELCOME, FRIEND", not "NIGHTLY PRIMER".
+
+### Sidebar Background Color
+- **D-05:** Replace `background: var(--secondary-low, #ede0c7)` in `.sidebar-wrapper` with `background: var(--tavern-cream)`. Discourse's `--secondary-low` resolves dark on this install, overriding the warm fallback. Use the explicit tavern cream variable instead.
+
 ### Claude's Discretion
 - `shouldShow` route check: switch from regex `/^discovery\./` to `defaultHomepage()` if that function is available in the Discourse API, otherwise keep regex. Claude decides based on Discourse version in use.
 - SCSS class names for removed inline styles: Claude chooses names consistent with existing `.tavern-banner__*` BEM pattern.
@@ -81,7 +87,13 @@ Fix the 8 visible bugs blocking all other phases: banner duplication, 404 CTA, f
 <deferred>
 ## Deferred Ideas
 
-None — discussion stayed within phase scope.
+### Phase 2 (Custom Header) — observed in Phase 1 UAT
+- **Header nav pills missing**: Top bar shows no navigation links. Design requires Trending, Rooms (pill), Latest at the Bar, Top Shelf. → Phase 2 HEAD-03.
+- **Header title/tagline missing**: Logo present but "The Liberty Tavern" + "FREE SPEECH · EST. MDCCXCI" text absent. → Phase 2 HEAD-01/02.
+
+### Phase 3 (Homepage Content) — observed in Phase 1 UAT
+- **Banner aside shows wrong content**: Current aside renders "Project of the Night" (featured topic) + "Recent Badges Awarded". Design shows a "Tonight at the House" stats panel (Patrons Inside, Members, Posts Today, Open Rooms in italic gold Playfair). Full restructure + stats wiring deferred to Phase 3.
+- **Trending Tonight embedded in banner**: Design shows Trending Tonight as a standalone strip below the banner, not inside it. Requires banner template restructure in Phase 3.
 
 </deferred>
 
