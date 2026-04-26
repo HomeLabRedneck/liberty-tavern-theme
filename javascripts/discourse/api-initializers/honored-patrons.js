@@ -1,5 +1,6 @@
 import { apiInitializer } from "discourse/lib/api";
 import { ajax } from "discourse/lib/ajax";
+import { tracked } from "@glimmer/tracking";
 
 export default apiInitializer("1.13.0", (api) => {
   if (!settings.honored_patrons_enabled) return;
@@ -44,18 +45,12 @@ export default apiInitializer("1.13.0", (api) => {
     }
 
     return class extends BaseCustomSidebarSection {
+      @tracked patrons = [];
+
       constructor() {
         super(...arguments);
-        this._patrons = [];
         loadPatrons().then((users) => {
-          this._patrons = users;
-          // Force the sidebar to re-render. addSidebarSection re-evaluates `links`
-          // when the section instance is re-created; postMessage triggers that
-          // via Discourse's app-events.
-          if (api.container) {
-            const appEvents = api.container.lookup("service:app-events");
-            appEvents?.trigger("sidebar:refresh");
-          }
+          this.patrons = users;
         });
       }
       get name() { return "honored-patrons"; }
@@ -64,7 +59,7 @@ export default apiInitializer("1.13.0", (api) => {
       get displaySection() { return true; }
       get hideSectionHeader() { return false; }
       get links() {
-        return this._patrons.slice(0, limit).map((u) => new PatronLink({ user: u }));
+        return this.patrons.slice(0, limit).map((u) => new PatronLink({ user: u }));
       }
       get actions() { return []; }
       get actionsIcon() { return null; }
