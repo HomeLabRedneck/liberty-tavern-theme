@@ -21,6 +21,7 @@
 html, body {
   font-family: var(--font-serif);
   font-feature-settings: "kern", "liga", "onum";
+  background: var(--tavern-cream);
 }
 
 h1, h2, h3, .topic-list .main-link .title, .category-name {
@@ -87,22 +88,6 @@ h2, h3 { font-style: italic; }
     &:active { filter: brightness(0.9); }
   }
 
-  .nav-pills .nav-item.active a {
-    opacity: 1;
-    border-bottom: 2px solid var(--tavern-brass);
-  }
-
-  .nav-pills .nav-item a:focus-visible {
-    outline: 2px solid var(--tavern-brass);
-    outline-offset: 2px;
-  }
-
-  .nav-pills .nav-item a {
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-  }
 }
 
 // ---- 2a. Logo connector (.tavern-logo) -----------------------
@@ -150,6 +135,59 @@ h2, h3 { font-style: italic; }
 #main-outlet-wrapper,
 #main-outlet {
   padding-top: 64px;
+}
+
+// ---- 2b. Nav pills → header (fixed overlay) -----------------
+
+.navigation-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.navigation-container .nav-pills {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+
+  .nav-item a {
+    color: var(--header_primary);
+    opacity: 0.85;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: transparent;
+    border-radius: 0;
+    padding: 6px 14px;
+    display: block;
+    white-space: nowrap;
+
+    &:hover {
+      opacity: 1;
+      color: var(--tavern-brass);
+      background: transparent;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--tavern-brass);
+      outline-offset: 2px;
+    }
+  }
+
+  .nav-item.active a {
+    opacity: 1;
+    border-bottom: 2px solid var(--tavern-brass);
+  }
 }
 
 // ---- 3. Sidebar (.sidebar-wrapper) --------------------------
