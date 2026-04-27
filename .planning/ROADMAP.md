@@ -12,7 +12,7 @@ Repair and complete the Liberty Tavern Discourse theme so the homepage matches t
 
 ## Phases
 
-- [ ] **Phase 1: Foundation Repair** — Fix the broken/duplicated banner, kill 404 CTA, stabilize sidebar reactivity, clean up font and styling debt
+- [x] **Phase 1: Foundation Repair** — Fix the broken/duplicated banner, kill 404 CTA, stabilize sidebar reactivity, clean up font and styling debt *(completed 2026-04-26)*
 - [ ] **Phase 2: Custom Header** — Mount the tavern header (logo, title, tagline, nav links, Sign In) on every page
 - [ ] **Phase 3: Homepage Content** — Wire live stats panel and render the Rooms section as styled category cards
 - [ ] **Phase 4: Right Column** — Add the two-column homepage layout with Badges and House Rules panels
@@ -31,9 +31,9 @@ Repair and complete the Liberty Tavern Discourse theme so the homepage matches t
 **Plans**: 4 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Banner outlet fix: create theme-setup.js with api.renderInOutlet, disable WelcomeBanner in about.json, delete connector file
-- [ ] 01-02-PLAN.md — CTA + inline styles: fix /new-topic 404 with composer action, remove inline style= from banner template
-- [ ] 01-03-PLAN.md — SCSS cleanup: fix sidebar @tracked reactivity, remove Google Fonts @import, wire accent_hue to --tavern-brass, add BEM classes
+- [x] 01-01-PLAN.md — Banner outlet fix: create theme-setup.js with api.renderInOutlet, disable WelcomeBanner in about.json, delete connector file
+- [x] 01-02-PLAN.md — CTA + inline styles: fix /new-topic 404 with composer action, remove inline style= from banner template
+- [x] 01-03-PLAN.md — SCSS cleanup: fix sidebar @tracked reactivity, remove Google Fonts @import, wire accent_hue to --tavern-brass, add BEM classes
 - [x] 01-04-PLAN.md — UAT fixes: honored_patrons_group empty default + guard, all #c8941a → var(--tavern-brass), eyebrow text, sidebar background
 
 ### Phase 2: Custom Header
@@ -76,7 +76,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation Repair | 1/4 | In progress | - |
+| 1. Foundation Repair | 4/4 | Complete | 2026-04-26 |
 | 2. Custom Header | 0/0 | Not started | - |
 | 3. Homepage Content | 0/0 | Not started | - |
 | 4. Right Column | 0/0 | Not started | - |

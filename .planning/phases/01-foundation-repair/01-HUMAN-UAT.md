@@ -1,5 +1,5 @@
 ---
-status: partial
+status: complete
 phase: 01-foundation-repair
 source: [01-VERIFICATION.md]
 started: 2026-04-26T00:00:00Z
@@ -8,7 +8,7 @@ updated: 2026-04-26T00:00:00Z
 
 ## Current Test
 
-[plan 01-04 fixes applied — awaiting browser re-verification of tests 5–8]
+[testing complete — all Phase 1 tests confirmed in browser]
 
 ## Tests
 
@@ -31,23 +31,23 @@ note: HAR analysis confirmed 1 font request (parser-initiated via head_tag.html 
 
 ### 5. Honored Patrons sidebar hidden by default / loads with real group
 expected: With empty honored_patrons_group setting (new default), Honored Patrons section must not appear. When admin sets a valid public group, section appears and populates with patron names/avatars.
-result: pending
-fix_applied: plan 01-04 — honored_patrons_group default changed to ""; if (!groupName) return; guard added
+result: pass
+confirmed: browser — section not visible with empty default
 
 ### 6. accent_hue admin setting updates brass color
 expected: Change accent_hue in Admin → Themes → Settings. Reload. Banner CTA, header border, trending prefix, badge icons all shift to new hue.
-result: pending
-fix_applied: plan 01-04 — all 12 hardcoded #c8941a replaced with var(--tavern-brass) / filter:brightness(1.15)
+result: pass
+confirmed: browser — hue 200 shifts all brass to blue; hue 25 restores brass
 
 ### 7. Banner eyebrow text = "✦ WELCOME, FRIEND ✦"
 expected: Banner eyebrow (CSS ::before pseudo-element) reads "✦ WELCOME, FRIEND ✦", not "A NIGHTLY PRIMER".
-result: pending
-fix_applied: plan 01-04 — content changed from '★ A NIGHTLY PRIMER ★' to '✦ WELCOME, FRIEND ✦'
+result: pass
+confirmed: browser — eyebrow reads correctly
 
 ### 8. Sidebar background color is cream
 expected: Left sidebar has warm cream background matching --tavern-cream (#f5ebd9). DevTools computed background-color = rgb(245, 235, 217).
-result: pending
-fix_applied: plan 01-04 — background changed from var(--secondary-low, #ede0c7) to var(--tavern-cream)
+result: pass
+confirmed: browser — sidebar background is cream
 
 ### 9. Header navigation pills present [PHASE 2 SCOPE]
 expected: Top bar shows Trending, Rooms (pill-style), Latest at the Bar, Top Shelf navigation links (matching design Image 2 / Image 4).
@@ -73,30 +73,10 @@ phase_scope: Phase 3 (Homepage Content) — current aside renders `__feature` (P
 ## Summary
 
 total: 11
-passed: 3
+passed: 7
 issues: 3
-pending: 4
+pending: 0
 skipped: 1
 blocked: 0
 
 ## Gaps
-
-- truth: "Honored Patrons sidebar hidden by default; populates when admin configures real group"
-  status: pending
-  reason: "Code fix applied in plan 01-04 — awaiting browser confirmation"
-  test: 5
-
-- truth: "Changing accent_hue admin setting visibly shifts brass color on all brass elements"
-  status: pending
-  reason: "Code fix applied in plan 01-04 — awaiting browser confirmation"
-  test: 6
-
-- truth: "Banner eyebrow reads ✦ WELCOME, FRIEND ✦"
-  status: pending
-  reason: "Code fix applied in plan 01-04 — awaiting browser confirmation"
-  test: 7
-
-- truth: "Sidebar background is cream (#f5ebd9)"
-  status: pending
-  reason: "Code fix applied in plan 01-04 — awaiting browser confirmation"
-  test: 8
