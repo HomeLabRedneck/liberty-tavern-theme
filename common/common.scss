@@ -481,6 +481,7 @@ section.tavern-banner::before {
   }
 }
 
-// Hide banner on routes that aren't the homepage
-body:not(.navigation-topics):not(.navigation-categories):not(.archetype-regular) .tavern-banner,
-body.archetype-regular .tavern-banner { display: none; }
+// Hide banner on routes that aren't the homepage.
+// Topic pages (.archetype-regular) have neither navigation class and are
+// already caught by this rule, so no separate archetype-regular clause needed.
+body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { display: none; }
