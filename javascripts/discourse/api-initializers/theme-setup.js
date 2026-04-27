@@ -18,26 +18,27 @@ export default apiInitializer("1.13.0", (api) => {
   if (translations?.js) {
     const { filters } = translations.js;
     if (filters) {
-      // filters.latest.title is a pluralized key — must assign an object, not a string
-      if (filters.latest) {
+      // filters.latest.title is a pluralized key — must assign an object, not a string.
+      // Guard each assignment so hot-reload double-patching is a no-op.
+      if (filters.latest && filters.latest.title?.other !== "Latest at the Bar (%{count})") {
         filters.latest.title = {
           zero: "Latest at the Bar",
           one: "Latest at the Bar (%{count})",
           other: "Latest at the Bar (%{count})"
         };
       }
-      if (filters.top) {
+      if (filters.top && filters.top.title !== "Top Shelf") {
         filters.top.title = "Top Shelf";
       }
-      if (filters.hot) {
+      if (filters.hot && filters.hot.title !== "Trending") {
         filters.hot.title = "Trending";
       }
-      if (filters.categories) {
+      if (filters.categories && filters.categories.title !== "Rooms") {
         filters.categories.title = "Rooms";
       }
     }
     // Rename "Log In" button label to "Sign In"
-    if (translations.js.log_in !== undefined) {
+    if (translations.js.log_in !== undefined && translations.js.log_in !== "Sign In") {
       translations.js.log_in = "Sign In";
     }
   }
