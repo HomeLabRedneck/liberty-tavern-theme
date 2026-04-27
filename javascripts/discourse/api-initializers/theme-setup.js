@@ -13,8 +13,8 @@ export default apiInitializer("1.13.0", (api) => {
   // is isolated). JS patch is the correct approach for an English-only forum.
   // top_menu site setting must be set to "hot|latest|categories|top" via Admin → Settings
   // for the Trending (/hot) pill to appear (top_menu is not a themeable setting).
-  const locale = i18n.currentLocale();
-  const translations = i18n.translations[locale];
+  const locale = (typeof i18n.currentLocale === "function" ? i18n.currentLocale() : i18n.locale) || "en";
+  const translations = i18n.translations?.[locale];
   if (translations?.js) {
     const { filters } = translations.js;
     if (filters) {
