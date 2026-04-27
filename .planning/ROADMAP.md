@@ -45,8 +45,11 @@ Plans:
   2. Header navigation displays the four links — Trending, Rooms, Latest at the Bar, Top Shelf — and each link routes to the expected Discourse view.
   3. Anonymous (logged-out) visitors see a Sign In button in the header that opens the Discourse login modal.
   4. Native search icon and user-menu still open and function correctly (not hidden, not broken by custom header CSS).
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Logo connector + SCSS: home-logo-contents HBS connector, login-button styling, nav active/focus states, header min-height 64px
+- [ ] 02-02-PLAN.md — Nav label i18n patch + admin setup: JS I18n.translations patch for Trending/Rooms/Latest at the Bar/Top Shelf/Sign In; top_menu admin step documented
 
 ### Phase 3: Homepage Content
 **Goal**: Make the banner show real live numbers and turn the homepage category list into the styled "Rooms" cards from Image 1.
@@ -77,7 +80,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation Repair | 4/4 | Complete | 2026-04-26 |
-| 2. Custom Header | 0/0 | Not started | - |
+| 2. Custom Header | 0/2 | Planned | - |
 | 3. Homepage Content | 0/0 | Not started | - |
 | 4. Right Column | 0/0 | Not started | - |
 
@@ -96,3 +99,4 @@ All 26 v1 requirements are mapped to exactly one phase. No orphans, no duplicate
 ---
 *Roadmap created: 2026-04-26*
 *Phase 1 plans created: 2026-04-26*
+*Phase 2 plans created: 2026-04-27*
