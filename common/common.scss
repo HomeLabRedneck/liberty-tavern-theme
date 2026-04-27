@@ -69,6 +69,87 @@ h2, h3 { font-style: italic; }
     border: none;
     &:hover { filter: brightness(1.15); }
   }
+
+  min-height: 64px;
+
+  .login-button {
+    background: var(--tavern-brass);
+    color: #1a120c;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    border-radius: 2px;
+    border: none;
+    &:hover { filter: brightness(1.15); }
+    &:focus-visible { outline: 2px solid #f5ebd9; outline-offset: 2px; }
+    &:active { filter: brightness(0.9); }
+  }
+
+  .nav-pills .nav-item.active a {
+    opacity: 1;
+    border-bottom: 2px solid var(--tavern-brass);
+  }
+
+  .nav-pills .nav-item a:focus-visible {
+    outline: 2px solid var(--tavern-brass);
+    outline-offset: 2px;
+  }
+
+  .nav-pills .nav-item a {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+}
+
+// ---- 2a. Logo connector (.tavern-logo) -----------------------
+
+.tavern-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tavern-logo__image {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+.tavern-logo__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tavern-logo__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.1;
+  color: #f5ebd9;
+  letter-spacing: -0.01em;
+}
+
+.tavern-logo__tagline {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f5ebd9;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+
+// Compensate for fixed header height so content does not overlap
+#main-outlet-wrapper,
+#main-outlet {
+  padding-top: 64px;
 }
 
 // ---- 3. Sidebar (.sidebar-wrapper) --------------------------
