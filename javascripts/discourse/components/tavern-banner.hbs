@@ -14,7 +14,7 @@
               <div class="items">
                 {{#each this.trending as |t|}}
                   <div class="item">
-                    <a href={{this.topicUrl t}}>{{{t.fancy_title}}}</a>
+                    <a href={{this.topicUrl t}}>{{this.fancyTitle t}}</a>
                     <div class="meta">
                       {{this.categoryBadge t.category_id}}
                       · {{t.posts_count}} replies · {{t.views}} views
@@ -33,7 +33,7 @@
             <div class="label">Project of the Night</div>
             <a href={{this.topicUrl this.featured}} class="tavern-banner__feature-link">
               <h3 class="tavern-banner__feature-title">
-                {{{this.featured.fancy_title}}}
+                {{this.fancyTitle this.featured}}
               </h3>
             </a>
             <div class="stats">

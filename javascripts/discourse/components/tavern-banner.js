@@ -101,4 +101,6 @@ export default class TavernBanner extends Component {
   };
 
   topicUrl = (topic) => `/t/${topic.slug}/${topic.id}`;
+
+  fancyTitle = (topic) => htmlSafe(topic.fancy_title ?? topic.title ?? "");
 }
