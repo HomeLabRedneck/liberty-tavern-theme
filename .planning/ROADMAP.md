@@ -13,7 +13,7 @@ Repair and complete the Liberty Tavern Discourse theme so the homepage matches t
 ## Phases
 
 - [x] **Phase 1: Foundation Repair** — Fix the broken/duplicated banner, kill 404 CTA, stabilize sidebar reactivity, clean up font and styling debt *(completed 2026-04-26)*
-- [ ] **Phase 2: Custom Header** — Mount the tavern header (logo, title, tagline, nav links, Sign In) on every page
+- [x] **Phase 2: Custom Header** — Mount the tavern header (logo, title, tagline, nav links, Sign In) on every page *(completed 2026-04-27)*
 - [ ] **Phase 3: Homepage Content** — Wire live stats panel and render the Rooms section as styled category cards
 - [ ] **Phase 4: Right Column** — Add the two-column homepage layout with Badges and House Rules panels
 
@@ -48,8 +48,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Logo connector + SCSS: home-logo-contents HBS connector, login-button styling, nav active/focus states, header min-height 64px
-- [ ] 02-02-PLAN.md — Nav label i18n patch + admin setup: JS I18n.translations patch for Trending/Rooms/Latest at the Bar/Top Shelf/Sign In; top_menu admin step documented
+- [x] 02-01-PLAN.md — Logo connector + SCSS: home-logo-contents HBS connector, login-button styling, nav active/focus states, header min-height 64px
+- [x] 02-02-PLAN.md — Nav label i18n patch + admin setup: JS I18n.translations patch for Trending/Rooms/Latest at the Bar/Top Shelf/Sign In; top_menu admin step documented
 
 ### Phase 3: Homepage Content
 **Goal**: Make the banner show real live numbers and turn the homepage category list into the styled "Rooms" cards from Image 1.
@@ -80,7 +80,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation Repair | 4/4 | Complete | 2026-04-26 |
-| 2. Custom Header | 0/2 | Planned | - |
+| 2. Custom Header | 2/2 | Complete | 2026-04-27 |
 | 3. Homepage Content | 0/0 | Not started | - |
 | 4. Right Column | 0/0 | Not started | - |
 

@@ -1,30 +1,30 @@
 # Project State: Liberty Tavern Discourse Theme
 
 **Initialized:** 2026-04-26
-**Last updated:** 2026-04-26
+**Last updated:** 2026-04-27
 
 ## Project Reference
 
 **Core Value:** The homepage must look and function like the Image 1 design — custom header, styled banner with live stats, trending section, and room cards.
 
-**Current Focus:** Phase 1 complete. Ready to plan Phase 2 (Custom Header).
+**Current Focus:** Phase 2 (Custom Header) complete. Phase 3 (Homepage Content) is next.
 
 ## Current Position
 
 - **Milestone:** v1 (initial release matching Image 1)
-- **Phase:** 2 — Custom Header (not yet planned)
-- **Plan:** None started
-- **Status:** Ready to plan Phase 2
-- **Progress:** `[*---] 1/4 phases complete`
+- **Phase:** 3 — Homepage Content (not started)
+- **Plan:** TBD
+- **Status:** Phase 2 complete, ready for Phase 3
+- **Progress:** `[**--] 2/4 phases complete`
 
 ## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
-| Phases planned | 1 / 4 |
-| Phases complete | 1 / 4 |
-| Requirements validated | 8 / 26 |
-| Plans complete | 4 / 4 |
+| Phases planned | 2 / 4 |
+| Phases complete | 2 / 4 |
+| Requirements validated | 13 / 26 |
+| Plans complete | 6 / 6 |
 
 ## Accumulated Context
 
@@ -48,7 +48,9 @@
 
 - [x] Plan Phase 1 via `/gsd-plan-phase 1`
 - [x] Execute Phase 1 via `/gsd-execute-phase 1`
-- [ ] Plan Phase 2 via `/gsd-discuss-phase 2` or `/gsd-plan-phase 2`
+- [x] Plan Phase 2 via `/gsd-plan-phase 2`
+- [x] Execute Phase 2 via `/gsd-execute-phase 2`
+- [ ] Discuss/plan Phase 3 via `/gsd-discuss-phase 3` or `/gsd-plan-phase 3`
 
 ### Blockers
 
@@ -56,9 +58,9 @@ None.
 
 ## Session Continuity
 
-**Last action:** Phase 1 UAT complete — all 8 tests pass (7 pass, 1 skipped). Phase 1 closed.
+**Last action:** Phase 2 executed — 02-01 logo connector + SCSS complete, 02-02 i18n patch complete. All HEAD-* requirements delivered. Admin must set top_menu to `hot|latest|categories|top` for Trending pill to appear.
 
-**Next action:** Plan Phase 2 (Custom Header) via `/gsd-discuss-phase 2`.
+**Next action:** Discuss or plan Phase 3 via `/gsd-discuss-phase 3` or `/gsd-plan-phase 3`.
 
 **Files of record:**
 - `.planning/PROJECT.md` — vision, constraints, decisions
