@@ -1,0 +1,13 @@
+<template>
+  <div class="tavern-logo">
+    <img
+      class="tavern-logo__image"
+      src={{theme-asset "logo.png"}}
+      alt={{@outletArgs.title}}
+    />
+    <div class="tavern-logo__text">
+      <span class="tavern-logo__title">The Liberty Tavern</span>
+      <span class="tavern-logo__tagline">Free Speech · Est. MDCCXCI</span>
+    </div>
+  </div>
+</template>
