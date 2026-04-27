@@ -3,37 +3,21 @@ import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
-import { categoryBadgeHTML } from "discourse/helpers/category-link";
 import { htmlSafe } from "@ember/template";
 import { on } from "@ember/modifier";
 
 export default class TavernBanner extends Component {
   @service router;
-  @service site;
   @service currentUser;
   @service composer;
 
   @tracked trending = [];
-  @tracked badges = [];
   @tracked featured = null;
+  @tracked badges = [];
   @tracked loading = true;
 
   get settings() {
     return settings;
-  }
-
-  @action
-  openNewTopic() {
-    if (this.currentUser) {
-      this.composer.openNewTopic({});
-    } else {
-      this.router.transitionTo("login");
-    }
-  }
-
-  constructor() {
-    super(...arguments);
-    if (settings.show_homepage_banner) this.loadData();
   }
 
   get shouldShow() {
@@ -46,25 +30,46 @@ export default class TavernBanner extends Component {
     return settings.show_badges_card && this.badges.length > 0;
   }
 
+  constructor() {
+    super(...arguments);
+    if (settings.show_homepage_banner) this.loadData();
+  }
+
+  @action
+  openNewTopic() {
+    if (this.currentUser) {
+      this.composer.openNewTopic({});
+    } else {
+      this.router.transitionTo("login");
+    }
+  }
+
   async loadData() {
     try {
       const period = settings.trending_period || "daily";
       let topRes = await ajax(`/top.json?period=${period}`).catch(() => null);
-      let topics = topRes?.topic_list?.topics || [];
-      if (topics.length < 4) {
+      let raw = topRes?.topic_list?.topics || [];
+      if (raw.length < 4) {
         const latestRes = await ajax("/latest.json").catch(() => null);
         const latest = latestRes?.topic_list?.topics || [];
-        const seen = new Set(topics.map((t) => t.id));
+        const seen = new Set(raw.map((t) => t.id));
         for (const t of latest) {
-          if (!seen.has(t.id)) {
-            topics.push(t);
-            seen.add(t.id);
-          }
-          if (topics.length >= 4) break;
+          if (!seen.has(t.id)) { raw.push(t); seen.add(t.id); }
+          if (raw.length >= 4) break;
         }
       }
-      this.featured = topics[0] || null;
-      this.trending = topics.slice(1, 4);
+
+      const toItem = (t) => ({
+        id: t.id,
+        title: htmlSafe(t.fancy_title ?? t.title ?? ""),
+        url: `/t/${t.slug}/${t.id}`,
+        postsCount: t.posts_count,
+        views: t.views,
+        likeCount: t.like_count,
+      });
+
+      this.featured = raw[0] ? toItem(raw[0]) : null;
+      this.trending = raw.slice(1, 4).map(toItem);
 
       const badgeRes = await ajax("/badges.json").catch(() => null);
       if (badgeRes?.badges) {
@@ -74,7 +79,6 @@ export default class TavernBanner extends Component {
           .sort((a, b) => b.grant_count - a.grant_count)
           .slice(0, 4)
           .map((b) => ({
-            id: b.id,
             name: b.name,
             count: b.grant_count,
             tier: tierMap[b.badge_type_id] || "common",
@@ -87,15 +91,6 @@ export default class TavernBanner extends Component {
       this.loading = false;
     }
   }
-
-  categoryBadge = (catId) => {
-    const cat = this.site.categories.findBy("id", catId);
-    return cat ? htmlSafe(categoryBadgeHTML(cat, { allowUncategorized: true })) : "";
-  };
-
-  topicUrl = (topic) => `/t/${topic.slug}/${topic.id}`;
-
-  fancyTitle = (topic) => htmlSafe(topic.fancy_title ?? topic.title ?? "");
 
   <template>
     {{#if this.shouldShow}}
@@ -114,11 +109,8 @@ export default class TavernBanner extends Component {
                   <div class="items">
                     {{#each this.trending as |t|}}
                       <div class="item">
-                        <a href={{this.topicUrl t}}>{{this.fancyTitle t}}</a>
-                        <div class="meta">
-                          {{this.categoryBadge t.category_id}}
-                          · {{t.posts_count}} replies · {{t.views}} views
-                        </div>
+                        <a href={{t.url}}>{{t.title}}</a>
+                        <div class="meta">{{t.postsCount}} replies · {{t.views}} views</div>
                       </div>
                     {{/each}}
                   </div>
@@ -131,18 +123,16 @@ export default class TavernBanner extends Component {
             {{#if this.featured}}
               <div class="tavern-banner__feature">
                 <div class="label">Project of the Night</div>
-                <a href={{this.topicUrl this.featured}} class="tavern-banner__feature-link">
-                  <h3 class="tavern-banner__feature-title">
-                    {{this.fancyTitle this.featured}}
-                  </h3>
+                <a href={{this.featured.url}} class="tavern-banner__feature-link">
+                  <h3 class="tavern-banner__feature-title">{{this.featured.title}}</h3>
                 </a>
                 <div class="stats">
                   <span class="stat-label">replies</span>
-                  <span class="stat-value">{{this.featured.posts_count}}</span>
+                  <span class="stat-value">{{this.featured.postsCount}}</span>
                   <span class="stat-label">views</span>
                   <span class="stat-value">{{this.featured.views}}</span>
                   <span class="stat-label">likes</span>
-                  <span class="stat-value">{{this.featured.like_count}}</span>
+                  <span class="stat-value">{{this.featured.likeCount}}</span>
                 </div>
               </div>
             {{/if}}
