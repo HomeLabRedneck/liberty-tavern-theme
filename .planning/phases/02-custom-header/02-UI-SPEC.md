@@ -68,9 +68,9 @@ Logo tagline letter-spacing: 0.18em. Tagline text-transform: uppercase.
 
 | Role | Family | Size | Weight | Style | Line Height |
 |------|--------|------|--------|-------|-------------|
-| Nav pill labels (`.nav-pills .nav-item a`) | `var(--font-ui)` (Inter) | 13px | 600 | normal | 1.0 |
+| Nav pill labels (`.nav-pills .nav-item a`) | `var(--font-ui)` (Inter) | 13px | 700 | normal | 1.0 |
 
-Nav pill letter-spacing: 0.04em. Active nav pill weight: 700.
+Nav pill letter-spacing: 0.04em. Active nav pill weight: 700 (same as default — active state distinguished by 2px brass underline, not weight change).
 
 ### Sign In Button
 
@@ -288,11 +288,11 @@ No user questions were required — all design contract fields were answerable f
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-04-27
