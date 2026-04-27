@@ -138,8 +138,9 @@ h2, h3 { font-style: italic; }
 }
 
 // ---- 2b. Nav pills → header (fixed overlay) -----------------
+// Only the ul.nav-pills is fixed — breadcrumbs/NEW TOPIC stay in flow
 
-.navigation-container {
+.navigation-container .nav-pills {
   position: fixed;
   top: 0;
   left: 50%;
@@ -148,19 +149,12 @@ h2, h3 { font-style: italic; }
   display: flex;
   align-items: center;
   z-index: 1001;
-  pointer-events: none;
-}
-
-.navigation-container .nav-pills {
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
   margin: 0;
   padding: 0;
   background: transparent;
 
   .nav-item a {
-    color: var(--header_primary);
+    color: #f5ebd9;
     opacity: 0.85;
     font-family: var(--font-ui);
     font-size: 13px;
@@ -186,6 +180,7 @@ h2, h3 { font-style: italic; }
 
   .nav-item.active a {
     opacity: 1;
+    color: #f5ebd9;
     border-bottom: 2px solid var(--tavern-brass);
   }
 }
@@ -296,8 +291,8 @@ h2, h3 { font-style: italic; }
     font-weight: 700;
     font-size: 18px;
     letter-spacing: -0.005em;
-    color: var(--primary);
-    &:hover { color: var(--tertiary); }
+    color: #2a1f17;
+    &:hover { color: #7a1f1f; }
   }
 
   .num.posts a, .num.views {
