@@ -33,7 +33,12 @@ export default class TavernBanner extends Component {
 
   constructor() {
     super(...arguments);
-    if (this.shouldShow) this.loadData();
+    // Load data unconditionally (guarded only by the settings flag) so that
+    // route-based visibility (shouldShow) and data-fetching are independent.
+    // shouldShow re-evaluates reactively once the router settles; if we gate
+    // loadData() on it here, the router may not yet have a currentRouteName
+    // and data never loads, leaving the banner in a permanent loading state.
+    if (settings.show_homepage_banner) this.loadData();
   }
 
   get shouldShow() {
