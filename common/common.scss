@@ -135,6 +135,18 @@ h2, h3 { font-style: italic; }
   padding-top: 64px;
 }
 
+// Zero Discourse's default outlet top offset so banner sits flush to header
+#main-outlet {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+// Banner breaks out of .container horizontal padding — full content-area width
+.discovery-list-container-top {
+  margin-left: calc(-1 * var(--d-content-padding, 15px));
+  margin-right: calc(-1 * var(--d-content-padding, 15px));
+}
+
 // ---- 2b. Nav pills → header (fixed overlay) -----------------
 // Only the ul.nav-pills is fixed — breadcrumbs/NEW TOPIC stay in flow
 
