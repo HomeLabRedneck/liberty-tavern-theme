@@ -1,55 +1,42 @@
 {
   "version": "1.0",
-  "timestamp": "2026-04-28T00:00:00.000Z",
-  "phase": "2",
-  "phase_name": "Custom Header",
-  "phase_dir": ".planning/phases/02-custom-header",
-  "plan": 2,
+  "timestamp": "2026-04-28T18:00:00.000Z",
+  "phase": "3",
+  "phase_name": "Homepage Content",
+  "phase_dir": ".planning/phases/03-homepage-content",
+  "plan": null,
   "task": null,
   "total_tasks": null,
   "status": "paused",
   "completed_tasks": [
-    {"id": 1, "name": "Fix theme-asset strict-mode error (tavern-logo.gjs)", "status": "done", "commit": "1f394b4"},
-    {"id": 2, "name": "Add logo upload setting to settings.yml", "status": "done", "commit": "1f394b4"},
-    {"id": 3, "name": "Cream background + nav pills CSS fixed into header", "status": "done", "commit": "778c053"},
-    {"id": 4, "name": "Broaden nav pill selectors for Discourse v2026 Glimmer nav", "status": "done", "commit": "8d78ec4"},
-    {"id": 5, "name": "Banner color scheme flip (dark bg, cream text)", "status": "done", "commit": "a9f25db"},
-    {"id": 6, "name": "Force header background #1a120c !important", "status": "done", "commit": "a053e91"},
-    {"id": 7, "name": "UI Review audit (20/24)", "status": "done", "commit": null}
+    {"id": 1, "name": "03-01: Refactor tavern-banner.gjs — Promise.all, stats panel, external trending strip", "status": "done", "commit": "b30d4b3"},
+    {"id": 2, "name": "03-02: SCSS — delete dead §8 blocks, add stats/trending/room card styles", "status": "done", "commit": "44af7f8"},
+    {"id": 3, "name": "03-03: Admin checkpoint — set categories_boxes layout on live instance", "status": "done", "commit": "fc4b545"},
+    {"id": 4, "name": "Fix: Site.current().categories.length for Open Rooms (about.json has no categories array)", "status": "done", "commit": "d5a2581"},
+    {"id": 5, "name": "Fix: darken trending strip + room cards + sidebar to #ede0c4", "status": "done", "commit": "9b06013"},
+    {"id": 6, "name": "Fix: hide .list-controls filter bar on navigation-topics pages", "status": "done", "commit": "98f69ba"}
   ],
   "remaining_tasks": [
-    {"id": 8, "name": "Merge or defer feature/persistent-header-nav branch", "status": "not_started"},
-    {"id": 9, "name": "Phase 3: Homepage Content", "status": "not_started"}
+    {"id": 7, "name": "Verify nav pills still show after list-controls fix (last push not yet confirmed)", "status": "pending_verification"},
+    {"id": 8, "name": "Phase 4: Right Column — plan and execute", "status": "not_started"},
+    {"id": 9, "name": "Rooms redesign — custom component matching design target (full-width rows, letter icons, topic counts)", "status": "backlog"}
   ],
-  "blockers": [
-    {
-      "description": "Nav pills use CSS position:fixed hack — only render on discovery routes, not on Subscribe or other plugin pages",
-      "type": "technical",
-      "workaround": "feature/persistent-header-nav branch has GJS component fix; deferred to future session"
-    }
-  ],
+  "blockers": [],
   "human_actions_pending": [
     {
-      "action": "Upload logo image in Discourse Admin → Customize → Themes → Liberty Tavern → Settings → logo",
-      "context": "tavern-logo.gjs uses settings.logo; default is empty so header shows text-only until admin uploads logo",
-      "blocking": false
-    },
-    {
-      "action": "Set top_menu in Admin → Settings → Basic Setup to: hot|latest|categories|top",
-      "context": "top_menu is not themeable; Trending pill requires hot to be in top_menu",
+      "action": "Pull latest from phase-3-homepage-content branch in Discourse and verify: nav pills still visible, filter bar (categories/tags/New Topic) hidden",
+      "context": "Last fix (98f69ba) changed from display:none on .list-controls to hiding non-section children — nav pills should be preserved but not yet confirmed",
       "blocking": false
     }
   ],
   "decisions": [
-    {"decision": "Use upload setting instead of theme-asset for logo", "rationale": "theme-asset helper not in scope in GJS strict mode", "phase": "2"},
-    {"decision": "Persistent header nav deferred to feature branch", "rationale": "CSS position:fixed approach sufficient for Phase 2 scope; full fix on feature/persistent-header-nav", "phase": "2"},
-    {"decision": "Banner background flipped to dark (#1a120c) matching design target Image 9", "rationale": "User provided design target showing dark banner with cream text", "phase": "2"}
+    {"decision": "Site.current().categories.length for Open Rooms stat", "rationale": "Live Discourse /about.json has no categories array — Site model already loaded, no extra request", "phase": "3"},
+    {"decision": "Admin setting Boxes with Subcategories (not Category Boxes)", "rationale": "Discourse dropdown uses this label for categories_boxes value on this install", "phase": "3"},
+    {"decision": "body.navigation-topics selector for .list-controls hide", "rationale": "body.categories-boxes class is NOT applied on this Discourse instance — navigation-topics is the correct body class", "phase": "3"},
+    {"decision": "#ede0c4 for sidebar/trending/room card backgrounds", "rationale": "~10% darker than page cream #f5ebd9, matches design target warmth", "phase": "3"},
+    {"decision": "Rooms redesign (full-width rows, letter icons) deferred to backlog", "rationale": "Phase 3 ROOM-01..04 requirements satisfied; rooms redesign is larger custom component work, plan in Phase 4 or separate phase", "phase": "3"}
   ],
-  "uncommitted_files": [
-    ".planning/STATE.md",
-    ".planning/phases/02-custom-header/02-RESEARCH.md",
-    ".planning/phases/02-custom-header/02-UI-REVIEW.md"
-  ],
-  "next_action": "Run /gsd-plan-phase 3 to plan Phase 3 (Homepage Content)",
-  "context_notes": "Phase 2 code complete. UI Review scored 20/24. Top issues: logo fallback, conflicting nav-pills active state rules (filled box vs spec underline), position:fixed fragility. Phase 3 is Homepage Content — room cards, stats, category layout. Start fresh session."
+  "uncommitted_files": [],
+  "next_action": "Run /gsd-plan-phase 4 to plan the Right Column phase",
+  "context_notes": "Phase 3 complete and verified on live instance. Branch: phase-3-homepage-content. Stats panel live (all 4 rows working), trending strip 3-column, room cards as box grid. Several CSS polish fixes applied post-verification. Rooms redesign (design shows full-width list with letter icons) noted as backlog — not in Phase 3 scope. Phase 4 is right column rail (Badges + House Rules, two-column at 1160px+)."
 }
