@@ -60,8 +60,12 @@ Plans:
   2. Stats numbers render in italic Playfair Display in the brass/gold color (matching Image 1) — not plain default text.
   3. Homepage categories render as a grid of styled cards with colored category icon, name, description, topic count, and post count visible on each card.
   4. Rooms cards visually match Image 1 — cream card background, category color accent, consistent card spacing.
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 3 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Banner JS + template: Promise.all data loading, stats panel in aside, trending sibling outside banner, toItem enrichment, dead code removal
+- [ ] 03-02-PLAN.md — SCSS: delete 5 dead §8 blocks, add stats panel styles, add §9 trending section, extend §6 room cards
+- [ ] 03-03-PLAN.md — Admin step: set desktop_category_page_style to categories_boxes (manual, blocking checkpoint)
 
 ### Phase 4: Right Column
 **Goal**: Add a right-column rail beside the homepage main content with Badges and House Rules panels, hiding cleanly on narrow screens.
@@ -81,7 +85,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation Repair | 4/4 | Complete | 2026-04-26 |
 | 2. Custom Header | 2/2 | Complete | 2026-04-27 |
-| 3. Homepage Content | 0/0 | Not started | - |
+| 3. Homepage Content | 0/3 | Not started | - |
 | 4. Right Column | 0/0 | Not started | - |
 
 ## Coverage Validation
@@ -100,3 +104,4 @@ All 26 v1 requirements are mapped to exactly one phase. No orphans, no duplicate
 *Roadmap created: 2026-04-26*
 *Phase 1 plans created: 2026-04-26*
 *Phase 2 plans created: 2026-04-27*
+*Phase 3 plans created: 2026-04-28*
