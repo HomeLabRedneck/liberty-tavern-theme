@@ -354,6 +354,35 @@ h2, h3 { font-style: italic; }
   }
 }
 
+// Phase 3: Room card extensions for categories_boxes layout
+.category-boxes {
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
+.category-boxes .category-box {
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+
+  &:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+}
+
+.category-boxes .category-box-inner {
+  padding: 20px;
+}
+
+// Topic/post count labels — selector may need DOM inspection on live instance
+.category-boxes .category-box .category-stat,
+.category-boxes .category-box .stat-text {
+  font-family: var(--font-ui);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--primary-medium);
+  margin-top: 8px;
+}
+
 // ---- 7. Buttons --------------------------------------------
 
 .btn {
@@ -506,3 +535,75 @@ section.tavern-banner::before {
 // Topic pages (.archetype-regular) have neither navigation class and are
 // already caught by this rule, so no separate archetype-regular clause needed.
 body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { display: none; }
+
+// ---- 9. Trending Tonight (standalone strip below banner) ----
+
+.tavern-trending {
+  background: var(--tavern-cream);
+  padding: 32px 64px 24px;
+  border-bottom: 1px solid var(--tavern-rule);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  &__heading {
+    font-family: var(--font-ui);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--tavern-ink);
+  }
+
+  &__all {
+    font-family: var(--font-ui);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(42,31,23,.6);
+    text-decoration: none;
+
+    &:hover { color: var(--tavern-brass); }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  &__item {
+    border-top: 2px solid var(--category-color, var(--tertiary));
+    padding-top: 12px;
+  }
+
+  &__cat {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    font-variant: small-caps;
+    text-transform: uppercase;
+    color: var(--primary-medium);
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 700;
+    color: var(--tavern-ink);
+    text-decoration: none;
+    line-height: 1.3;
+    margin-bottom: 4px;
+
+    &:hover { color: var(--tavern-oxblood); }
+  }
+
+  &__meta {
+    font-family: var(--font-serif);
+    font-size: 12px; font-weight: 400; font-style: italic;
+    color: rgba(42,31,23,.55);
+    line-height: 1.4;
+  }
+}
