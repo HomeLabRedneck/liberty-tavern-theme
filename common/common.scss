@@ -153,7 +153,8 @@ h2, h3 { font-style: italic; }
   padding: 0;
   background: transparent;
 
-  .nav-item a {
+  // Cover both classic (.nav-item a) and Glimmer (.nav-item-link) nav structures
+  a, .nav-item a, .nav-item-link {
     color: #f5ebd9 !important;
     opacity: 1 !important;
     font-family: var(--font-ui);
@@ -163,11 +164,13 @@ h2, h3 { font-style: italic; }
     background: transparent !important;
     border-radius: 0;
     padding: 6px 14px;
-    display: block;
+    display: inline-flex;
+    align-items: center;
     white-space: nowrap;
+    text-decoration: none;
+    border-bottom: none !important;
 
     &:hover {
-      opacity: 1;
       color: var(--tavern-brass) !important;
       background: transparent !important;
     }
@@ -178,8 +181,10 @@ h2, h3 { font-style: italic; }
     }
   }
 
-  .nav-item.active a {
-    opacity: 1;
+  // Active state — filled brass box
+  .nav-item.active a,
+  a.active,
+  .nav-item-link.active {
     color: #1a120c !important;
     background: var(--tavern-brass) !important;
     border-bottom: none !important;
