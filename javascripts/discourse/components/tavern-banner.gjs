@@ -6,6 +6,7 @@ import { ajax } from "discourse/lib/ajax";
 import { htmlSafe } from "@ember/template";
 import { on } from "@ember/modifier";
 import Category from "discourse/models/category";
+import Site from "discourse/models/site";
 
 function timeAgo(isoString) {
   if (!isoString) return "";
@@ -84,7 +85,7 @@ export default class TavernBanner extends Component {
         patronsInside: s.active_users_last_day ?? "—",
         members: s.users_count ?? "—",
         postsToday: s.posts_last_day ?? "—",
-        openRooms: aboutRes?.about?.categories?.length ?? "—",
+        openRooms: Site.current()?.categories?.length ?? "—",
       };
 
       // Trending from /top.json with /latest.json fallback
