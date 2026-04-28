@@ -192,6 +192,8 @@ h2, h3 { font-style: italic; }
   }
 
   // Hide hot pill — route kept for "ALL HOT THREADS →" link, pill redundant with Trending section
+  li:has(a[href="/hot"]),
+  li:has(.nav-item-link[href="/hot"]),
   .nav-item a[href="/hot"],
   .nav-item-link[href="/hot"] {
     display: none !important;
