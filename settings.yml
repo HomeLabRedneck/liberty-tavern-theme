@@ -5,7 +5,7 @@ logo:
 
 accent_hue:
   type: integer
-  default: 25
+  default: 38
   min: 0
   max: 360
   description: "Hue used for category accent colors and brass highlights (0–360)."
