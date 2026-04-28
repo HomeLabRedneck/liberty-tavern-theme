@@ -27,8 +27,8 @@ progress:
 
 - **Milestone:** v1 (initial release matching Image 1)
 - **Phase:** 3 — Homepage Content (executing)
-- **Plan:** 03-01 complete; next: 03-02 (SCSS updates)
-- **Status:** Phase 3 in progress — Plan 03-01 executed
+- **Plan:** 03-02 complete; next: 03-03 (admin checkpoint)
+- **Status:** Phase 3 in progress — Plans 03-01 and 03-02 executed
 - **Progress:** `[**--] 2/4 phases complete`
 
 ## Performance Metrics
@@ -54,6 +54,12 @@ progress:
 - **filter: brightness(1.15) for hover states** — lighten() cannot operate on CSS custom properties (runtime values); brightness() preserves accent_hue responsiveness on hover
 - **var(--tavern-cream) for sidebar background** — --secondary-low resolves dark on this Discourse install; explicit cream variable is always correct
 
+### Decisions Locked (03-02)
+
+- **&__stat-row/label/num as BEM siblings of &__grid** — placed at same nesting depth inside .tavern-banner { }, not nested inside &__stats, matching existing sub-element pattern and avoiding specificity conflicts
+- **§6 room card extensions additive** — new .category-boxes rules appended after existing §6 block; shared selector .category-list .category, .category-boxes .category-box left untouched
+- **§9 appended after body:not() hide rule** — preserves file section ordering: §8 content → hide rule → §9 new section
+
 ### Decisions Locked (03-01)
 
 - **statRows getter over (array/hash) helpers** — avoids Ember helper availability risk in Discourse GJS context; JS getter always safe
@@ -78,9 +84,9 @@ None.
 
 ## Session Continuity
 
-**Last action:** Plan 03-01 executed — tavern-banner.gjs refactored with stats panel and external trending strip. Commits ba80a21 (JS) and b30d4b3 (template).
+**Last action:** Plan 03-02 executed — dead SCSS removed (&__feature, &__feature-link, &__feature-title, &__trending inner, &__badges), stats panel styles added (&__stats with corner brackets, stat-row/label/num), §9 trending section added (.tavern-trending), room card extensions added (.category-boxes). Commits 13684ee and 44af7f8.
 
-**Next action:** Execute Plan 03-02 (SCSS updates — stats panel styles, trending strip styles, category box extensions).
+**Next action:** Execute Plan 03-03 (admin checkpoint — set desktop_category_page_style to categories_boxes).
 
 **Files of record:**
 
