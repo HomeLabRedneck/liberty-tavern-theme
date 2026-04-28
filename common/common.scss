@@ -544,6 +544,7 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 .tavern-trending {
   background: #ede0c4;
   padding: 32px 64px 24px;
+  border-top: 3px solid var(--tavern-brass);
   border-bottom: 1px solid var(--tavern-rule);
 
   &__header {
