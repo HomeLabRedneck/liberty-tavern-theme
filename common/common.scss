@@ -536,8 +536,9 @@ section.tavern-banner::before {
 // already caught by this rule, so no separate archetype-regular clause needed.
 body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { display: none; }
 
-// Hide native Discourse filter bar — nav pills already in custom header (Phase 2).
-.list-controls { display: none; }
+// Hide filter bar (categories/tags/NEW TOPIC) but keep .navigation-container
+// whose .nav-pills are position:fixed into the header (§2b).
+.list-controls .container > :not(.navigation-container) { display: none; }
 
 // ---- 9. Trending Tonight (standalone strip below banner) ----
 
