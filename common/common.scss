@@ -11,11 +11,11 @@
   --font-display: "Playfair Display", "Times New Roman", serif;
   --font-serif:   "Spectral", Georgia, serif;
   --font-ui:      "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --tavern-ink:   #2a1f17;
-  --tavern-cream: #f5ebd9;
-  --tavern-oxblood: #7a1f1f;
-  --tavern-brass: hsl(#{$accent_hue}, 68%, 45%);
-  --tavern-rule:  rgba(42, 31, 23, .15);
+  --tavern-ink:   #1C1410;
+  --tavern-cream: #F5ECD6;
+  --tavern-oxblood: #A43B38;
+  --tavern-brass: #D49838;
+  --tavern-rule:  #D4C5A8;
 }
 
 html, body {
@@ -40,7 +40,7 @@ h2, h3 { font-style: italic; }
 // ---- 2. Header (.d-header) ----------------------------------
 
 .d-header {
-  background: #1a120c !important;
+  background: #1C1410 !important;
   border-bottom: 2px solid var(--tavern-brass);
   box-shadow: 0 2px 0 rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.25);
 
@@ -48,19 +48,19 @@ h2, h3 { font-style: italic; }
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 900;
-    color: #f5ebd9;
+    color: #F5ECD6;
     letter-spacing: -0.01em;
   }
 
   .nav-item-link, .icon, .d-header-icons .icon {
-    color: #f5ebd9;
+    color: #F5ECD6;
     opacity: .85;
     &:hover { opacity: 1; color: var(--tavern-brass); }
   }
 
   .btn-primary, .sign-up-button {
     background: var(--tavern-brass);
-    color: #1a120c;
+    color: #1C1410;
     font-family: var(--font-ui);
     font-weight: 700;
     text-transform: uppercase;
@@ -75,7 +75,7 @@ h2, h3 { font-style: italic; }
 
   .login-button {
     background: var(--tavern-brass);
-    color: #1a120c;
+    color: #1C1410;
     font-family: var(--font-ui);
     font-weight: 700;
     text-transform: uppercase;
@@ -84,7 +84,7 @@ h2, h3 { font-style: italic; }
     border-radius: 2px;
     border: none;
     &:hover { filter: brightness(1.15); }
-    &:focus-visible { outline: 2px solid #f5ebd9; outline-offset: 2px; }
+    &:focus-visible { outline: 2px solid #F5ECD6; outline-offset: 2px; }
     &:active { filter: brightness(0.9); }
   }
 
@@ -116,7 +116,7 @@ h2, h3 { font-style: italic; }
   font-weight: 900;
   font-size: 20px;
   line-height: 1.1;
-  color: #f5ebd9;
+  color: #F5ECD6;
   letter-spacing: -0.01em;
 }
 
@@ -126,8 +126,7 @@ h2, h3 { font-style: italic; }
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #f5ebd9;
-  opacity: 0.7;
+  color: var(--tavern-brass);
   line-height: 1.2;
 }
 
@@ -154,7 +153,7 @@ h2, h3 { font-style: italic; }
 
   // Cover both classic (.nav-item a) and Glimmer (.nav-item-link) nav structures
   a, .nav-item a, .nav-item-link {
-    color: #f5ebd9 !important;
+    color: #F5ECD6 !important;
     opacity: 1 !important;
     font-family: var(--font-ui);
     font-size: 13px;
@@ -184,7 +183,7 @@ h2, h3 { font-style: italic; }
   .nav-item.active a,
   a.active,
   .nav-item-link.active {
-    color: #1a120c !important;
+    color: #1C1410 !important;
     background: var(--tavern-brass) !important;
     border-bottom: none !important;
     border-radius: 2px;
@@ -202,7 +201,7 @@ h2, h3 { font-style: italic; }
 // ---- 3. Sidebar (.sidebar-wrapper) --------------------------
 
 .sidebar-wrapper {
-  background: #ede0c4;
+  background: #EDE2C5;
   border-right: 1px solid var(--tavern-rule);
   font-family: var(--font-ui);
 
@@ -305,8 +304,8 @@ h2, h3 { font-style: italic; }
     font-weight: 700;
     font-size: 18px;
     letter-spacing: -0.005em;
-    color: #2a1f17;
-    &:hover { color: #7a1f1f; }
+    color: var(--tavern-ink);
+    &:hover { color: var(--tavern-oxblood); }
   }
 
   .num.posts a, .num.views {
@@ -323,7 +322,7 @@ h2, h3 { font-style: italic; }
 
 .category-list .category, .category-boxes .category-box {
   border-left: 4px solid var(--category-color, var(--tertiary));
-  background: #ede0c4;
+  background: #EDE2C5;
 
   .category-title-link h3 {
     font-family: var(--font-display);
@@ -397,19 +396,16 @@ h2, h3 { font-style: italic; }
   background: var(--tavern-oxblood);
   color: var(--secondary);
   border: none;
-  &:hover { background: darken(#7a1f1f, 6%); }
+  &:hover { background: darken(#A43B38, 6%); }
 }
 
 // ---- 8. Homepage banner (Pull up a chair) -------------------
 
 .tavern-banner {
-  background:
-    radial-gradient(ellipse at 30% 80%, rgba(200,148,26,.12), transparent 50%),
-    radial-gradient(ellipse at 70% 20%, rgba(200,148,26,.06), transparent 50%),
-    #1a120c;
+  background: linear-gradient(180deg, #1C1410 0%, #2A1810 100%);
   padding: 56px 64px 48px;
   margin-bottom: 24px;
-  border-bottom: 1px solid var(--tavern-brass);
+  border-bottom: 3px solid var(--tavern-brass);
   position: relative;
   font-family: var(--font-serif);
 }
@@ -434,20 +430,20 @@ section.tavern-banner::before {
     font-family: var(--font-display);
     font-style: italic; font-weight: 900;
     font-size: 88px; line-height: 0.95;
-    color: #f5ebd9;
+    color: #F5ECD6;
     margin: 24px 0 16px;
   }
 
   &__subtitle {
     font-size: 16px; line-height: 1.55;
-    color: #f5ebd9; opacity: 0.8;
+    color: #F5ECD6; opacity: 0.8;
     max-width: 540px; margin-bottom: 32px;
   }
 
   &__cta {
     display: inline-block;
     background: var(--tavern-brass);
-    color: #1a120c;
+    color: #1C1410;
     padding: 14px 28px;
     font-family: var(--font-ui);
     font-size: 11px; font-weight: 700;
@@ -459,12 +455,12 @@ section.tavern-banner::before {
 
   &__cta--ghost {
     background: transparent;
-    color: #f5ebd9;
+    color: #F5ECD6;
     border: 1px solid rgba(245,235,217,.5);
     padding: 13px 27px;
     border-radius: 2px;
     margin-right: 0;
-    &:hover { border-color: #f5ebd9; }
+    &:hover { border-color: #F5ECD6; }
   }
 
   // Stats panel — Tonight at the House
@@ -516,7 +512,7 @@ section.tavern-banner::before {
     font-size: 10px; font-weight: 700;
     font-variant: small-caps;
     letter-spacing: 0.18em;
-    color: #f5ebd9;
+    color: #F5ECD6;
     opacity: 0.75;
   }
 
@@ -542,9 +538,9 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 // ---- 9. Trending Tonight (standalone strip below banner) ----
 
 .tavern-trending {
-  background: #ede0c4;
+  background: #EDE2C5;
   padding: 32px 64px 24px;
-  border-top: 3px solid var(--tavern-brass);
+  border-top: 3px solid var(--tavern-oxblood);
   border-bottom: 1px solid var(--tavern-rule);
 
   &__header {
