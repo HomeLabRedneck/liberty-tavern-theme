@@ -40,7 +40,7 @@ h2, h3 { font-style: italic; }
 // ---- 2. Header (.d-header) ----------------------------------
 
 .d-header {
-  background: #1a120c;
+  background: #1a120c !important;
   border-bottom: 1px solid var(--tavern-brass);
   box-shadow: 0 2px 0 rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.25);
 
