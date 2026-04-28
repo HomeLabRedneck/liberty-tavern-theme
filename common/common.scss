@@ -190,6 +190,12 @@ h2, h3 { font-style: italic; }
     border-bottom: none !important;
     border-radius: 2px;
   }
+
+  // Hide hot pill — route kept for "ALL HOT THREADS →" link, pill redundant with Trending section
+  .nav-item a[href="/hot"],
+  .nav-item-link[href="/hot"] {
+    display: none !important;
+  }
 }
 
 // ---- 3. Sidebar (.sidebar-wrapper) --------------------------
