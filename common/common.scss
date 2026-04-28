@@ -537,7 +537,8 @@ section.tavern-banner::before {
 body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { display: none; }
 
 // Hide the categories/tags filter bar and New Topic button above the banner on the categories page.
-body.navigation-topics .list-controls { display: none; }
+// Hide filter dropdowns + New Topic button but keep nav pills (section.navigation-container)
+body.navigation-topics .list-controls .container > *:not(section):not(h1) { display: none; }
 
 // ---- 9. Trending Tonight (standalone strip below banner) ----
 
