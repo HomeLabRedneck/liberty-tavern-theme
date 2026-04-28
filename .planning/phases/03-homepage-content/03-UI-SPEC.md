@@ -69,16 +69,20 @@ Exceptions:
 | Role | Font | Size | Weight | Style | Letter Spacing | Line Height | Source |
 |------|------|------|--------|-------|----------------|-------------|--------|
 | Stat number | Playfair Display | 30px | 900 | italic | -0.01em | 1.0 | D-03 (28–32px range; 30px is midpoint) |
-| Stat label | Inter | 11px | 700 | normal | 0.18em | 1.2 | D-03 (small-caps via `font-variant: small-caps`) |
-| Stats panel heading ("Tonight at the House") | Inter | 9px | 700 | normal | 0.3em | 1.2 | matches `.label` pattern in `&__feature` |
+| Stat label | Inter | 10px | 700 | normal | 0.18em | 1.2 | D-03 (small-caps via `font-variant: small-caps`) |
+| Stats panel heading ("Tonight at the House") | Inter | 10px | 700 | normal | 0.3em | 1.2 | matches `.label` pattern in `&__feature` |
 | Trending section heading ("TRENDING TONIGHT") | Inter | 10px | 700 | normal | 0.3em | 1.2 | D-10 (small caps, matches `section::before` eyebrow pattern) |
 | Trending "ALL HOT THREADS →" link | Inter | 10px | 700 | normal | 0.12em | 1.2 | D-10 (uppercase, matches `.tavern-banner__cta` font treatment) |
-| Trending card category label | Inter | 9px | 700 | normal | 0.2em | 1.2 | D-11 (small-caps, above topic title) |
+| Trending card category label | Inter | 10px | 700 | normal | 0.2em | 1.2 | D-11 (small-caps, above topic title) |
 | Trending card topic title | Playfair Display | 15px | 700 | normal | 0 | 1.3 | D-11 (matches existing `&__trending .item a` — preserve) |
 | Trending card meta (author · replies · time) | Spectral | 12px | 400 | italic | 0 | 1.4 | D-11 (replaces current "replies · views"; extends existing `.meta`) |
 | Room card category name (extension of §6) | Playfair Display | 22px | 900 | italic | -0.01em | inherit | D-14 (§6 already sets this; no change needed) |
 | Room card description (extension of §6) | Spectral | 14px | 400 | normal | 0 | 1.5 | D-14 (§6 already sets this; no change needed) |
 | Room card counts (topics / posts) | Inter | 12px | 700 | normal | 0.04em | 1.2 | D-14 (new — §6 currently does not style count text) |
+
+> Weight 900 is reserved exclusively for Playfair Display display roles (stat numbers, category names, banner headline — carried forward from Phases 1–2). Not available for Inter or Spectral roles in this phase.
+
+New sizes introduced in Phase 3: **10px, 12px, 15px, 30px** — exactly 4.
 
 ---
 
@@ -152,7 +156,7 @@ Note: These sit on top of the container's existing `1px solid var(--tavern-brass
 
 | Property | Value |
 |----------|-------|
-| Font | Inter 9px, weight 700, letter-spacing 0.3em |
+| Font | Inter 10px, weight 700, letter-spacing 0.3em |
 | Color | `var(--tavern-brass)` |
 | Text-transform | `uppercase` |
 | Margin-bottom | `16px` (md token) |
@@ -178,14 +182,14 @@ Layout: `display: flex; justify-content: space-between; align-items: baseline`. 
 
 | Property | Value |
 |----------|-------|
-| Padding | `10px 0` (between rows) |
+| Padding | `12px 0` (between rows) |
 | Gap | Flex space-between (no explicit gap; label/number push to edges) |
 
 **Stat label — `.tavern-banner__stat-label`**
 
 | Property | Value |
 |----------|-------|
-| Font | Inter 11px, weight 700 |
+| Font | Inter 10px, weight 700 |
 | Font-variant | `small-caps` |
 | Letter-spacing | `0.18em` |
 | Color | `#f5ebd9` |
@@ -273,7 +277,7 @@ No background card — items are open content on the cream surface (no border, n
 
 | Property | Value |
 |----------|-------|
-| Font | Inter 9px, weight 700, letter-spacing 0.2em |
+| Font | Inter 10px, weight 700, letter-spacing 0.2em |
 | Font-variant | `small-caps` |
 | Color | `var(--primary-medium)` |
 | Text-transform | `uppercase` |
@@ -291,7 +295,7 @@ Content: category name resolved from `this.site.categories` by `category_id`. Fa
 | Hover color | `var(--tavern-oxblood)` |
 | Text-decoration | `none` |
 | Display | `block` |
-| Margin-bottom | `6px` |
+| Margin-bottom | `4px` |
 | Line-height | `1.3` |
 
 **Meta line — `.tavern-trending__meta`**
@@ -441,7 +445,7 @@ Not applicable. This is a pure Discourse theme (SCSS + Glimmer components). No n
 |----------|--------|
 | Four stats, field mappings | D-02, D-06 (CONTEXT.md) — locked |
 | Stats number typography (30px italic Playfair brass) | D-03, D-05 specifics note "28–32px" → 30px chosen as midpoint |
-| Stat label typography (11px Inter small-caps) | D-03 (CONTEXT.md) — locked |
+| Stat label typography (10px Inter small-caps) | D-03 (CONTEXT.md) — locked; consolidated from 11px per checker fix |
 | Corner bracket dimensions (10px × 10px at 2px) | D-04 + specifics section noting "~10-12px bracket lines" — 10px chosen |
 | Stats panel heading copy "TONIGHT AT THE HOUSE" | D-01 (CONTEXT.md) — locked |
 | Stats loading placeholder "—" | existing `{{#unless this.loading}}` pattern in `tavern-banner.gjs` |
