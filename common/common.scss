@@ -137,10 +137,9 @@ h2, h3 { font-style: italic; }
   padding-top: 64px;
 }
 
-// ---- 2b. Nav pills → header (fixed overlay) -----------------
-// Only the ul.nav-pills is fixed — breadcrumbs/NEW TOPIC stay in flow
+// ---- 2b. Persistent header nav (.tavern-header-nav) ----------
 
-.navigation-container .nav-pills {
+.tavern-header-nav {
   position: fixed;
   top: 0;
   left: 50%;
@@ -149,45 +148,26 @@ h2, h3 { font-style: italic; }
   display: flex;
   align-items: center;
   z-index: 1001;
-  margin: 0;
-  padding: 0;
-  background: transparent;
+  pointer-events: none;
+}
 
-  // Cover both classic (.nav-item a) and Glimmer (.nav-item-link) nav structures
-  a, .nav-item a, .nav-item-link {
-    color: #f5ebd9 !important;
-    opacity: 1 !important;
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    background: transparent !important;
-    border-radius: 0;
-    padding: 6px 14px;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    text-decoration: none;
-    border-bottom: none !important;
+.tavern-nav-link {
+  pointer-events: auto;
+  color: #f5ebd9 !important;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: none !important;
 
-    &:hover {
-      color: var(--tavern-brass) !important;
-      background: transparent !important;
-    }
+  &:hover { color: var(--tavern-brass) !important; }
 
-    &:focus-visible {
-      outline: 2px solid var(--tavern-brass);
-      outline-offset: 2px;
-    }
-  }
-
-  // Active state — filled brass box
-  .nav-item.active a,
-  a.active,
-  .nav-item-link.active {
+  &.active {
     color: #1a120c !important;
-    background: var(--tavern-brass) !important;
-    border-bottom: none !important;
+    background: var(--tavern-brass);
     border-radius: 2px;
   }
 }

@@ -1,12 +1,16 @@
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 import TavernBanner from "../components/tavern-banner";
+import TavernNav from "../components/tavern-nav";
 
 export default apiInitializer("1.13.0", (api) => {
   // Phase 1: render homepage banner
   if (settings.show_homepage_banner) {
     api.renderInOutlet("discovery-list-container-top", TavernBanner);
   }
+
+  // Phase 2: permanent header nav (all routes)
+  api.headerIcons.add("tavern-nav", TavernNav, { before: "search" });
 
   // Phase 2: rename nav pill labels and Sign In button text
   // NOTE: theme locales/en.yml cannot override js.* core strings (theme locale namespace
