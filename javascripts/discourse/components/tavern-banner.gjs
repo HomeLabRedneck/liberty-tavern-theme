@@ -5,6 +5,28 @@ import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 import { htmlSafe } from "@ember/template";
 import { on } from "@ember/modifier";
+import Category from "discourse/models/category";
+
+function timeAgo(isoString) {
+  if (!isoString) return "";
+  const diff = Math.floor((Date.now() - new Date(isoString).getTime()) / 1000);
+  if (diff < 3600) return `${Math.floor(diff / 60)}m`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h`;
+  return `${Math.floor(diff / 86400)}d`;
+}
+
+const toItem = (t) => {
+  const cat = Category.findById(t.category_id);
+  return {
+    id: t.id,
+    title: htmlSafe(t.fancy_title ?? t.title ?? ""),
+    url: `/t/${t.slug}/${t.id}`,
+    postsCount: t.posts_count,
+    categoryName: cat?.name ?? "",
+    author: t.last_poster_username ?? "",
+    bumpedAt: t.bumped_at ?? null,
+  };
+};
 
 export default class TavernBanner extends Component {
   @service router;
@@ -12,8 +34,7 @@ export default class TavernBanner extends Component {
   @service composer;
 
   @tracked trending = [];
-  @tracked featured = null;
-  @tracked badges = [];
+  @tracked stats = null;
   @tracked loading = true;
 
   get settings() {
@@ -26,8 +47,13 @@ export default class TavernBanner extends Component {
     return /^discovery\./.test(route);
   }
 
-  get showBadges() {
-    return settings.show_badges_card && this.badges.length > 0;
+  get statRows() {
+    return [
+      { label: "Patrons Inside", value: this.stats?.patronsInside ?? "—" },
+      { label: "Members",        value: this.stats?.members        ?? "—" },
+      { label: "Posts Today",    value: this.stats?.postsToday     ?? "—" },
+      { label: "Open Rooms",     value: this.stats?.openRooms      ?? "—" },
+    ];
   }
 
   constructor() {
@@ -47,44 +73,33 @@ export default class TavernBanner extends Component {
   async loadData() {
     try {
       const period = settings.trending_period || "daily";
-      let topRes = await ajax(`/top.json?period=${period}`).catch(() => null);
+      const [topRes, aboutRes] = await Promise.all([
+        ajax(`/top.json?period=${period}`).catch(() => null),
+        ajax("/about.json").catch(() => null),
+      ]);
+
+      // Stats from /about.json
+      const s = aboutRes?.about?.stats ?? {};
+      this.stats = {
+        patronsInside: s.active_users_last_day ?? "—",
+        members: s.users_count ?? "—",
+        postsToday: s.posts_last_day ?? "—",
+        openRooms: aboutRes?.about?.categories?.length ?? "—",
+      };
+
+      // Trending from /top.json with /latest.json fallback
       let raw = topRes?.topic_list?.topics || [];
-      if (raw.length < 4) {
+      if (raw.length < 3) {
         const latestRes = await ajax("/latest.json").catch(() => null);
         const latest = latestRes?.topic_list?.topics || [];
         const seen = new Set(raw.map((t) => t.id));
         for (const t of latest) {
           if (!seen.has(t.id)) { raw.push(t); seen.add(t.id); }
-          if (raw.length >= 4) break;
+          if (raw.length >= 3) break;
         }
       }
-
-      const toItem = (t) => ({
-        id: t.id,
-        title: htmlSafe(t.fancy_title ?? t.title ?? ""),
-        url: `/t/${t.slug}/${t.id}`,
-        postsCount: t.posts_count,
-        views: t.views,
-        likeCount: t.like_count,
-      });
-
-      this.featured = raw[0] ? toItem(raw[0]) : null;
-      this.trending = raw.slice(1, 4).map(toItem);
-
-      const badgeRes = await ajax("/badges.json").catch(() => null);
-      if (badgeRes?.badges) {
-        const tierMap = { 1: "common", 2: "rare", 3: "epic", 4: "legendary" };
-        this.badges = badgeRes.badges
-          .filter((b) => b.enabled && b.grant_count > 0)
-          .sort((a, b) => b.grant_count - a.grant_count)
-          .slice(0, 4)
-          .map((b) => ({
-            name: b.name,
-            count: b.grant_count,
-            tier: tierMap[b.badge_type_id] || "common",
-            initial: (b.name || "?")[0],
-          }));
-      }
+      // slice starts at 0 (not 1) because featured no longer consumes raw[0]
+      this.trending = raw.slice(0, 3).map(toItem);
     } catch (e) {
       console.warn("Liberty Tavern banner: failed to load data", e);
     } finally {
