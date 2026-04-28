@@ -116,57 +116,47 @@ export default class TavernBanner extends Component {
             <p class="tavern-banner__subtitle">{{this.settings.banner_subtitle}}</p>
             <button type="button" class="tavern-banner__cta" {{on "click" this.openNewTopic}}>Pull a stool</button>
             <a href="/faq" class="tavern-banner__cta tavern-banner__cta--ghost">Read the House Rules</a>
-
-            {{#if this.settings.show_trending_strip}}
-              <div class="tavern-banner__trending">
-                <div class="heading">Trending Tonight</div>
-                {{#unless this.loading}}
-                  <div class="items">
-                    {{#each this.trending as |t|}}
-                      <div class="item">
-                        <a href={{t.url}}>{{t.title}}</a>
-                        <div class="meta">{{t.postsCount}} replies · {{t.views}} views</div>
-                      </div>
-                    {{/each}}
-                  </div>
-                {{/unless}}
-              </div>
-            {{/if}}
           </div>
 
           <aside class="tavern-banner__aside">
-            {{#if this.featured}}
-              <div class="tavern-banner__feature">
-                <div class="label">Project of the Night</div>
-                <a href={{this.featured.url}} class="tavern-banner__feature-link">
-                  <h3 class="tavern-banner__feature-title">{{this.featured.title}}</h3>
-                </a>
-                <div class="stats">
-                  <span class="stat-label">replies</span>
-                  <span class="stat-value">{{this.featured.postsCount}}</span>
-                  <span class="stat-label">views</span>
-                  <span class="stat-value">{{this.featured.views}}</span>
-                  <span class="stat-label">likes</span>
-                  <span class="stat-value">{{this.featured.likeCount}}</span>
+            <div class="tavern-banner__stats">
+              <div class="label">TONIGHT AT THE HOUSE</div>
+              {{#each this.statRows as |row|}}
+                <div class="tavern-banner__stat-row">
+                  <span class="tavern-banner__stat-label">{{row.label}}</span>
+                  {{#unless this.loading}}
+                    <span class="tavern-banner__stat-num">{{row.value}}</span>
+                  {{else}}
+                    <span class="tavern-banner__stat-num tavern-banner__stat-num--loading">—</span>
+                  {{/unless}}
                 </div>
-              </div>
-            {{/if}}
-
-            {{#if this.showBadges}}
-              <div class="tavern-banner__badges">
-                <div class="heading">Recent Badges Awarded</div>
-                {{#each this.badges as |b|}}
-                  <div class="badge-row">
-                    <span class="badge-icon badge-icon--{{b.tier}}">{{b.initial}}</span>
-                    <span class="badge-name">{{b.name}}</span>
-                    <span class="badge-count">×{{b.count}}</span>
-                  </div>
-                {{/each}}
-              </div>
-            {{/if}}
+              {{/each}}
+            </div>
           </aside>
         </div>
       </section>
+
+      {{#if this.settings.show_trending_strip}}
+        <div class="tavern-trending">
+          <div class="tavern-trending__header">
+            <span class="tavern-trending__heading">🔥 TRENDING TONIGHT</span>
+            <a href="/hot" class="tavern-trending__all">ALL HOT THREADS →</a>
+          </div>
+          {{#unless this.loading}}
+            <div class="tavern-trending__items">
+              {{#each this.trending as |t|}}
+                <div class="tavern-trending__item">
+                  <span class="tavern-trending__cat">{{t.categoryName}}</span>
+                  <a href={{t.url}} class="tavern-trending__title">{{t.title}}</a>
+                  <div class="tavern-trending__meta">
+                    {{t.author}} · {{t.postsCount}} replies · {{timeAgo t.bumpedAt}}
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          {{/unless}}
+        </div>
+      {{/if}}
     {{/if}}
   </template>
 }
