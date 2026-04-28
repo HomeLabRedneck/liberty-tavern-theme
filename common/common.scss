@@ -324,7 +324,7 @@ h2, h3 { font-style: italic; }
 
 .category-list .category, .category-boxes .category-box {
   border-left: 4px solid var(--category-color, var(--tertiary));
-  background: var(--secondary);
+  background: #ede0c4;
 
   .category-title-link h3 {
     font-family: var(--font-display);
@@ -539,7 +539,7 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 // ---- 9. Trending Tonight (standalone strip below banner) ----
 
 .tavern-trending {
-  background: var(--tavern-cream);
+  background: #ede0c4;
   padding: 32px 64px 24px;
   border-bottom: 1px solid var(--tavern-rule);
 
