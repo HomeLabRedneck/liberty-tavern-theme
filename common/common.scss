@@ -536,9 +536,8 @@ section.tavern-banner::before {
 // already caught by this rule, so no separate archetype-regular clause needed.
 body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { display: none; }
 
-// Hide filter bar (categories/tags/NEW TOPIC) but keep .navigation-container
-// whose .nav-pills are position:fixed into the header (§2b).
-.list-controls .container > :not(.navigation-container) { display: none; }
+// Collapse filter bar — position:fixed nav pills escape overflow clip and stay in header.
+.list-controls { height: 0; overflow: hidden; }
 
 // ---- 9. Trending Tonight (standalone strip below banner) ----
 
