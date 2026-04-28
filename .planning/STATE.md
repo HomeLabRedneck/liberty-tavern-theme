@@ -21,24 +21,24 @@ progress:
 
 **Core Value:** The homepage must look and function like the Image 1 design — custom header, styled banner with live stats, trending section, and room cards.
 
-**Current Focus:** Phase 2 (Custom Header) complete. Phase 3 (Homepage Content) is next.
+**Current Focus:** Phase 3 (Homepage Content) complete. Phase 4 (Right Column) is next.
 
 ## Current Position
 
 - **Milestone:** v1 (initial release matching Image 1)
-- **Phase:** 3 — Homepage Content (executing)
-- **Plan:** 03-02 complete; next: 03-03 (admin checkpoint)
-- **Status:** Phase 3 in progress — Plans 03-01 and 03-02 executed
-- **Progress:** `[**--] 2/4 phases complete`
+- **Phase:** 4 — Right Column (not started)
+- **Plan:** Phase 3 all plans complete
+- **Status:** Phase 4 ready to plan
+- **Progress:** `[***-] 3/4 phases complete`
 
 ## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
-| Phases planned | 3 / 4 |
-| Phases complete | 2 / 4 |
-| Requirements validated | 13 / 26 |
-| Plans complete | 6 / 6 |
+| Phases planned | 4 / 4 |
+| Phases complete | 3 / 4 |
+| Requirements validated | 22 / 26 |
+| Plans complete | 9 / 9 |
 
 ## Accumulated Context
 
@@ -84,9 +84,9 @@ None.
 
 ## Session Continuity
 
-**Last action:** Plan 03-02 executed — dead SCSS removed (&__feature, &__feature-link, &__feature-title, &__trending inner, &__badges), stats panel styles added (&__stats with corner brackets, stat-row/label/num), §9 trending section added (.tavern-trending), room card extensions added (.category-boxes). Commits 13684ee and 44af7f8.
+**Last action:** Phase 3 complete — stats panel live (all 4 rows with real data), trending strip rendering 3-column cream section, room cards as box grid with colored left borders. Open Rooms fix: Site.current().categories.length (about.json has no categories array on this install).
 
-**Next action:** Execute Plan 03-03 (admin checkpoint — set desktop_category_page_style to categories_boxes).
+**Next action:** Plan or discuss Phase 4 (Right Column) via `/gsd-plan-phase 4`.
 
 **Files of record:**
 

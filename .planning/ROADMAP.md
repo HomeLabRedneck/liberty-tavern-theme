@@ -14,7 +14,7 @@ Repair and complete the Liberty Tavern Discourse theme so the homepage matches t
 
 - [x] **Phase 1: Foundation Repair** — Fix the broken/duplicated banner, kill 404 CTA, stabilize sidebar reactivity, clean up font and styling debt *(completed 2026-04-26)*
 - [x] **Phase 2: Custom Header** — Mount the tavern header (logo, title, tagline, nav links, Sign In) on every page *(completed 2026-04-27)*
-- [ ] **Phase 3: Homepage Content** — Wire live stats panel and render the Rooms section as styled category cards
+- [x] **Phase 3: Homepage Content** — Wire live stats panel and render the Rooms section as styled category cards *(completed 2026-04-28)*
 - [ ] **Phase 4: Right Column** — Add the two-column homepage layout with Badges and House Rules panels
 
 ## Phase Details
@@ -63,9 +63,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Banner JS + template: Promise.all data loading, stats panel in aside, trending sibling outside banner, toItem enrichment, dead code removal
-- [ ] 03-02-PLAN.md — SCSS: delete 5 dead §8 blocks, add stats panel styles, add §9 trending section, extend §6 room cards
-- [ ] 03-03-PLAN.md — Admin step: set desktop_category_page_style to categories_boxes (manual, blocking checkpoint)
+- [x] 03-01-PLAN.md — Banner JS + template: Promise.all data loading, stats panel in aside, trending sibling outside banner, toItem enrichment, dead code removal
+- [x] 03-02-PLAN.md — SCSS: delete 5 dead §8 blocks, add stats panel styles, add §9 trending section, extend §6 room cards
+- [x] 03-03-PLAN.md — Admin step: set desktop_category_page_style to categories_boxes (manual, blocking checkpoint)
 
 ### Phase 4: Right Column
 **Goal**: Add a right-column rail beside the homepage main content with Badges and House Rules panels, hiding cleanly on narrow screens.
@@ -85,7 +85,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation Repair | 4/4 | Complete | 2026-04-26 |
 | 2. Custom Header | 2/2 | Complete | 2026-04-27 |
-| 3. Homepage Content | 0/3 | Not started | - |
+| 3. Homepage Content | 3/3 | Complete | 2026-04-28 |
 | 4. Right Column | 0/0 | Not started | - |
 
 ## Coverage Validation
