@@ -135,16 +135,15 @@ h2, h3 { font-style: italic; }
   padding-top: 64px;
 }
 
-// Zero Discourse's default outlet top offset so banner sits flush to header
-#main-outlet {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
-}
-
-// Banner breaks out of .container horizontal padding — full content-area width
-.discovery-list-container-top {
-  margin-left: calc(-1 * var(--d-content-padding, 15px));
-  margin-right: calc(-1 * var(--d-content-padding, 15px));
+// Strip .container constraints on homepage so banner + trending go full-width.
+// Both components supply their own internal padding; .container padding is redundant.
+body.navigation-categories,
+body.navigation-topics {
+  #main-outlet .container {
+    padding: 0 !important;
+    max-width: none !important;
+    margin-top: 0 !important;
+  }
 }
 
 // ---- 2b. Nav pills → header (fixed overlay) -----------------
