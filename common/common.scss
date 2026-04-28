@@ -154,13 +154,13 @@ h2, h3 { font-style: italic; }
   background: transparent;
 
   .nav-item a {
-    color: #f5ebd9;
+    color: #f5ebd9 !important;
     opacity: 0.85;
     font-family: var(--font-ui);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    background: transparent;
+    background: transparent !important;
     border-radius: 0;
     padding: 6px 14px;
     display: block;
@@ -168,8 +168,8 @@ h2, h3 { font-style: italic; }
 
     &:hover {
       opacity: 1;
-      color: var(--tavern-brass);
-      background: transparent;
+      color: var(--tavern-brass) !important;
+      background: transparent !important;
     }
 
     &:focus-visible {
@@ -180,8 +180,8 @@ h2, h3 { font-style: italic; }
 
   .nav-item.active a {
     opacity: 1;
-    color: #f5ebd9;
-    border-bottom: 2px solid var(--tavern-brass);
+    color: #f5ebd9 !important;
+    border-bottom: 2px solid var(--tavern-brass) !important;
   }
 }
 
