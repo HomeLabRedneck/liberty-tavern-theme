@@ -142,6 +142,11 @@ body.navigation-topics {
     padding: 0 !important;
     margin-top: 0 !important;
   }
+  // Zero every wrapper div between #main-outlet and .container (Glimmer route wrappers)
+  #main-outlet > * {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
   // Outlet wrapper div Discourse injects around renderInOutlet components
   [data-outlet="discovery-list-container-top"] {
     margin: 0 !important;
