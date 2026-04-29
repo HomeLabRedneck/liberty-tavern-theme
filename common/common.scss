@@ -139,7 +139,13 @@ body.navigation-topics {
     gap: 0 !important;
   }
   #main-outlet {
-    padding-left: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+  }
+  // Outlet wrapper div Discourse injects around renderInOutlet components
+  [data-outlet="discovery-list-container-top"] {
+    margin: 0 !important;
+    padding: 0 !important;
   }
   #main-outlet .container {
     padding: 0 !important;
