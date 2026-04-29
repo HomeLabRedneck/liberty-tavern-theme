@@ -139,6 +139,13 @@ h2, h3 { font-style: italic; }
 // Both components supply their own internal padding; .container padding is redundant.
 body.navigation-categories,
 body.navigation-topics {
+  // Kill flex gap between sidebar and content column — banner bg touches sidebar edge
+  #main-outlet-wrapper {
+    gap: 0 !important;
+  }
+  #main-outlet {
+    padding-left: 0 !important;
+  }
   #main-outlet .container {
     padding: 0 !important;
     max-width: none !important;
@@ -149,13 +156,15 @@ body.navigation-topics {
     padding: 0 !important;
     margin: 0 !important;
   }
-  // Give topic list same 64px side gutter as banner/trending internal padding
-  .topic-list-container,
-  .discovery-list-container > div > .topic-list,
-  .discovery-list-container > .topic-list {
-    padding-left: 64px !important;
-    padding-right: 64px !important;
-    box-sizing: border-box;
+  // Topic list side gutter — 64px matches banner/trending internal padding
+  // Tables require margin+width, not padding
+  .topic-list {
+    margin-left: 64px !important;
+    margin-right: 64px !important;
+    width: calc(100% - 128px) !important;
+  }
+  .topic-list-bottom {
+    margin: 0 64px !important;
   }
 }
 
