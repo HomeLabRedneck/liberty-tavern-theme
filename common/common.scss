@@ -41,7 +41,7 @@ h2, h3 { font-style: italic; }
 
 .d-header {
   background: #1C1410 !important;
-  border-bottom: 2px solid var(--tavern-brass);
+  border-bottom: 2px solid #D49838;
   box-shadow: 0 2px 0 rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.25);
 
   .title a, #site-text-logo {
@@ -561,7 +561,7 @@ section.tavern-banner::before {
 body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { display: none; }
 
 // Collapse filter bar — position:fixed nav pills escape overflow clip and stay in header.
-.list-controls { height: 0; overflow: hidden; }
+.list-controls { height: 0 !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; overflow: hidden; }
 
 // ---- 9. Trending Tonight (standalone strip below banner) ----
 
