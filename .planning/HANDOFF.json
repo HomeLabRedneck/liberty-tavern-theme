@@ -1,42 +1,53 @@
 {
   "version": "1.0",
-  "timestamp": "2026-04-28T18:00:00.000Z",
-  "phase": "3",
-  "phase_name": "Homepage Content",
-  "phase_dir": ".planning/phases/03-homepage-content",
+  "timestamp": "2026-04-29T21:21:57Z",
+  "phase": "post-03",
+  "phase_name": "layout-fixes",
+  "phase_dir": null,
   "plan": null,
   "task": null,
   "total_tasks": null,
   "status": "paused",
   "completed_tasks": [
-    {"id": 1, "name": "03-01: Refactor tavern-banner.gjs — Promise.all, stats panel, external trending strip", "status": "done", "commit": "b30d4b3"},
-    {"id": 2, "name": "03-02: SCSS — delete dead §8 blocks, add stats/trending/room card styles", "status": "done", "commit": "44af7f8"},
-    {"id": 3, "name": "03-03: Admin checkpoint — set categories_boxes layout on live instance", "status": "done", "commit": "fc4b545"},
-    {"id": 4, "name": "Fix: Site.current().categories.length for Open Rooms (about.json has no categories array)", "status": "done", "commit": "d5a2581"},
-    {"id": 5, "name": "Fix: darken trending strip + room cards + sidebar to #ede0c4", "status": "done", "commit": "9b06013"},
-    {"id": 6, "name": "Fix: hide .list-controls filter bar on navigation-topics pages", "status": "done", "commit": "98f69ba"}
+    {"id": 1, "name": "Fix .remember/logs dir missing at project root", "status": "done", "commit": "mkdir"},
+    {"id": 2, "name": "Fix banner left gap — zero container/discovery-list-container margins", "status": "done", "commit": "536371a"},
+    {"id": 3, "name": "Target flex gap layer (#main-outlet-wrapper gap:0)", "status": "done", "commit": "d05d719"},
+    {"id": 4, "name": "Center trending section with topic list (margin: 0 64px)", "status": "done", "commit": "58e91a0"},
+    {"id": 5, "name": "Restore trending internal padding 24px", "status": "done", "commit": "c3c8c47"},
+    {"id": 6, "name": "Remove double padding-top from #main-outlet-wrapper", "status": "done", "commit": "5d5d014"},
+    {"id": 7, "name": "Fix header border color — hex #D49838 + list-controls margin/padding:0", "status": "done", "commit": "69df397"},
+    {"id": 8, "name": "Zero #main-outlet padding + outlet wrapper [data-outlet] margin", "status": "done", "commit": "21ebd54"},
+    {"id": 9, "name": "Zero #main-outlet > * top margins (Glimmer route wrapper gap)", "status": "done", "commit": "1f1b0ce"}
   ],
   "remaining_tasks": [
-    {"id": 7, "name": "Verify nav pills still show after list-controls fix (last push not yet confirmed)", "status": "pending_verification"},
-    {"id": 8, "name": "Phase 4: Right Column — plan and execute", "status": "not_started"},
-    {"id": 9, "name": "Rooms redesign — custom component matching design target (full-width rows, letter icons, topic counts)", "status": "backlog"}
+    {"id": 10, "name": "Confirm banner top gap closed — user must update theme + test latest push (1f1b0ce)", "status": "not_confirmed"},
+    {"id": 11, "name": "Plan and execute Phase 4 (Right Column — Badges + House Rules)", "status": "not_started"}
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "description": "Banner top gap: still present as of Image #5. Latest fix (1f1b0ce) zeroes #main-outlet > * top margins but not yet confirmed by user.",
+      "type": "technical",
+      "workaround": "If gap persists: inspect live DOM for remaining margin/padding. Try negative margin-top on .tavern-banner as fallback. Check if Discourse version uses position:sticky (not fixed) for header — would change offset calculation."
+    }
+  ],
   "human_actions_pending": [
     {
-      "action": "Pull latest from phase-3-homepage-content branch in Discourse and verify: nav pills still visible, filter bar (categories/tags/New Topic) hidden",
-      "context": "Last fix (98f69ba) changed from display:none on .list-controls to hiding non-section children — nav pills should be preserved but not yet confirmed",
-      "blocking": false
+      "action": "Update theme in Discourse admin + hard refresh browser, test commit 1f1b0ce",
+      "context": "Banner top gap fix — need user confirmation before proceeding to Phase 4",
+      "blocking": true
     }
   ],
   "decisions": [
-    {"decision": "Site.current().categories.length for Open Rooms stat", "rationale": "Live Discourse /about.json has no categories array — Site model already loaded, no extra request", "phase": "3"},
-    {"decision": "Admin setting Boxes with Subcategories (not Category Boxes)", "rationale": "Discourse dropdown uses this label for categories_boxes value on this install", "phase": "3"},
-    {"decision": "body.navigation-topics selector for .list-controls hide", "rationale": "body.categories-boxes class is NOT applied on this Discourse instance — navigation-topics is the correct body class", "phase": "3"},
-    {"decision": "#ede0c4 for sidebar/trending/room card backgrounds", "rationale": "~10% darker than page cream #f5ebd9, matches design target warmth", "phase": "3"},
-    {"decision": "Rooms redesign (full-width rows, letter icons) deferred to backlog", "rationale": "Phase 3 ROOM-01..04 requirements satisfied; rooms redesign is larger custom component work, plan in Phase 4 or separate phase", "phase": "3"}
+    {"decision": "margin: 0 64px on .tavern-trending (not padding)", "rationale": "Centers box without making it full-width; matches topic list inset", "phase": "post-03"},
+    {"decision": "margin + width: calc(100% - 128px) on .topic-list (not padding)", "rationale": "Tables ignore padding for visual centering; margin+explicit width required", "phase": "post-03"},
+    {"decision": "Replace var(--tavern-brass) with #D49838 in .d-header border-bottom", "rationale": "CSS custom variables defined in :root may not resolve in Discourse theme preview context", "phase": "post-03"},
+    {"decision": "Remove #main-outlet-wrapper { padding-top: 64px }", "rationale": "Discourse auto-sets --header-offset via JS; manual padding doubled the offset creating cream gap above sidebar+banner", "phase": "post-03"},
+    {"decision": "gap: 0 on #main-outlet-wrapper for homepage routes", "rationale": "Sidebar/content flex gap was true source of banner left gap — not .container padding as initially assumed", "phase": "post-03"}
   ],
-  "uncommitted_files": [],
-  "next_action": "Run /gsd-plan-phase 4 to plan the Right Column phase",
-  "context_notes": "Phase 3 complete and verified on live instance. Branch: phase-3-homepage-content. Stats panel live (all 4 rows working), trending strip 3-column, room cards as box grid. Several CSS polish fixes applied post-verification. Rooms redesign (design shows full-width list with letter icons) noted as backlog — not in Phase 3 scope. Phase 4 is right column rail (Badges + House Rules, two-column at 1160px+)."
+  "uncommitted_files": [
+    ".planning/phases/03-homepage-content/03-PATTERNS.md",
+    ".planning/ui-reviews/"
+  ],
+  "next_action": "Ask user to update theme and confirm if banner top gap is resolved. If confirmed, run /gsd-plan-phase 4 for Right Column.",
+  "context_notes": "Session was entirely post-Phase-3 layout fixes responding to user screenshots on live Discourse instance. Branch: phase-3-homepage-content. All formal phases 1-3 complete. Phase 4 (right column) ready to plan. Several var(--tavern-brass) references remain in SCSS outside header section — may also need hex replacement if variables fail to resolve. Header border color confirmed fixed (Image #5 shows correct brass line)."
 }
