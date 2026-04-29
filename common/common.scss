@@ -142,7 +142,20 @@ body.navigation-topics {
   #main-outlet .container {
     padding: 0 !important;
     max-width: none !important;
-    margin-top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  .discovery-list-container {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  // Give topic list same 64px side gutter as banner/trending internal padding
+  .topic-list-container,
+  .discovery-list-container > div > .topic-list,
+  .discovery-list-container > .topic-list {
+    padding-left: 64px !important;
+    padding-right: 64px !important;
+    box-sizing: border-box;
   }
 }
 
