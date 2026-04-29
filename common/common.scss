@@ -572,7 +572,8 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 
 .tavern-trending {
   background: #EDE2C5;
-  padding: 32px 64px 24px;
+  margin: 0 64px;
+  padding: 32px 0 24px;
   border-top: 3px solid var(--tavern-oxblood);
   border-bottom: 1px solid var(--tavern-rule);
 
