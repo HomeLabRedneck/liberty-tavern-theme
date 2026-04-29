@@ -130,11 +130,6 @@ h2, h3 { font-style: italic; }
   line-height: 1.2;
 }
 
-// Compensate for fixed header height so content does not overlap
-#main-outlet-wrapper {
-  padding-top: 64px;
-}
-
 // Strip .container constraints on homepage so banner + trending go full-width.
 // Both components supply their own internal padding; .container padding is redundant.
 body.navigation-categories,
