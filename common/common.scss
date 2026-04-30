@@ -166,9 +166,12 @@ body.navigation-topics {
     margin: 0 !important;
   }
   // .wrap is Discourse's inner width-constraint wrapper inside #main-outlet
+  // Full zero so category-boxes and topic-list share the same width context as the outlet strip
   .wrap {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   #main-outlet .container {
     padding: 0 !important;
