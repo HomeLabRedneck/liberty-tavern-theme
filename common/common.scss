@@ -507,6 +507,44 @@ body.navigation-topics {
   color: #6B5A47;
 }
 
+// ---- Gap closure §6-ext-5: Connector — Latest topic preview per room card ----
+.tavern-room-preview {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(28, 20, 16, 0.1);
+
+  &__link {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    text-decoration: none;
+    line-height: 1.4;
+
+    &:hover .tavern-room-preview__title {
+      color: #1C1410;
+    }
+  }
+
+  &__chevron {
+    color: var(--category-badge-color, var(--tertiary));
+    font-size: 8px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  &__title {
+    font-family: var(--font-serif);
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    color: #6B5A47;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
 // ---- 7. Buttons --------------------------------------------
 
 .btn {
