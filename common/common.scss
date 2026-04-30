@@ -545,6 +545,107 @@ body.navigation-topics {
   }
 }
 
+// ---- 6b. Room cards: vertical list layout ----
+// Converts categories_boxes default grid → single-column flex list.
+// Each card: 3-column inner grid (badge | content | stats).
+
+.category-boxes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 0;
+  row-gap: 0;
+}
+
+// Update heading ::before to flex context (removes grid-column)
+.category-boxes::before {
+  flex: 0 0 auto;
+  order: -2;
+  grid-column: unset;
+  padding-right: 14px;
+  align-self: flex-start;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+// Subtitle — same flex row as heading
+.category-boxes::after {
+  content: "CHOOSE WHERE TO GATHER";
+  display: block;
+  flex: 0 0 auto;
+  order: -1;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 0.18em;
+  color: #6B5A47;
+  text-transform: uppercase;
+  align-self: flex-end;
+  padding-bottom: 5px;
+}
+
+// Cards: full-width rows, become 3-column grids
+.category-boxes .category-box {
+  flex: 0 0 100%;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #D4C5A8;
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  column-gap: 20px;
+  padding: 20px;
+  align-items: start;
+
+  &:first-child { margin-top: 12px; border-top: 2px solid #1C1410; }
+  &:last-child { border-bottom: none; }
+  &:hover { box-shadow: none; }
+}
+
+// Pass-through: .category-box-inner children join the card grid
+.category-boxes .category-box-inner {
+  display: contents;
+}
+
+// Badge: left column, spans all rows
+.category-boxes .category-box .badge-wrapper {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  align-self: center;
+}
+
+// Title: center column row 1
+.category-boxes .category-box .category-title-link {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+// Description: center column row 2
+.category-boxes .category-box .category-description {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 4px;
+}
+
+// Stats: right column (auto-stack rows 1–2)
+.category-boxes .category-box .category-stat,
+.category-boxes .category-box .num-topics,
+.category-boxes .category-box .num-posts {
+  grid-column: 3;
+  text-align: right;
+  margin-top: 0;
+}
+
+// Preview connector: center column row 3
+.category-boxes .category-box .tavern-room-preview {
+  grid-column: 2;
+  grid-row: 3;
+  margin-top: 8px;
+  padding-top: 0;
+  border-top: none;
+}
+
 // ---- 7. Buttons --------------------------------------------
 
 .btn {
