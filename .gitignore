@@ -47,3 +47,7 @@ build/
 *.bak
 *.backup
 *.old
+
+# ── Project reference archives ────────────────────────
+*.zip
+*.har
