@@ -434,8 +434,77 @@ body.navigation-topics {
   font-family: var(--font-ui);
   font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--primary-medium);
+  color: #6B5A47;
   margin-top: 8px;
+}
+
+// ---- Gap closure §6-ext-2: "The Rooms" section heading ----
+.category-boxes::before {
+  content: "The Rooms";
+  display: block;
+  grid-column: 1 / -1;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 28px;
+  color: #1C1410;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+// ---- Gap closure §6-ext-3: Wax-seal badge in room cards (48px circle) ----
+// Scoped to .category-boxes only — does NOT affect topic-list badge circles
+.category-boxes .category-box .badge-category {
+  padding-left: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--category-badge-color) !important; // override global transparent !important
+  box-shadow: inset 0 0 0 2px #F5ECD6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 700;
+  color: #F5ECD6;
+  position: relative;
+}
+
+.category-boxes .category-box .badge-category::before {
+  display: none !important;
+}
+
+// ---- Gap closure §6-ext-4: Stat count selectors + color correction ----
+// Fallback selectors for Discourse category stat elements (class varies by version).
+// Existing .category-stat / .stat-text rule above is KEPT — these are additive.
+.category-boxes .category-box .category-stat-count,
+.category-boxes .category-box .category-box-stat,
+.category-boxes .category-box .stat-count,
+.category-boxes .category-box .num-topics,
+.category-boxes .category-box .num-posts {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+// Stat numerals — dark ink per ColorSpec §3.4
+.category-boxes .category-box .category-stat .value,
+.category-boxes .category-box .category-stat-count .value,
+.category-boxes .category-box .num-topics .value,
+.category-boxes .category-box .num-posts .value {
+  color: #1C1410;
+}
+
+// Stat labels — muted per ColorSpec §3.4
+.category-boxes .category-box .category-stat .label,
+.category-boxes .category-box .category-stat-count .label,
+.category-boxes .category-box .num-topics .label,
+.category-boxes .category-box .num-posts .label {
+  color: #6B5A47;
 }
 
 // ---- 7. Buttons --------------------------------------------
