@@ -135,12 +135,13 @@ h2, h3 { font-style: italic; }
 body.navigation-categories,
 body.navigation-topics {
   // Kill flex gap between sidebar and content column — banner bg touches sidebar edge
-  // max-width: none removes .wrap constraint so banner fills full window width
+  // max-width: none + padding: 0 removes all .wrap constraints so banner fills full window width
   #main-outlet-wrapper {
     gap: 0 !important;
     margin-top: 0 !important;
     max-width: none !important;
     width: 100% !important;
+    padding: 0 !important;
   }
   #main-outlet {
     padding: 0 !important;
