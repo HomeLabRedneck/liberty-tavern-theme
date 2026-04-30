@@ -586,61 +586,40 @@ body.navigation-topics {
   padding-bottom: 5px;
 }
 
-// Cards: full-width rows, become 3-column grids
+// Cards: full-width rows
 .category-boxes .category-box {
   flex: 0 0 100%;
   border-radius: 0;
   box-shadow: none;
   border-bottom: 1px solid #D4C5A8;
-  display: grid;
-  grid-template-columns: 72px 1fr auto;
-  column-gap: 20px;
-  padding: 20px;
-  align-items: start;
 
   &:first-child { margin-top: 12px; border-top: 2px solid #1C1410; }
   &:last-child { border-bottom: none; }
   &:hover { box-shadow: none; }
 }
 
-// Pass-through: .category-box-inner children join the card grid
+// Inner: 2-column grid (badge | all content stacks in col 2)
 .category-boxes .category-box-inner {
-  display: contents;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  column-gap: 20px;
+  padding: 20px;
+  align-items: start;
 }
 
-// Badge: left column, spans all rows
+// Badge: left column, spans all rows so content stays right of it
 .category-boxes .category-box .badge-wrapper {
   grid-column: 1;
-  grid-row: 1 / 4;
+  grid-row: 1 / span 6;
   align-self: center;
 }
 
-// Title: center column row 1
-.category-boxes .category-box .category-title-link {
-  grid-column: 2;
-  grid-row: 1;
-}
+// All other .category-box-inner children auto-place to column 2
+// (title, description, sub-category list, stats — all stack vertically)
 
-// Description: center column row 2
-.category-boxes .category-box .category-description {
-  grid-column: 2;
-  grid-row: 2;
-  margin-top: 4px;
-}
-
-// Stats: right column (auto-stack rows 1–2)
-.category-boxes .category-box .category-stat,
-.category-boxes .category-box .num-topics,
-.category-boxes .category-box .num-posts {
-  grid-column: 3;
-  text-align: right;
-  margin-top: 0;
-}
-
-// Preview connector: center column row 3
+// Preview connector: pin to col 2 whether inside or outside .category-box-inner
 .category-boxes .category-box .tavern-room-preview {
   grid-column: 2;
-  grid-row: 3;
   margin-top: 8px;
   padding-top: 0;
   border-top: none;
