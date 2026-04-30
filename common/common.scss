@@ -137,6 +137,7 @@ body.navigation-topics {
   // Kill flex gap between sidebar and content column — banner bg touches sidebar edge
   #main-outlet-wrapper {
     gap: 0 !important;
+    margin-top: 0 !important;
   }
   #main-outlet {
     padding: 0 !important;
@@ -148,9 +149,16 @@ body.navigation-topics {
     padding-top: 0 !important;
   }
   // Outlet wrapper div Discourse injects around renderInOutlet components
-  [data-outlet="discovery-list-container-top"] {
+  // Also zero direct children (inner component wrapper Glimmer may inject)
+  [data-outlet="discovery-list-container-top"],
+  [data-outlet="discovery-list-container-top"] > * {
     margin: 0 !important;
     padding: 0 !important;
+  }
+  // .wrap is Discourse's inner width-constraint wrapper inside #main-outlet
+  .wrap {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
   #main-outlet .container {
     padding: 0 !important;
