@@ -559,7 +559,7 @@ body.navigation-topics {
   align-items: flex-start;
   column-gap: 0;
   row-gap: 0;
-  margin: 24px 64px 0;
+  margin: 24px 64px 0 !important;
 }
 
 // Update heading ::before to flex context (removes grid-column)
@@ -592,7 +592,8 @@ body.navigation-topics {
 
 // Cards: full-width rows
 .category-boxes .category-box {
-  flex: 0 0 100%;
+  flex: 0 0 auto;
+  width: 100% !important;
   border-radius: 0;
   box-shadow: none;
   border-bottom: 1px solid #D4C5A8;
