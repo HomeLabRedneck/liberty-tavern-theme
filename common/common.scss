@@ -599,79 +599,78 @@ body.navigation-topics {
   border-bottom: none;
   margin-bottom: 12px;
 
-  &:first-child { margin-top: 20px !important; border-top: 1px solid rgba(28,20,16,0.35); }
+  &:first-child { margin-top: 16px !important; border-top: 2px solid rgba(28,20,16,0.7) !important; }
   &:last-child { margin-bottom: 0; }
   &:hover { box-shadow: none; }
 }
 
-// Inner: 3-col grid — badge | content | stats
-// 3-class specificity matches Discourse's possible .category-boxes .category-box .category-box-inner rule.
-// DOM (confirmed from plan): .badge-wrapper, h3.category-title-link, .category-description, .category-stat
-// are ALL direct children of .category-box-inner.
+// Inner: flex row [.category-box-heading grows | .category-box-stat auto]
+// Real DOM: .category-box-inner has two direct children, not badge/h3/description.
 .category-boxes .category-box .category-box-inner {
-  display: grid !important;
-  grid-template-columns: 72px 1fr auto !important;
-  column-gap: 20px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
   padding: 16px 20px !important;
-  align-items: start !important;
+  gap: 24px !important;
   text-align: left !important;
 }
 
-// Badge: col 1, spans all content rows
-.category-boxes .category-box .badge-wrapper {
-  grid-column: 1 !important;
-  grid-row: 1 / span 3 !important;
-  align-self: center !important;
+// Heading: flex column [<a> with badge+name on top | description below]
+.category-boxes .category-box .category-box-heading {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  gap: 4px !important;
 }
 
-// Title: col 2, row 1 — h3.category-title-link is the direct grid child
-.category-boxes .category-box h3.category-title-link,
-.category-boxes .category-box .category-box-inner > h3 {
-  grid-column: 2 !important;
-  grid-row: 1 !important;
+// Badge link inside heading: flex row [badge | name]
+.category-boxes .category-box .category-box-heading .category-title-link,
+.category-boxes .category-box .category-box-heading > a,
+.category-boxes .category-box .category-box-heading > h3,
+.category-boxes .category-box .category-box-heading > h3 > a {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 16px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+// Category name (inside badge link, sibling of badge-category__wrapper)
+.category-boxes .category-box .category-box-heading .badge-category__name,
+.category-boxes .category-box .category-box-heading .category-name {
   font-family: var(--font-display) !important;
   font-style: italic !important;
   font-weight: 900 !important;
   font-size: 22px !important;
   color: #1C1410 !important;
-  margin: 0 0 2px !important;
-  line-height: 1.1 !important;
-  min-width: 0;
-
-  a { color: inherit !important; text-decoration: none !important; }
+  line-height: 1.1;
 }
 
-// Description: col 2, row 2
+// Description: full width, below the badge+name row
 .category-boxes .category-box .category-description {
-  grid-column: 2 !important;
-  grid-row: 2 !important;
   font-family: var(--font-serif) !important;
   font-style: italic !important;
   font-size: 14px !important;
   color: #6B5A47 !important;
   margin: 0 !important;
+  padding-left: 64px !important; // 48px badge + 16px gap — aligns with name
 }
 
-// Stats wrapper (if Discourse wraps both stats in .category-box-stat): col 3, flex-row
+// Stats: flex row, right side
 .category-boxes .category-box .category-box-stat {
-  grid-column: 3 !important;
-  grid-row: 1 / span 2 !important;
-  align-self: center !important;
   display: flex !important;
-  flex-direction: row;
-  gap: 20px;
+  flex-direction: row !important;
+  gap: 24px !important;
+  flex: 0 0 auto !important;
+  align-self: center !important;
 }
 
-// Individual stats: col 3, stacked — fallback when no .category-box-stat wrapper.
-// .num-topics/.num-posts are Discourse modifier classes on .category-stat divs.
-.category-boxes .category-box .num-topics,
-.category-boxes .category-box .num-posts,
-.category-boxes .category-box .category-box-inner > .category-stat {
-  grid-column: 3 !important;
-  align-self: center !important;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.category-boxes .category-box .category-stat {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
   text-align: center;
   min-width: 48px;
 }
@@ -703,13 +702,11 @@ body.navigation-topics {
   margin-top: 3px;
 }
 
-// Preview connector: col 2, row 3
+// Preview connector: below the heading/stats row (outlet renders inside .category-box)
 .category-boxes .category-box .tavern-room-preview {
-  grid-column: 2 !important;
-  grid-row: 3 !important;
-  margin-top: 6px !important;
-  padding-top: 0 !important;
-  border-top: none !important;
+  margin: 0 20px 12px !important;
+  padding-top: 8px !important;
+  border-top: 1px solid rgba(28,20,16,0.1) !important;
 }
 
 // ---- 7. Buttons --------------------------------------------
