@@ -560,6 +560,7 @@ body.navigation-topics {
   column-gap: 0;
   row-gap: 0;
   margin: 24px 64px 0 !important;
+  width: auto !important;
 }
 
 // Update heading ::before to flex context (removes grid-column)
