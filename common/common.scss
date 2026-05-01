@@ -556,25 +556,24 @@ body.navigation-topics {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;  // baseline-aligns heading + subtitle
   column-gap: 0;
   row-gap: 0;
   margin: 24px 64px 0 !important;
   width: auto !important;
 }
 
-// Update heading ::before to flex context (removes grid-column)
+// Heading: let container align-items:flex-end handle vertical alignment
 .category-boxes::before {
   flex: 0 0 auto;
   order: -2;
   grid-column: unset;
   padding-right: 14px;
-  align-self: flex-start;
   line-height: 1;
   margin-bottom: 0;
 }
 
-// Subtitle — same flex row as heading
+// Subtitle — bottom-aligned with heading by container align-items:flex-end
 .category-boxes::after {
   content: "CHOOSE WHERE TO GATHER";
   display: block;
@@ -587,46 +586,115 @@ body.navigation-topics {
   letter-spacing: 0.18em;
   color: #6B5A47;
   text-transform: uppercase;
-  align-self: flex-end;
-  padding-bottom: 5px;
+  line-height: 1;
 }
 
-// Cards: full-width rows
+// Cards: full-width rows, cream gap between them
 .category-boxes .category-box {
   flex: 0 0 auto;
   width: 100% !important;
+  align-self: flex-start;
   border-radius: 0;
   box-shadow: none;
-  border-bottom: 1px solid #D4C5A8;
+  border-bottom: none;
+  margin-bottom: 12px;
 
-  &:first-child { margin-top: 12px; border-top: 2px solid #1C1410; }
-  &:last-child { border-bottom: none; }
+  &:first-child { margin-top: 20px !important; border-top: 1px solid rgba(28,20,16,0.35); }
+  &:last-child { margin-bottom: 0; }
   &:hover { box-shadow: none; }
 }
 
-// Inner: 2-column grid (badge | all content stacks in col 2)
+// Inner: 3-col grid — badge | content | stats
+// !important required: Discourse sets display:flex flex-direction:column on .category-box-inner
 .category-boxes .category-box-inner {
-  display: grid;
-  grid-template-columns: 72px 1fr;
+  display: grid !important;
+  grid-template-columns: 72px 1fr auto !important;
   column-gap: 20px;
-  padding: 20px;
-  align-items: start;
+  padding: 16px 20px;
+  align-items: center !important;
 }
 
-// Badge: left column, spans all rows so content stays right of it
+// Badge: col 1, vertically centered
 .category-boxes .category-box .badge-wrapper {
-  grid-column: 1;
-  grid-row: 1 / span 6;
+  grid-column: 1 !important;
+  grid-row: 1 !important;
   align-self: center;
 }
 
-// All other .category-box-inner children auto-place to column 2
-// (title, description, sub-category list, stats — all stack vertically)
+// Content wrapper (Discourse wraps title+desc in .category-details)
+.category-boxes .category-box .category-details {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  min-width: 0;
+  align-self: center;
+}
 
-// Preview connector: pin to col 2 whether inside or outside .category-box-inner
+// Category title — visible, styled per design
+.category-boxes .category-box .category-name,
+.category-boxes .category-box .category-title,
+.category-boxes .category-box .category-details h3 {
+  font-family: var(--font-display) !important;
+  font-style: italic !important;
+  font-weight: 900 !important;
+  font-size: 22px !important;
+  color: #1C1410 !important;
+  margin: 0 0 4px !important;
+  line-height: 1.1;
+}
+
+// Category description
+.category-boxes .category-box .category-description,
+.category-boxes .category-box .category-details .category-description {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  font-size: 14px !important;
+  color: #6B5A47 !important;
+  margin: 0 0 6px !important;
+}
+
+// Stats wrapper: col 3, side-by-side numbers
+.category-boxes .category-box .category-stat-info {
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  display: flex !important;
+  flex-direction: row;
+  gap: 20px;
+  align-self: center;
+}
+
+.category-boxes .category-box .category-stat-info .category-stat {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 48px;
+}
+
+.category-boxes .category-box .category-stat-info .value {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 22px;
+  color: #1C1410;
+  line-height: 1;
+}
+
+.category-boxes .category-box .category-stat-info .label {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6B5A47;
+  margin-top: 3px;
+}
+
+// Preview connector: col 2
 .category-boxes .category-box .tavern-room-preview {
-  grid-column: 2;
-  margin-top: 8px;
+  grid-column: 2 !important;
+  margin-top: 6px;
   padding-top: 0;
   border-top: none;
 }
