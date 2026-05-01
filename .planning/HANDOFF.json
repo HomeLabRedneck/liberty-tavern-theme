@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-04-30T21:09:55Z",
+  "timestamp": "2026-05-01T12:00:00Z",
   "phase": "03-homepage-content",
   "phase_name": "Room card layout polish",
   "phase_dir": ".planning/phases/03-homepage-content",
@@ -14,26 +14,18 @@
     {"id": "03-03", "name": "Admin checkpoint — categories_boxes layout", "status": "done"},
     {"id": "03-04", "name": "Gap closure — The Rooms heading, wax-seal badge, stat selectors", "status": "done", "commit": "12940cf"},
     {"id": "03-05", "name": "GJS connector tavern-room-preview + SCSS", "status": "done", "commit": "844d376"},
-    {"id": "layout-1", "name": "Vertical list layout — flex rows + grid on category-box-inner", "status": "done", "commit": "8059dfc"},
-    {"id": "layout-2", "name": "Left margin alignment — category-boxes margin: 0 64px", "status": "done", "commit": "fcf80a9"},
-    {"id": "layout-3", "name": "Top gap 24px above The Rooms heading", "status": "done", "commit": "be007a6"},
-    {"id": "layout-4", "name": "Right side gap — fully zero .wrap horizontal constraints", "status": "done", "commit": "395412b"}
+    {"id": "polish-1", "name": "§6b grid rewrite — correct selectors + specificity fix", "status": "done", "commit": "a7287d7"},
+    {"id": "polish-2", "name": "§6b flex rewrite — real DOM (.category-box-heading + .category-box-stat)", "status": "done", "commit": "2fc2812"}
   ],
   "remaining_tasks": [
     {
       "id": "verify-1",
-      "name": "Live visual verification — pull on Discourse server, confirm cards + margins",
+      "name": "Live visual verification after 2fc2812 — pull on Discourse server, confirm layout matches Image #5",
       "status": "not_started"
     },
     {
-      "id": "layout-5",
-      "name": "Stats on right column — 3-col grid: 72px 1fr auto, stats grid-column: 3",
-      "status": "not_started",
-      "detail": "Only after live verification. Rule: .category-box-inner { grid-template-columns: 72px 1fr auto } + .category-stat/.num-topics/.num-posts { grid-column: 3; text-align: right; align-self: center }"
-    },
-    {
       "id": "verify-2",
-      "name": "Confirm latestTopicTitle serializer availability for preview connector",
+      "name": "If name not showing — check whether .badge-category__name or text in <a> is the name source",
       "status": "not_started"
     },
     {
@@ -46,33 +38,33 @@
   "human_actions_pending": [
     {
       "action": "Pull phase-3-homepage-content on Discourse server and verify room card layout",
-      "context": "Commits be007a6 and 395412b not yet visually confirmed",
+      "context": "2fc2812 not yet visually confirmed. Also: forum only has Staff (private) category — create a public category to fully verify name/description/stats layout.",
       "blocking": true
     }
   ],
   "decisions": [
     {
-      "decision": "display: grid on .category-box-inner (NOT display: contents on parent)",
-      "rationale": "display: contents failed — children deeper in DOM didn't respond to grid-column rules",
+      "decision": "flex (not grid) on .category-box-inner — .category-box-heading and .category-box-stat are the only 2 direct children",
+      "rationale": "Grid approach assumed badge/h3/description were direct children. Three sessions of screenshots proved the real DOM has a heading wrapper and stats wrapper.",
       "phase": "03"
     },
     {
-      "decision": ".wrap { max-width: none; width: 100%; margin: 0; padding: 0 } on homepage routes",
-      "rationale": "Partial zeroing left horizontal max-width/auto-centering active, misaligning category-boxes right edge vs full-viewport trending strip",
+      "decision": ".category-box-heading: flex-direction: column, with <a> as flex-row (badge | name)",
+      "rationale": "Badge and name are inside the same <a> link; can't separate them into different grid columns. Flex-row on the link keeps them side-by-side.",
       "phase": "03"
     },
     {
-      "decision": "margin: 24px 64px 0 on .category-boxes",
-      "rationale": "top=24px matches banner-to-trending gap; left/right=64px aligns with trending strip",
+      "decision": "padding-left: 64px on .category-description",
+      "rationale": "Indents description to align with name text (48px badge + 16px gap). No DOM wrapper around name+description.",
       "phase": "03"
     },
     {
-      "decision": "category-box-below-each-category outlet name",
-      "rationale": "Confirmed from Discourse Meta official deprecation notice with exact @outletArgs syntax",
-      "phase": "03-05"
+      "decision": "Separator: 2px solid rgba(28,20,16,0.7)",
+      "rationale": "1px/0.35 was too faint to see on live Discourse. Design target shows a clear rule.",
+      "phase": "03"
     }
   ],
   "uncommitted_files": [],
-  "next_action": "Pull phase-3-homepage-content on Discourse server → verify layout → apply stats-on-right fix if needed → /gsd-plan-phase 4",
-  "context_notes": "Phase 3 formal plans complete. Post-plan session added vertical list layout, margin alignment, and .wrap constraint fix. Stats-on-right is last visual gap before Phase 4 but needs live confirmation first."
+  "next_action": "Pull phase-3-homepage-content on Discourse server → screenshot → verify badge/name/description/stats → fix selectors if needed → /gsd-plan-phase 4",
+  "context_notes": "Three iterations of §6b this session. Grid approach failed twice because the assumed flat DOM was wrong. Real DOM confirmed from Image #6 (badge squished in 72px col). Flex approach on .category-box-inner is now correct. Only remaining risk: .category-box-heading class name may differ on this Discourse version — DevTools check will confirm."
 }
