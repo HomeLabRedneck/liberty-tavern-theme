@@ -605,72 +605,81 @@ body.navigation-topics {
 }
 
 // Inner: 3-col grid — badge | content | stats
-// !important required: Discourse sets display:flex flex-direction:column on .category-box-inner
-.category-boxes .category-box-inner {
+// 3-class specificity matches Discourse's possible .category-boxes .category-box .category-box-inner rule.
+// DOM (confirmed from plan): .badge-wrapper, h3.category-title-link, .category-description, .category-stat
+// are ALL direct children of .category-box-inner.
+.category-boxes .category-box .category-box-inner {
   display: grid !important;
   grid-template-columns: 72px 1fr auto !important;
-  column-gap: 20px;
-  padding: 16px 20px;
-  align-items: center !important;
+  column-gap: 20px !important;
+  padding: 16px 20px !important;
+  align-items: start !important;
+  text-align: left !important;
 }
 
-// Badge: col 1, vertically centered
+// Badge: col 1, spans all content rows
 .category-boxes .category-box .badge-wrapper {
   grid-column: 1 !important;
-  grid-row: 1 !important;
-  align-self: center;
+  grid-row: 1 / span 3 !important;
+  align-self: center !important;
 }
 
-// Content wrapper (Discourse wraps title+desc in .category-details)
-.category-boxes .category-box .category-details {
+// Title: col 2, row 1 — h3.category-title-link is the direct grid child
+.category-boxes .category-box h3.category-title-link,
+.category-boxes .category-box .category-box-inner > h3 {
   grid-column: 2 !important;
   grid-row: 1 !important;
-  min-width: 0;
-  align-self: center;
-}
-
-// Category title — visible, styled per design
-.category-boxes .category-box .category-name,
-.category-boxes .category-box .category-title,
-.category-boxes .category-box .category-details h3 {
   font-family: var(--font-display) !important;
   font-style: italic !important;
   font-weight: 900 !important;
   font-size: 22px !important;
   color: #1C1410 !important;
-  margin: 0 0 4px !important;
-  line-height: 1.1;
+  margin: 0 0 2px !important;
+  line-height: 1.1 !important;
+  min-width: 0;
+
+  a { color: inherit !important; text-decoration: none !important; }
 }
 
-// Category description
-.category-boxes .category-box .category-description,
-.category-boxes .category-box .category-details .category-description {
+// Description: col 2, row 2
+.category-boxes .category-box .category-description {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
   font-family: var(--font-serif) !important;
   font-style: italic !important;
   font-size: 14px !important;
   color: #6B5A47 !important;
-  margin: 0 0 6px !important;
+  margin: 0 !important;
 }
 
-// Stats wrapper: col 3, side-by-side numbers
-.category-boxes .category-box .category-stat-info {
+// Stats wrapper (if Discourse wraps both stats in .category-box-stat): col 3, flex-row
+.category-boxes .category-box .category-box-stat {
   grid-column: 3 !important;
-  grid-row: 1 !important;
+  grid-row: 1 / span 2 !important;
+  align-self: center !important;
   display: flex !important;
   flex-direction: row;
   gap: 20px;
-  align-self: center;
 }
 
-.category-boxes .category-box .category-stat-info .category-stat {
-  display: flex !important;
+// Individual stats: col 3, stacked — fallback when no .category-box-stat wrapper.
+// .num-topics/.num-posts are Discourse modifier classes on .category-stat divs.
+.category-boxes .category-box .num-topics,
+.category-boxes .category-box .num-posts,
+.category-boxes .category-box .category-box-inner > .category-stat {
+  grid-column: 3 !important;
+  align-self: center !important;
+  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   min-width: 48px;
 }
 
-.category-boxes .category-box .category-stat-info .value {
+// Stat value: large italic numeral
+.category-boxes .category-box .category-stat .value,
+.category-boxes .category-box .num-topics .value,
+.category-boxes .category-box .num-posts .value {
   display: block;
   font-family: var(--font-display);
   font-style: italic;
@@ -680,7 +689,10 @@ body.navigation-topics {
   line-height: 1;
 }
 
-.category-boxes .category-box .category-stat-info .label {
+// Stat label: small-caps
+.category-boxes .category-box .category-stat .label,
+.category-boxes .category-box .num-topics .label,
+.category-boxes .category-box .num-posts .label {
   display: block;
   font-family: var(--font-ui);
   font-size: 9px;
@@ -691,12 +703,13 @@ body.navigation-topics {
   margin-top: 3px;
 }
 
-// Preview connector: col 2
+// Preview connector: col 2, row 3
 .category-boxes .category-box .tavern-room-preview {
   grid-column: 2 !important;
-  margin-top: 6px;
-  padding-top: 0;
-  border-top: none;
+  grid-row: 3 !important;
+  margin-top: 6px !important;
+  padding-top: 0 !important;
+  border-top: none !important;
 }
 
 // ---- 7. Buttons --------------------------------------------
