@@ -1019,6 +1019,13 @@ body.navigation-topics {
   }
 }
 
+// On the Rooms view the list is .category-boxes, which carries a 24px top margin (§6b);
+// the rail ignores it, so "Badges" sat 24px above "The Rooms". Nudge the rail down to match.
+// Scoped to Rooms — topic-list views align the rail with their own list-heading (no top margin).
+@media (min-width: 1160px) {
+  body.navigation-categories #list-area > .tavern-right-column { margin-top: 24px; }
+}
+
 .tavern-right-column {
   font-family: var(--font-serif);
   display: flex;
