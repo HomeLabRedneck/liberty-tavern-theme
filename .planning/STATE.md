@@ -2,14 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in_progress
-last_updated: "2026-04-30T17:00:00Z"
+current_phase: 04
+current_phase_name: right-column
+status: executing
+stopped_at: Completed 04-01-PLAN.md (rail: Badges + House Rules)
+last_updated: "2026-08-29T14:30:00.000Z"
 progress:
   total_phases: 4
   completed_phases: 3
-  total_plans: 11
-  completed_plans: 11
-  percent: 75
+  total_plans: 13
+  completed_plans: 12
 ---
 
 # Project State: Liberty Tavern Discourse Theme
@@ -21,14 +23,14 @@ progress:
 
 **Core Value:** The homepage must look and function like the Image 1 design — custom header, styled banner with live stats, trending section, and room cards.
 
-**Current Focus:** Phase 3 COMPLETE and verified live. Room cards rebuilt against real DOM, deployed to theme 15. Phase 4 (right column) is next.
+**Current Focus:** Phase 04 — right-column
 
 ## Current Position
 
 - **Milestone:** v1 (initial release matching Image 1)
-- **Phase:** 3 — Homepage Content — COMPLETE (verified live 2026-08-29)
-- **Plan:** Room card layout fixed against real categories_boxes DOM (commit d182929), deployed + visually confirmed at /categories
-- **Status:** Phase 3 done. Ready for Phase 4.
+- **Phase:** 04 (right-column) — EXECUTING
+- **Plan:** 2 of 2 (04-01 complete)
+- **Status:** Executing Phase 04
 - **Progress:** `[***-] 3/4 phases complete`
 
 ## Performance Metrics
@@ -60,6 +62,13 @@ progress:
 - **§6 room card extensions additive** — new .category-boxes rules appended after existing §6 block; shared selector .category-list .category, .category-boxes .category-box left untouched
 - **§9 appended after body:not() hide rule** — preserves file section ordering: §8 content → hide rule → §9 new section
 
+### Decisions Locked (04-01)
+
+- **Grid container = #main-outlet** scoped to body.navigation-categories/topics — reuses the discovery wrapper already proven full-width in Phase 3 (lines 139-149); banner outlet + .tavern-trending span both tracks via grid-column: 1 / -1
+- **Mount = after-main-outlet connector (PRIMARY)** — auto-mounts as last child of #main-outlet; renderInOutlet fallback documented in .gjs/scss for 04-02 to resolve live; theme-setup.js untouched
+- **Flat BEM selectors in section 10** — plan verify greps literal class names; flat form compiles identically to §8/§9 nested form and satisfies source-level acceptance
+- **LIVE-VERIFY deferred to 04-02** — after-main-outlet DOM position vs #main-outlet + topic-list mount confirmation (no browser access in 04-01 executor)
+
 ### Decisions Locked (03-01)
 
 - **statRows getter over (array/hash) helpers** — avoids Ember helper availability risk in Discourse GJS context; JS getter always safe
@@ -84,9 +93,13 @@ None.
 
 ## Session Continuity
 
-**Last action:** Phase 3 complete — stats panel live (all 4 rows with real data), trending strip rendering 3-column cream section, room cards as box grid with colored left borders. Open Rooms fix: Site.current().categories.length (about.json has no categories array on this install).
+**Last session:** 2026-08-29T14:30:00.000Z
+**Stopped at:** Completed 04-01-PLAN.md (rail: Badges + House Rules)
+**Resume file:** .planning/phases/04-right-column/04-02-PLAN.md
 
-**Next action:** Plan or discuss Phase 4 (Right Column) via `/gsd-plan-phase 4`.
+**Last action:** 04-01 complete — TavernRightColumn connector at after-main-outlet fetches /badges.json (top-4 2×2 tier-hexagon grid) + renders 4 house rules; #main-outlet grid override (280px rail, 32px gutter, ≥1160px) with banner/trending full-width span; <1160px hides rail + collapses grid. Source-level verify passed; live cross-view verification deferred to 04-02.
+
+**Next action:** Execute Plan 04-02 (live cross-view + DevTools selector confirmation, selector fix if needed).
 
 **Files of record:**
 
