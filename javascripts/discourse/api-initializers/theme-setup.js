@@ -1,11 +1,19 @@
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 import TavernBanner from "../components/tavern-banner";
+import TavernRightColumn from "../components/tavern-right-column";
 
 export default apiInitializer("1.13.0", (api) => {
   // Phase 1: render homepage banner
   if (settings.show_homepage_banner) {
     api.renderInOutlet("discovery-list-container-top", TavernBanner);
+  }
+
+  // Phase 4: render the right-column rail (Badges + House Rules) into the same
+  // discovery content wrapper (#list-area) so common.scss §10 can grid it beside
+  // the list. The component self-gates via shouldShow (settings + /^discovery\./).
+  if (settings.show_right_column) {
+    api.renderInOutlet("discovery-list-container-top", TavernRightColumn);
   }
 
   // Phase 2: rename nav pill labels and Sign In button text

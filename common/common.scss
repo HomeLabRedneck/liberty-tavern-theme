@@ -918,36 +918,40 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 
 // ---- 10. Right-column rail (Badges + House Rules) -----------
 //
-// Two-column homepage layout: main content (col 1) + 280px rail (col 2), 32px gutter,
-// visible at ≥1160px, hidden below. Scoped to the discovery body classes so topic pages
-// and other routes are untouched — same scoping pattern as §8's hide rule (line 840).
+// Mockup layout (resolved live in plan 04-02): the banner + trending strip span the FULL
+// content width; below them a two-column row — main list (col 1) + 280px rail (col 2) with a
+// 32px gutter — visible at ≥1160px, hidden below. Scoped to the discovery body classes so
+// topic pages and other routes are untouched (same scoping as §8's hide rule, line 840).
 //
-// GRID CONTAINER (PRIMARY): #main-outlet is the discovery content wrapper (already treated
-// as such by lines 139-149). after-main-outlet renders the rail as the last child of
-// #main-outlet, so gridding #main-outlet puts the list-container in col 1 and .tavern-right-column
-// in col 2, while the full-width banner outlet + .tavern-trending span both tracks below.
-// FALLBACK (resolved live in plan 04-02): if DevTools shows after-main-outlet renders OUTSIDE
-// #main-outlet, switch to the api.renderInOutlet mount (see tavern-right-column.gjs header) and
-// grid the inner discovery wrapper instead. The 280px / 32px / 1160px contract holds either way.
+// GRID CONTAINER: #list-area is the discovery content wrapper. Its direct children are the
+// discovery-list-container-top outlet (which carries the banner + trending + this rail, all
+// rendered via api.renderInOutlet in theme-setup.js) and .contents (the category-boxes /
+// topic-list). Gridding #list-area with named areas lets the banner + trending SPAN both
+// columns while .contents falls into col 1 and .tavern-right-column into col 2 — independent
+// of DOM order, so renderInOutlet stacking order does not matter.
 body.navigation-categories,
 body.navigation-topics {
   @media (min-width: 1160px) {
-    #main-outlet {
+    #list-area {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 280px;
+      grid-template-areas:
+        "topout   topout"
+        "banner   banner"
+        "trending trending"
+        "list     rail";
       column-gap: 32px;
       align-items: start;
     }
-    // Full-width elements span both tracks so the banner + stats box + trending strip
-    // keep the full content width (D-1); only the list-container narrows into col 1.
-    [data-outlet="discovery-list-container-top"],
-    .tavern-trending {
-      grid-column: 1 / -1;
-    }
-    // The rail lives in col 2.
-    .tavern-right-column {
-      grid-column: 2;
-    }
+    #list-area > .discovery-list-container-top-outlet { grid-area: topout; }
+    #list-area > .tavern-banner { grid-area: banner; }
+    #list-area > .tavern-trending { grid-area: trending; }
+    #list-area > .contents { grid-area: list; min-width: 0; }
+    #list-area > .tavern-right-column { grid-area: rail; }
+    // The list keeps its 64px left gutter (§2) but drops the right gutter so it meets the
+    // 32px grid column-gap cleanly instead of doubling up.
+    .category-boxes { margin-right: 0 !important; }
+    .topic-list { margin-right: 0 !important; width: 100% !important; }
   }
 }
 
@@ -957,7 +961,7 @@ body.navigation-topics {
   flex-direction: column;
   gap: 24px;
   background: transparent;
-  padding: 24px 0;
+  align-self: start;
 }
 
 // Badges panel (Surface 1, D-3) — the rail's primary focal point.
@@ -1076,9 +1080,8 @@ body.navigation-topics {
 @media (max-width: 1159.98px) {
   body.navigation-categories,
   body.navigation-topics {
-    #main-outlet {
+    #list-area {
       display: block;
-      grid-template-columns: 1fr;
     }
     .tavern-right-column {
       display: none;
