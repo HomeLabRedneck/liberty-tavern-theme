@@ -222,10 +222,10 @@ body.navigation-topics {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    background: transparent !important;
+    background: #2A1810 !important; // dark-brown fill (matches the banner dark tone) so pills read as buttons
     border: 1px solid var(--tavern-brass) !important;
     border-radius: 3px;
-    padding: 8px 18px;
+    padding: 4px 10px; // tight to the label
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
