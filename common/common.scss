@@ -274,11 +274,21 @@ body.navigation-topics {
   li.nav-item_categories a::before { content: "Rooms"; }
   li.nav-item_latest a::before { content: "Latest at the Bar"; }
   li.nav-item_top a::before { content: "Top Shelf"; }
+  // Serif italic labels (Spectral) — a tavern-menu look matching the mockups and the
+  // display/serif type used elsewhere, not the Inter/sans of the icons.
   li[class*="nav-item_"] a::before {
-    font-size: 13px;
-    font-family: var(--font-ui);
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  // Narrow desktops / tablets: the fixed centered nav collides with the logo below ~910px.
+  // Hide it here (sidebar navigation covers these widths); the mockups are wide-desktop only.
+  @media (max-width: 959.98px) {
+    display: none;
   }
 }
 
