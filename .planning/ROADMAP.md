@@ -78,8 +78,12 @@ Plans:
   2. On screens narrower than 1160px, the right column is hidden and main content fills the width without broken layout or horizontal scroll.
   3. Badges panel shows a styled grid of popular badges with badge icon and grant count visible on each entry.
   4. House Rules panel shows the four house rules as a styled, readable list.
-**Plans**: TBD
+**Plans**: 2 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 04-01-PLAN.md — Build the right-column rail: TavernRightColumn connector (/badges.json top-4), section-10 grid override + responsive reset, Badges 2x2 tier-hexagon grid, House Rules panel, house_rules/show_right_column settings
+- [ ] 04-02-PLAN.md — Live verification & deploy: confirm the rail beside main content across all four discovery views + <1160px hide, verify wrapper selector + after-main-outlet coverage against live DOM
 
 ## Progress
 
@@ -88,7 +92,7 @@ Plans:
 | 1. Foundation Repair | 4/4 | Complete | 2026-04-26 |
 | 2. Custom Header | 2/2 | Complete | 2026-04-27 |
 | 3. Homepage Content | 3/5 | Gap closure | - |
-| 4. Right Column | 0/0 | Not started | - |
+| 4. Right Column | 0/2 | Planned | - |
 
 ## Coverage Validation
 
