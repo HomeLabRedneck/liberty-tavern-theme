@@ -1,7 +1,7 @@
 ---
 phase: 4
 slug: right-column
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-08-29
@@ -175,6 +175,8 @@ Render/show the rail only on the homepage discovery list views: **Rooms** (`.cat
 | Width | fills the 280px grid track |
 
 **Breakpoint behavior — see the Interaction Contract "Responsive hide / reflow" spec below.**
+
+**Visual hierarchy (rail focal point).** The **Badges panel header + hairline is the rail's primary focal point** — the largest type on the rail (24px Playfair italic) and the first element the eye lands on, ahead of the badge grid and the House Rules box beneath it. The House Rules box is the secondary anchor (its oxblood border draws attention as a distinct bounded element). Order top-to-bottom: Badges header → badge grid → House Rules.
 
 ---
 
@@ -428,11 +430,11 @@ Every decision traces to `04-CONTEXT.md` (D-1..D-5) or the existing design syste
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS (FLAG resolved — rail focal point now named in Surface 0)
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+**Approval:** approved 2026-08-29 (gsd-ui-checker VERIFIED; single non-blocking Visuals FLAG resolved)
