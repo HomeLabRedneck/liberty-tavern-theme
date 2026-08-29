@@ -15,7 +15,7 @@ Repair and complete the Liberty Tavern Discourse theme so the homepage matches t
 - [x] **Phase 1: Foundation Repair** — Fix the broken/duplicated banner, kill 404 CTA, stabilize sidebar reactivity, clean up font and styling debt *(completed 2026-04-26)*
 - [x] **Phase 2: Custom Header** — Mount the tavern header (logo, title, tagline, nav links, Sign In) on every page *(completed 2026-04-27)*
 - [ ] **Phase 3: Homepage Content** — Wire live stats panel and render the Rooms section as styled category cards *(gap closure in progress)*
-- [ ] **Phase 4: Right Column** — Add the two-column homepage layout with Badges and House Rules panels
+- [x] **Phase 4: Right Column** — Add the two-column homepage layout with Badges and House Rules panels *(completed 2026-08-29, verified live)*
 
 ## Phase Details
 
@@ -82,8 +82,8 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 04-01-PLAN.md — Build the right-column rail: TavernRightColumn connector (/badges.json top-4), section-10 grid override + responsive reset, Badges 2x2 tier-hexagon grid, House Rules panel, house_rules/show_right_column settings
-- [ ] 04-02-PLAN.md — Live verification & deploy: confirm the rail beside main content across all four discovery views + <1160px hide, verify wrapper selector + after-main-outlet coverage against live DOM
+- [x] 04-01-PLAN.md — Build the right-column rail: TavernRightColumn (/badges.json top-4), §10 grid + responsive reset, Badges 2x2 tier-hexagon grid, House Rules panel, house_rules/show_right_column settings
+- [x] 04-02-PLAN.md — Live verification & deploy: rail beside main across all four discovery views + <1160px hide. Found after-main-outlet renders at outer .wrap (not #main-outlet); re-mounted via renderInOutlet into #list-area and gridded there; fixed topic-list overflow into rail
 
 ## Progress
 
@@ -91,8 +91,8 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation Repair | 4/4 | Complete | 2026-04-26 |
 | 2. Custom Header | 2/2 | Complete | 2026-04-27 |
-| 3. Homepage Content | 3/5 | Gap closure | - |
-| 4. Right Column | 0/2 | Planned | - |
+| 3. Homepage Content | 5/5 | Complete | 2026-08-29 |
+| 4. Right Column | 2/2 | Complete | 2026-08-29 |
 
 ## Coverage Validation
 

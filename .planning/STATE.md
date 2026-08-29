@@ -5,13 +5,13 @@ milestone_name: milestone
 current_phase: 04
 current_phase_name: right-column
 status: executing
-stopped_at: Completed 04-01-PLAN.md (rail: Badges + House Rules)
-last_updated: "2026-08-29T14:30:00.000Z"
+stopped_at: Phase 4 complete — right column live-verified; nav row (Phase 2) flagged
+last_updated: "2026-08-29T16:07:46.948Z"
 progress:
   total_phases: 4
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 13
-  completed_plans: 12
+  completed_plans: 13
 ---
 
 # Project State: Liberty Tavern Discourse Theme
@@ -93,9 +93,9 @@ None.
 
 ## Session Continuity
 
-**Last session:** 2026-08-29T14:30:00.000Z
-**Stopped at:** Completed 04-01-PLAN.md (rail: Badges + House Rules)
-**Resume file:** .planning/phases/04-right-column/04-02-PLAN.md
+**Last session:** 2026-08-29T16:07:46.935Z
+**Stopped at:** Phase 4 complete — right column live-verified; nav row (Phase 2) flagged
+**Resume file:** .planning/phases/04-right-column/04-02-SUMMARY.md
 
 **Last action:** 04-01 complete — TavernRightColumn connector at after-main-outlet fetches /badges.json (top-4 2×2 tier-hexagon grid) + renders 4 house rules; #main-outlet grid override (280px rail, 32px gutter, ≥1160px) with banner/trending full-width span; <1160px hides rail + collapses grid. Source-level verify passed; live cross-view verification deferred to 04-02.
 
