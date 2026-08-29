@@ -225,7 +225,8 @@ body.navigation-topics {
     background: #2A1810 !important; // dark-brown fill (matches the banner dark tone) so pills read as buttons
     border: 1px solid var(--tavern-brass) !important;
     border-radius: 3px;
-    padding: 4px 10px; // tight to the label
+    padding: 9px 18px; // room so the italic serif labels don't crowd the border
+    line-height: 1.1;
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
