@@ -915,3 +915,47 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
     line-height: 1.4;
   }
 }
+
+// ---- 10. Right-column rail (Badges + House Rules) -----------
+//
+// Two-column homepage layout: main content (col 1) + 280px rail (col 2), 32px gutter,
+// visible at ≥1160px, hidden below. Scoped to the discovery body classes so topic pages
+// and other routes are untouched — same scoping pattern as §8's hide rule (line 840).
+//
+// GRID CONTAINER (PRIMARY): #main-outlet is the discovery content wrapper (already treated
+// as such by lines 139-149). after-main-outlet renders the rail as the last child of
+// #main-outlet, so gridding #main-outlet puts the list-container in col 1 and .tavern-right-column
+// in col 2, while the full-width banner outlet + .tavern-trending span both tracks below.
+// FALLBACK (resolved live in plan 04-02): if DevTools shows after-main-outlet renders OUTSIDE
+// #main-outlet, switch to the api.renderInOutlet mount (see tavern-right-column.gjs header) and
+// grid the inner discovery wrapper instead. The 280px / 32px / 1160px contract holds either way.
+body.navigation-categories,
+body.navigation-topics {
+  @media (min-width: 1160px) {
+    #main-outlet {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      column-gap: 32px;
+      align-items: start;
+    }
+    // Full-width elements span both tracks so the banner + stats box + trending strip
+    // keep the full content width (D-1); only the list-container narrows into col 1.
+    [data-outlet="discovery-list-container-top"],
+    .tavern-trending {
+      grid-column: 1 / -1;
+    }
+    // The rail lives in col 2.
+    .tavern-right-column {
+      grid-column: 2;
+    }
+  }
+}
+
+.tavern-right-column {
+  font-family: var(--font-serif);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: transparent;
+  padding: 24px 0;
+}
