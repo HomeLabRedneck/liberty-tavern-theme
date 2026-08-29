@@ -206,12 +206,15 @@ body.navigation-topics {
   height: 64px;
   display: flex;
   align-items: center;
+  gap: 12px; // breathing room between the outlined pills
   z-index: 1001;
   margin: 0;
   padding: 0;
   background: transparent;
 
-  // Cover both classic (.nav-item a) and Glimmer (.nav-item-link) nav structures
+  // Cover both classic (.nav-item a) and Glimmer (.nav-item-link) nav structures.
+  // Each pill gets a brass (gold) outline so it clearly reads as a button, matching the
+  // banner stats-box border treatment.
   a, .nav-item a, .nav-item-link {
     color: #F5ECD6 !important;
     opacity: 1 !important;
@@ -220,17 +223,17 @@ body.navigation-topics {
     font-weight: 700;
     letter-spacing: 0.04em;
     background: transparent !important;
-    border-radius: 0;
-    padding: 6px 14px;
+    border: 1px solid var(--tavern-brass) !important;
+    border-radius: 3px;
+    padding: 8px 18px;
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
     text-decoration: none;
-    border-bottom: none !important;
 
     &:hover {
       color: var(--tavern-brass) !important;
-      background: transparent !important;
+      background: rgba(212, 152, 56, 0.12) !important; // subtle brass fill on hover
     }
 
     &:focus-visible {
@@ -239,14 +242,13 @@ body.navigation-topics {
     }
   }
 
-  // Active state — filled brass box
+  // Active state — filled brass box (border already brass from the rule above)
   .nav-item.active a,
   a.active,
   .nav-item-link.active {
     color: #1C1410 !important;
     background: var(--tavern-brass) !important;
-    border-bottom: none !important;
-    border-radius: 2px;
+    border-color: var(--tavern-brass) !important;
   }
 
   // ---- Nav labels: rename + reorder to match the design mockup ----
@@ -285,10 +287,12 @@ body.navigation-topics {
     text-transform: none;
   }
 
-  // Narrow desktops / tablets: the fixed centered nav collides with the logo below ~910px.
-  // Hide it here (sidebar navigation covers these widths); the mockups are wide-desktop only.
+  // Narrow desktops / tablets: the fixed centered nav (now wider with the outlined pills)
+  // collides with the logo below ~1072px. Hide it below the shared narrow breakpoint (1160px)
+  // — consistent with the rail hide + banner stack; sidebar navigation covers these widths and
+  // the mockups are wide-desktop only.
   // !important — a Discourse core rule sets display on .nav-pills and wins otherwise.
-  @media (max-width: 959.98px) {
+  @media (max-width: 1159.98px) {
     display: none !important;
   }
 }
