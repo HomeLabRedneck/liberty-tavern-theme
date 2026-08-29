@@ -948,10 +948,22 @@ body.navigation-topics {
     #list-area > .tavern-trending { grid-area: trending; }
     #list-area > .contents { grid-area: list; min-width: 0; }
     #list-area > .tavern-right-column { grid-area: rail; }
-    // The list keeps its 64px left gutter (§2) but drops the right gutter so it meets the
-    // 32px grid column-gap cleanly instead of doubling up.
+    // .topic-list-bottom (pagination) is a direct child of #list-area with no named area —
+    // pin it to column 1 so it stacks under the list, never under the rail.
+    #list-area > .topic-list-bottom { grid-column: 1; margin-right: 0 !important; }
+    // The list keeps its 64px left gutter (§2, aligns with the banner's left padding) but must
+    // FIT inside grid column 1 — the §2 full-width rules give .topic-list width:100% + a 64px
+    // left margin, which overflows the column by 64px straight into the rail. Re-anchor it here
+    // with #list-area specificity so the table ends at the column edge, leaving the 32px gutter.
+    #list-area .topic-list {
+      margin-left: 64px !important;
+      margin-right: 0 !important;
+      width: calc(100% - 64px) !important;
+      box-sizing: border-box !important;
+    }
+    // .category-boxes (Rooms view) already sits inside its own 64px margins; just drop the
+    // right one so it meets the grid gutter cleanly instead of doubling up.
     .category-boxes { margin-right: 0 !important; }
-    .topic-list { margin-right: 0 !important; width: 100% !important; }
   }
 }
 
