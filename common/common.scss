@@ -249,12 +249,36 @@ body.navigation-topics {
     border-radius: 2px;
   }
 
-  // Hide hot pill — route kept for "ALL HOT THREADS →" link, pill redundant with Trending section
-  li:has(a[href="/hot"]),
-  li:has(.nav-item-link[href="/hot"]),
-  .nav-item a[href="/hot"],
-  .nav-item-link[href="/hot"] {
-    display: none !important;
+  // ---- Nav labels: rename + reorder to match the design mockup ----
+  // Target order/labels: Trending (hot) · Rooms (categories) · Latest at the Bar (latest) ·
+  // Top Shelf (top). The theme-setup.js i18n rename (js.filters.*.title) is a NO-OP on this
+  // Discourse version — i18n.translations.en.js is empty at initializer time — so swap labels
+  // in CSS: hide the real (icon-less) pill text with font-size:0 and print the label via
+  // ::before. ::before (NOT ::after) because the active pill's ::after is Discourse's own
+  // underline indicator; using ::after blanks the active tab's label.
+  li.nav-item_new,
+  li.nav-item_unread,
+  li.nav-item_subscribe { display: none !important; }
+
+  li.nav-item_hot { order: 1 !important; display: inline-flex !important; } // Trending
+  li.nav-item_categories { order: 2 !important; }
+  li.nav-item_latest { order: 3 !important; }
+  li.nav-item_top { order: 4 !important; }
+
+  li.nav-item_hot a,
+  li.nav-item_categories a,
+  li.nav-item_latest a,
+  li.nav-item_top a { font-size: 0 !important; }
+
+  li.nav-item_hot a::before { content: "Trending"; }
+  li.nav-item_categories a::before { content: "Rooms"; }
+  li.nav-item_latest a::before { content: "Latest at the Bar"; }
+  li.nav-item_top a::before { content: "Top Shelf"; }
+  li[class*="nav-item_"] a::before {
+    font-size: 13px;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
 }
 
