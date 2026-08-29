@@ -1032,3 +1032,56 @@ body.navigation-topics {
   color: #6B5A47;
   font-variant-numeric: tabular-nums;
 }
+
+// House Rules panel (Surface 2, D-4) — secondary anchor, oxblood-bordered cream box.
+.tavern-house-rules {
+  background: var(--tavern-cream);
+  border: 1px solid var(--tavern-oxblood);
+  border-radius: 2px;
+  padding: 14px; // locked by mockup (D-4) — non-4-multiple, keep as-is
+}
+
+.tavern-house-rules__eyebrow {
+  font-family: var(--font-ui);
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--tavern-oxblood);
+  margin-bottom: 8px;
+
+  // Small brass tick to the LEFT of the eyebrow text.
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    margin-right: 4px;
+    background: var(--tavern-brass);
+    vertical-align: middle;
+  }
+}
+
+.tavern-house-rules__list {
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 13px; font-weight: 400;
+  color: var(--tavern-ink);
+  line-height: 1.7;
+}
+
+// Responsive reset (Interaction Contract): below 1160px hide the rail AND collapse the
+// grid so no phantom 280px track or horizontal scroll remains. Scoped to the same
+// discovery body classes as the grid override above.
+@media (max-width: 1159.98px) {
+  body.navigation-categories,
+  body.navigation-topics {
+    #main-outlet {
+      display: block;
+      grid-template-columns: 1fr;
+    }
+    .tavern-right-column {
+      display: none;
+    }
+  }
+}
