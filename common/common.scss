@@ -287,8 +287,9 @@ body.navigation-topics {
 
   // Narrow desktops / tablets: the fixed centered nav collides with the logo below ~910px.
   // Hide it here (sidebar navigation covers these widths); the mockups are wide-desktop only.
+  // !important — a Discourse core rule sets display on .nav-pills and wins otherwise.
   @media (max-width: 959.98px) {
-    display: none;
+    display: none !important;
   }
 }
 
