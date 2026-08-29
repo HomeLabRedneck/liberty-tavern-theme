@@ -2,6 +2,7 @@ import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 import TavernBanner from "../components/tavern-banner";
 import TavernRightColumn from "../components/tavern-right-column";
+import TavernListHeading from "../components/tavern-list-heading";
 
 export default apiInitializer("1.13.0", (api) => {
   // Phase 1: render homepage banner
@@ -15,6 +16,10 @@ export default apiInitializer("1.13.0", (api) => {
   if (settings.show_right_column) {
     api.renderInOutlet("discovery-list-container-top", TavernRightColumn);
   }
+
+  // Section heading for the topic-list views (Trending / Latest at the Bar / Top Shelf).
+  // Self-gates to those three routes; renders nothing on Rooms (which has its own heading).
+  api.renderInOutlet("discovery-list-container-top", TavernListHeading);
 
   // Phase 2: rename nav pill labels and Sign In button text
   // NOTE: theme locales/en.yml cannot override js.* core strings (theme locale namespace

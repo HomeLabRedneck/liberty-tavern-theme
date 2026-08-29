@@ -963,6 +963,7 @@ body.navigation-topics {
         "topout   topout"
         "banner   banner"
         "trending trending"
+        "heading  rail"
         "list     rail";
       column-gap: 32px;
       align-items: start;
@@ -970,7 +971,10 @@ body.navigation-topics {
     #list-area > .discovery-list-container-top-outlet { grid-area: topout; }
     #list-area > .tavern-banner { grid-area: banner; }
     #list-area > .tavern-trending { grid-area: trending; }
+    #list-area > .tavern-list-heading { grid-area: heading; }
     #list-area > .contents { grid-area: list; min-width: 0; }
+    // Rail spans the heading + list rows (grid-template-areas above) so its top aligns with
+    // the section heading on topic-list views; on Rooms the heading row is empty and collapses.
     #list-area > .tavern-right-column { grid-area: rail; }
     // .topic-list-bottom (pagination) is a direct child of #list-area with no named area —
     // pin it to column 1 so it stacks under the list, never under the rail.
@@ -1108,6 +1112,41 @@ body.navigation-topics {
   font-size: 13px; font-weight: 400;
   color: var(--tavern-ink);
   line-height: 1.7;
+}
+
+// Topic-list section heading (Trending / Latest at the Bar / Top Shelf) — mirrors the
+// "The Rooms" heading treatment: emoji + display title + small-caps subtitle on one line,
+// with a rule beneath. Sits above the list in grid col 1 (see #list-area grid areas).
+.tavern-list-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 12px 64px; // 64px matches the topic-list left gutter
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(28, 20, 16, 0.7);
+}
+.tavern-list-heading__emoji {
+  font-size: 22px;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+.tavern-list-heading__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--tavern-ink);
+  margin: 0;
+}
+.tavern-list-heading__subtitle {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6B5A47;
 }
 
 // Responsive reset (Interaction Contract): below 1160px hide the rail AND collapse the
