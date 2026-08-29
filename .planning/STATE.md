@@ -21,15 +21,15 @@ progress:
 
 **Core Value:** The homepage must look and function like the Image 1 design — custom header, styled banner with live stats, trending section, and room cards.
 
-**Current Focus:** Phase 3 room card layout polish in progress. Stats-on-right pending live verification.
+**Current Focus:** Phase 3 COMPLETE and verified live. Room cards rebuilt against real DOM, deployed to theme 15. Phase 4 (right column) is next.
 
 ## Current Position
 
 - **Milestone:** v1 (initial release matching Image 1)
-- **Phase:** 3 — Homepage Content (layout polish, not yet verified)
-- **Plan:** 03-04 and 03-05 complete; vertical list layout committed (fcf80a9), pending live verification
-- **Status:** Paused — needs Discourse server pull + visual check before Phase 4
-- **Progress:** `[***-] 3/4 phases complete (Phase 3 polish pending)`
+- **Phase:** 3 — Homepage Content — COMPLETE (verified live 2026-08-29)
+- **Plan:** Room card layout fixed against real categories_boxes DOM (commit d182929), deployed + visually confirmed at /categories
+- **Status:** Phase 3 done. Ready for Phase 4.
+- **Progress:** `[***-] 3/4 phases complete`
 
 ## Performance Metrics
 
