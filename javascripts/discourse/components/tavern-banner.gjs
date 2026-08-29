@@ -44,8 +44,9 @@ export default class TavernBanner extends Component {
 
   get shouldShow() {
     if (!settings.show_homepage_banner) return false;
-    const route = this.router.currentRouteName || "";
-    return /^discovery\./.test(route);
+    // Banner + trending strip show ONLY on the Rooms (categories) view — per the mockups,
+    // Trending / Latest at the Bar / Top Shelf show just their topic list, no banner.
+    return this.router.currentRouteName === "discovery.categories";
   }
 
   get statRows() {
