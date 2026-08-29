@@ -52,16 +52,17 @@ beside the Rooms/topic list. That is what shipped.
 | No topic-list overlap | Latest, Top | ✓ 32px gap (was −32px overlap) |
 | Full-width banner + rail below (mockup) | Rooms | ✓ banner/trending span, rail below-right |
 
-## Out of scope for Phase 4 — flagged for follow-up
+## Follow-ups the user requested this session — RESOLVED
 
-- **Header nav row** does NOT match the mockup (shows `Latest / New (17) / Top / Categories`;
-  mockup wants `Trending / Rooms / Latest at the Bar / Top Shelf`). This is Phase 2 (HEAD-*),
-  not COL-*: (1) the theme-setup.js i18n rename is not taking effect on this install,
-  (2) `top_menu` is `latest|new|unread|hot|top|categories` (global site setting) and needs to
-  be `hot|categories|latest|top`, (3) the `hot`/Trending pill is currently hidden by §2b CSS
-  (a Phase 3 decision the mockup reverses). Tracked separately.
-- **Banner + trending show on all discovery views**; the mockup shows them only on Rooms.
-  Pre-existing banner `shouldShow` behavior (Phase 1/3), not COL-*. Flagged.
+- **Header nav row** now matches the mockup: `Trending · Rooms · Latest at the Bar · Top Shelf`
+  (commit 278b7f9). Root cause: the theme-setup.js i18n rename is a no-op on this install
+  (`i18n.translations.en.js` empty at load). Fixed in theme CSS (§2b) — hide new/unread/subscribe,
+  reorder, label-swap via `a::before` (NOT `::after`, which is the active-pill underline). No
+  `top_menu` change needed. Verified live.
+- **Banner + trending now show on the Rooms view ONLY** (commit 6c84fd4). Narrowed the banner
+  `shouldShow` from `/^discovery\./` to `discovery.categories`. Latest / Top / Trending now show
+  just their topic list + rail, matching the mockups. The §10 grid tolerates the absent
+  banner/trending rows. Verified live (banner present on /categories, absent on /latest).
 
 ## Artifacts this phase produced
 - `javascripts/discourse/components/tavern-right-column.gjs` (TavernRightColumn, tierClass)
