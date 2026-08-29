@@ -193,6 +193,11 @@ body.navigation-topics {
   .topic-list-bottom {
     margin: 0 64px !important;
   }
+  // Top view's period chooser (Quarter / date-range dropdown) sits flush-left in .top-lists
+  // without the 64px gutter — inset it so it lines up with the heading + topic list.
+  .period-chooser {
+    margin-left: 64px !important;
+  }
 }
 
 // ---- 2b. Nav pills → header (fixed overlay) -----------------
