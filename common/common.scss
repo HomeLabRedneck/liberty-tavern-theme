@@ -755,6 +755,19 @@ section.tavern-banner::before {
   &__grid {
     display: grid; grid-template-columns: 1fr 280px; gap: 48px;
     align-items: start;
+
+    // Below the rail breakpoint the banner is full content width, but the fixed 280px stats
+    // column + 48px gap no longer fit beside the headline on narrower desktops (they overran
+    // the viewport → horizontal scroll on Rooms). Stack the stats box beneath the headline.
+    @media (max-width: 1159.98px) {
+      grid-template-columns: 1fr;
+      row-gap: 32px;
+    }
+  }
+
+  // Cap the stacked stats box so it doesn't stretch the full content width when below the grid.
+  @media (max-width: 1159.98px) {
+    &__aside { max-width: 420px; }
   }
 
   &__title {
