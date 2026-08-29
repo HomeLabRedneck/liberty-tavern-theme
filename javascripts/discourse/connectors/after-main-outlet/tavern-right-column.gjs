@@ -20,6 +20,15 @@ import { tracked } from "@glimmer/tracking";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 
+// Maps badge_type_id -> hexagon tier modifier class (module-scope functions are in GJS
+// template scope by design, same pattern as timeAgo in tavern-banner.gjs).
+// 1 -> gold (brass), 2 -> silver (#808281), 3 -> bronze (#8C6238); default gold.
+function tierClass(typeId) {
+  if (typeId === 2) return "tavern-badges__hex--silver";
+  if (typeId === 3) return "tavern-badges__hex--bronze";
+  return "tavern-badges__hex--gold";
+}
+
 export default class TavernRightColumn extends Component {
   @service router;
 
@@ -84,6 +93,13 @@ export default class TavernRightColumn extends Component {
               <div class="tavern-badges__grid">
                 {{#each this.badges as |b|}}
                   <div class="tavern-badges__tile">
+                    <span class="tavern-badges__hex {{tierClass b.typeId}}">
+                      {{#if b.imageUrl}}
+                        <img src={{b.imageUrl}} alt="" width="20" height="20" />
+                      {{else}}
+                        <span>{{b.icon}}</span>
+                      {{/if}}
+                    </span>
                     <span class="tavern-badges__name">{{b.name}}</span>
                     <span class="tavern-badges__count">{{b.count}} EARNED</span>
                   </div>

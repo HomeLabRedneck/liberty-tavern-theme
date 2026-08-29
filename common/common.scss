@@ -959,3 +959,76 @@ body.navigation-topics {
   background: transparent;
   padding: 24px 0;
 }
+
+// Badges panel (Surface 1, D-3) — the rail's primary focal point.
+// Flat BEM selectors (not &__ nesting) so the class names are greppable per the
+// plan's source-level acceptance; compiles identically to the §8/§9 nested form.
+.tavern-badges__header {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 900; font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--tavern-ink);
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--tavern-oxblood);
+  position: relative;
+
+  // Short brass segment mirroring the existing eyebrow-rule language (D-5).
+  &::after {
+    content: '';
+    position: absolute; left: 0; bottom: -1px;
+    width: 48px; height: 1px;
+    background: var(--tavern-brass);
+  }
+}
+
+.tavern-badges__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.tavern-badges__tile {
+  background: #E8DCC0;
+  border: 1px solid var(--tavern-rule);
+  border-radius: 2px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tavern-badges__hex {
+  width: 40px; height: 40px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tavern-cream);
+  margin-bottom: 4px;
+}
+
+.tavern-badges__hex--gold   { background: var(--tavern-brass); }
+.tavern-badges__hex--silver { background: #808281; }
+.tavern-badges__hex--bronze { background: #8C6238; }
+
+.tavern-badges__name {
+  font-family: var(--font-ui);
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tavern-ink);
+  margin-bottom: 4px;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.tavern-badges__count {
+  font-family: var(--font-ui);
+  font-size: 9px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6B5A47;
+  font-variant-numeric: tabular-nums;
+}
