@@ -7,18 +7,38 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 
-// route → heading copy. Module-scope map keyed by Discourse's discovery route names.
-const HEADINGS = {
-  "discovery.hot": { emoji: "🔥", title: "Trending", subtitle: "Ranked by activity tonight" },
-  "discovery.latest": { emoji: "🍺", title: "Latest at the Bar", subtitle: "Most recent posts" },
-  "discovery.top": { emoji: "★", title: "Top Shelf", subtitle: "Highest-rated this week" },
+// Top Shelf subtitle follows the ACTUAL period Discourse shows (it auto-selects the period by
+// content volume, so it isn't always "this week"). Keyed by the topic list's for_period.
+const TOP_PERIOD_SUBTITLE = {
+  daily: "Highest-rated today",
+  weekly: "Highest-rated this week",
+  monthly: "Highest-rated this month",
+  quarterly: "Highest-rated this quarter",
+  yearly: "Highest-rated this year",
+  all: "Highest-rated of all time",
 };
 
 export default class TavernListHeading extends Component {
   @service router;
+  @service discovery;
 
   get info() {
-    return HEADINGS[this.router.currentRouteName] ?? null;
+    switch (this.router.currentRouteName) {
+      case "discovery.hot":
+        return { emoji: "🔥", title: "Trending", subtitle: "Ranked by activity tonight" };
+      case "discovery.latest":
+        return { emoji: "🍺", title: "Latest at the Bar", subtitle: "Most recent posts" };
+      case "discovery.top": {
+        const period = this.discovery?.currentTopicList?.for_period;
+        return {
+          emoji: "★",
+          title: "Top Shelf",
+          subtitle: TOP_PERIOD_SUBTITLE[period] ?? "Highest-rated",
+        };
+      }
+      default:
+        return null;
+    }
   }
 
   <template>
