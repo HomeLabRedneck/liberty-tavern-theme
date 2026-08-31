@@ -64,13 +64,24 @@ h2, h3 { font-style: italic; }
     box-shadow: none !important;
   }
 
-  // Icon row: a little larger, with breathing room between icons and a gutter off the
-  // scrollbar (default was ~16px icons touching each other and flush to the window edge).
+  // Icon row: restore the default-theme size — 40px buttons, 32px avatar, 20px glyphs. The
+  // included `uc-modernize-foundation-theme` component shrinks them to 2em (~22px) via
+  // `.d-header-icons .btn.icon !important`, so these overrides carry the extra `.no-text.icon`
+  // specificity to win. Plus a 6px gap between icons and a right gutter off the scrollbar.
   .icons {
     gap: 6px !important;
     padding-right: 20px !important;
-    .btn .d-icon { font-size: 20px !important; }
-    img.avatar { width: 28px !important; height: 28px !important; }
+  }
+  .d-header-icons .btn.no-text.icon {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    .d-icon { font-size: 20px !important; }
+  }
+  .d-header-icons li.current-user img.avatar {
+    width: 32px !important;
+    height: 32px !important;
   }
 
   .btn-primary, .sign-up-button {
