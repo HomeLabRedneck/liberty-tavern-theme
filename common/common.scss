@@ -1049,9 +1049,9 @@ body.navigation-categories {
         "list      rules";
     }
     #list-area > .tavern-right-column { display: contents; }
-    // Push "Badges" down to the trending box's inner label ("TRENDING TONIGHT" sits 34px below
-    // the box top, past its padding) so the two section headings line up.
-    #list-area > .tavern-right-column > .tavern-badges { grid-area: badges; align-self: start; margin-top: 34px; }
+    // Push "Badges" down so its glyph CENTER lines up with the "TRENDING TONIGHT" label
+    // (they're different sizes — 24px display vs 10px caps — so center, not top, is the match).
+    #list-area > .tavern-right-column > .tavern-badges { grid-area: badges; align-self: start; margin-top: 29px; }
     #list-area > .tavern-right-column > .tavern-house-rules {
       grid-area: rules;
       align-self: start;
