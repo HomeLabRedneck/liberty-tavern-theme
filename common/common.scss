@@ -1294,4 +1294,16 @@ body.navigation-topics {
     color: #6B5A47;
     margin-left: 8px;
   }
+
+  // Raise the topic row on hover, matching the room cards.
+  .topic-list-item {
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+  }
+  .topic-list-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(28, 20, 16, 0.15);
+    background: #EDE2C5;
+    position: relative;
+    z-index: 1;
+  }
 }
