@@ -58,6 +58,12 @@ h2, h3 { font-style: italic; }
     &:hover { opacity: 1; color: var(--tavern-brass); }
   }
 
+  // Header action icons (search, messages, user) — plain icons, no boxed outline.
+  .btn.btn-flat {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
   .btn-primary, .sign-up-button {
     background: var(--tavern-brass);
     color: #1C1410;
