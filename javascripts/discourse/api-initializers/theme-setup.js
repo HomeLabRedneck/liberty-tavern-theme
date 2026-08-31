@@ -3,6 +3,8 @@ import { i18n } from "discourse-i18n";
 import TavernBanner from "../components/tavern-banner";
 import TavernRightColumn from "../components/tavern-right-column";
 import TavernListHeading from "../components/tavern-list-heading";
+import TavernMobileNav from "../components/tavern-mobile-nav";
+import TavernComposeFab from "../components/tavern-compose-fab";
 
 export default apiInitializer("1.13.0", (api) => {
   // Phase 1: render homepage banner
@@ -20,6 +22,11 @@ export default apiInitializer("1.13.0", (api) => {
   // Section heading for the topic-list views (Trending / Latest at the Bar / Top Shelf).
   // Self-gates to those three routes; renders nothing on Rooms (which has its own heading).
   api.renderInOutlet("discovery-list-container-top", TavernListHeading);
+
+  // Phone-only section-nav tabs (Rooms / Latest / Hot / Top) and floating compose button.
+  // Both self-hide on desktop via common.scss §12 (there's no mobile-only outlet, so gate in CSS).
+  api.renderInOutlet("discovery-list-container-top", TavernMobileNav);
+  api.renderInOutlet("discovery-list-container-top", TavernComposeFab);
 
   // Phase 2: rename nav pill labels and Sign In button text
   // NOTE: theme locales/en.yml cannot override js.* core strings (theme locale namespace
