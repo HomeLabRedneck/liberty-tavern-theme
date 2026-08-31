@@ -1204,3 +1204,28 @@ body.navigation-topics {
     }
   }
 }
+
+// ---- 11. Topic-list rows on the discovery list views (Latest / Trending / Top) ----
+// Match the mockup: drop the multi-avatar posters column and render the category as
+// small-caps colored text (in the category's own color) instead of a square chip.
+// Scoped to the homepage list views.
+body.navigation-topics {
+  .topic-list .posters,
+  .topic-list th.posters { display: none !important; }
+
+  .topic-list .link-bottom-line .badge-category {
+    background: transparent !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .topic-list .link-bottom-line .badge-category::before { display: none !important; }
+  .topic-list .link-bottom-line .badge-category__name {
+    color: var(--category-badge-color) !important;
+    font-family: var(--font-ui) !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+}
