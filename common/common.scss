@@ -1597,9 +1597,10 @@ body.navigation-topics {
     .tavern-list-heading__emoji { font-size: 18px !important; }
     .tavern-list-heading__subtitle { font-size: 9px !important; }
 
-    // Extend content to the left: drop the desktop 64px list/heading gutter and the leftover
-    // avatar gutter (metadata margin) so the heading and rows use the full phone width.
-    #list-area .topic-list { margin-left: 14px !important; margin-right: 10px !important; width: auto !important; }
+    // Use the full phone width: drop the desktop 64px left gutter and the leftover avatar
+    // gutter (metadata margin), and fill the row width. `width: calc(100% - side margins)`
+    // (not auto — a table with width:auto shrinks to its content, leaving a right-side gap).
+    #list-area .topic-list { margin-left: 14px !important; margin-right: 10px !important; width: calc(100% - 24px) !important; }
     .tavern-list-heading { margin-left: 14px !important; }
     .topic-list-item .topic-item-metadata { margin-left: 0 !important; width: auto !important; }
   }
