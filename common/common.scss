@@ -1049,6 +1049,9 @@ body.navigation-categories {
         "list      rules";
     }
     #list-area > .tavern-right-column { display: contents; }
+    // Trending strip fills column 1 so its right edge lines up with the room cards below.
+    // (Base §9 rule gives it a symmetric 64px side margin; drop the right side on desktop Rooms.)
+    #list-area > .tavern-trending { margin-right: 0; }
     // "Badges" lines up with the TOP EDGE of the trending strip box (not the inset
     // "TRENDING TONIGHT" label). At 4px its cap-top meets the box top and its underline
     // meets the label's rule — the whole rail reads level with the box.
