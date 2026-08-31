@@ -193,10 +193,10 @@ body.navigation-topics {
   .topic-list-bottom {
     margin: 0 64px !important;
   }
-  // Top view's period chooser (Quarter / date-range dropdown) sits flush-left in .top-lists
-  // without the 64px gutter — inset it so it lines up with the heading + topic list.
+  // Top view's period chooser (Quarter / date-range dropdown) — hidden; the mockup has no
+  // time selector on Top Shelf (the section heading already states the period dynamically).
   .period-chooser {
-    margin-left: 64px !important;
+    display: none !important;
   }
 }
 
@@ -923,10 +923,22 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
   }
 
   &__heading {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
     font-family: var(--font-ui);
     font-size: 10px; font-weight: 700; letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--tavern-ink);
+
+    // Light rule running from the label across to the "all hot threads" link (mockup).
+    &::after {
+      content: '';
+      flex: 1 1 auto;
+      height: 1px;
+      background: var(--tavern-rule);
+      margin: 0 16px;
+    }
   }
 
   &__all {
@@ -993,18 +1005,14 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 // topic-list). Gridding #list-area with named areas lets the banner + trending SPAN both
 // columns while .contents falls into col 1 and .tavern-right-column into col 2 — independent
 // of DOM order, so renderInOutlet stacking order does not matter.
+// Shared base grid (both Rooms and the topic-list views): 2 columns + the common area
+// assignments. The grid-template-areas and the rail placement differ per view (below).
 body.navigation-categories,
 body.navigation-topics {
   @media (min-width: 1160px) {
     #list-area {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 280px;
-      grid-template-areas:
-        "topout   topout"
-        "banner   banner"
-        "trending trending"
-        "heading  rail"
-        "list     rail";
       column-gap: 32px;
       align-items: start;
     }
@@ -1013,33 +1021,57 @@ body.navigation-topics {
     #list-area > .tavern-trending { grid-area: trending; }
     #list-area > .tavern-list-heading { grid-area: heading; }
     #list-area > .contents { grid-area: list; min-width: 0; }
-    // Rail spans the heading + list rows (grid-template-areas above) so its top aligns with
-    // the section heading on topic-list views; on Rooms the heading row is empty and collapses.
-    #list-area > .tavern-right-column { grid-area: rail; }
-    // .topic-list-bottom (pagination) is a direct child of #list-area with no named area —
-    // pin it to column 1 so it stacks under the list, never under the rail.
+    // .topic-list-bottom (pagination) has no named area — pin it to column 1.
     #list-area > .topic-list-bottom { grid-column: 1; margin-right: 0 !important; }
-    // The list keeps its 64px left gutter (§2, aligns with the banner's left padding) but must
-    // FIT inside grid column 1 — the §2 full-width rules give .topic-list width:100% + a 64px
-    // left margin, which overflows the column by 64px straight into the rail. Re-anchor it here
-    // with #list-area specificity so the table ends at the column edge, leaving the 32px gutter.
+    // The list keeps its 64px left gutter (§2) but must FIT inside column 1 — re-anchor it so
+    // the table ends at the column edge, leaving the 32px gutter (avoids overflow into the rail).
     #list-area .topic-list {
       margin-left: 64px !important;
       margin-right: 0 !important;
       width: calc(100% - 64px) !important;
       box-sizing: border-box !important;
     }
-    // .category-boxes (Rooms view) already sits inside its own 64px margins; just drop the
-    // right one so it meets the grid gutter cleanly instead of doubling up.
     .category-boxes { margin-right: 0 !important; }
   }
 }
 
-// On the Rooms view the list is .category-boxes, which carries a 24px top margin (§6b);
-// the rail ignores it, so "Badges" sat 24px above "The Rooms". Nudge the rail down to match.
-// Scoped to Rooms — topic-list views align the rail with their own list-heading (no top margin).
-@media (min-width: 1160px) {
-  body.navigation-categories #list-area > .tavern-right-column { margin-top: 24px; }
+// Rooms — the trending box sits in column 1 (not full width). The rail is SPLIT via
+// display:contents so "Badges" lines up with the trending box and "House Rules" lines up with
+// the first room card (below the "The Rooms" heading).
+body.navigation-categories {
+  @media (min-width: 1160px) {
+    #list-area {
+      grid-template-areas:
+        "topout    topout"
+        "banner    banner"
+        "trending  badges"
+        "heading   badges"
+        "list      rules";
+    }
+    #list-area > .tavern-right-column { display: contents; }
+    #list-area > .tavern-right-column > .tavern-badges { grid-area: badges; align-self: start; }
+    #list-area > .tavern-right-column > .tavern-house-rules {
+      grid-area: rules;
+      align-self: start;
+      margin-top: 68px; // clears the "The Rooms" heading so it lines up with the first card
+    }
+  }
+}
+
+// Latest / Trending / Top Shelf — no banner/trending. The rail stays a single column spanning
+// heading+list (the tall list keeps the heading row from inflating), so "Badges" lines up with
+// the section-heading title.
+body.navigation-topics {
+  @media (min-width: 1160px) {
+    #list-area {
+      grid-template-areas:
+        "topout  topout"
+        "banner  banner"
+        "heading rail"
+        "list    rail";
+    }
+    #list-area > .tavern-right-column { grid-area: rail; align-self: start; }
+  }
 }
 
 .tavern-right-column {
@@ -1061,16 +1093,8 @@ body.navigation-topics {
   color: var(--tavern-ink);
   margin: 0 0 16px;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--tavern-oxblood);
-  position: relative;
-
-  // Short brass segment mirroring the existing eyebrow-rule language (D-5).
-  &::after {
-    content: '';
-    position: absolute; left: 0; bottom: -1px;
-    width: 48px; height: 1px;
-    background: var(--tavern-brass);
-  }
+  // Clean full-width dark rule under "Badges" (matches the mockup + the "The Rooms" rule).
+  border-bottom: 2px solid rgba(28, 20, 16, 0.7);
 }
 
 .tavern-badges__grid {
