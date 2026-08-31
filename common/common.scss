@@ -1044,23 +1044,19 @@ body.navigation-categories {
       grid-template-areas:
         "topout    topout"
         "banner    banner"
-        "trending  badges"
-        "heading   badges"
-        "list      rules";
+        "trending  rail"
+        "list      rail";
     }
-    #list-area > .tavern-right-column { display: contents; }
     // Trending strip fills column 1 so its right edge lines up with the room cards below.
     // (Base §9 rule gives it a symmetric 64px side margin; drop the right side on desktop Rooms.)
     #list-area > .tavern-trending { margin-right: 0; }
-    // "Badges" lines up with the TOP EDGE of the trending strip box (not the inset
-    // "TRENDING TONIGHT" label). At 4px its cap-top meets the box top and its underline
-    // meets the label's rule — the whole rail reads level with the box.
-    #list-area > .tavern-right-column > .tavern-badges { grid-area: badges; align-self: start; margin-top: 4px; }
-    #list-area > .tavern-right-column > .tavern-house-rules {
-      grid-area: rules;
-      align-self: start;
-      margin-top: 68px; // clears the "The Rooms" heading so it lines up with the first card
-    }
+    // Rail is one flex column (badges over house-rules) spanning trending+list. The tall room
+    // list fills col-1 so the rail never inflates an empty row — "The Rooms" tucks directly under
+    // the trending strip. margin-right keeps the panels off the scrollbar.
+    #list-area > .tavern-right-column { grid-area: rail; align-self: start; margin-right: 24px; }
+    // "Badges" cap-top meets the TOP EDGE of the trending box (not the inset "TRENDING TONIGHT"
+    // label); 4px lands its cap-top on the box top and its underline on the label rule.
+    #list-area > .tavern-right-column > .tavern-badges { margin-top: 4px; }
   }
 }
 
@@ -1076,7 +1072,8 @@ body.navigation-topics {
         "heading rail"
         "list    rail";
     }
-    #list-area > .tavern-right-column { grid-area: rail; align-self: start; }
+    // margin-right keeps the rail panels off the scrollbar (same gutter as Rooms).
+    #list-area > .tavern-right-column { grid-area: rail; align-self: start; margin-right: 24px; }
   }
 }
 
