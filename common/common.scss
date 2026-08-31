@@ -1390,18 +1390,29 @@ body.navigation-topics {
     .tavern-logo__tagline { display: none !important; }
   }
 
-  // Banner — shrink the headline, drop the desktop CTAs (the mockup has none on phone).
+  // Banner — center everything (the phone mockup is centered), shrink the headline, drop the
+  // desktop CTAs, and clamp the long subtitle to one line so it stays compact.
   .tavern-banner {
     padding: 24px 20px 20px !important;
+    &__grid, &__main { text-align: center !important; }
     &__title { font-size: 44px !important; line-height: 0.95 !important; margin-bottom: 10px !important; }
-    &__subtitle { font-size: 15px !important; margin-bottom: 18px !important; max-width: none !important; }
+    &__subtitle {
+      font-size: 15px !important;
+      margin: 0 auto 18px !important;
+      max-width: 340px !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 1 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
     &__cta { display: none !important; }
 
     // Stats — a horizontal row of number-over-label cells (no boxed panel / corners).
     &__aside { max-width: none !important; }
     &__stats {
       display: flex !important;
-      gap: 10px !important;
+      justify-content: center !important;
+      gap: 24px !important;
       background: transparent !important;
       border: 0 !important;
       box-shadow: none !important;
@@ -1412,10 +1423,11 @@ body.navigation-topics {
     &__stats::before, &__stats::after,
     &__aside::before, &__aside::after { display: none !important; }
     &__stat-row {
-      flex: 1 1 0 !important;
+      flex: 0 0 auto !important;
       flex-direction: column-reverse !important;
-      align-items: flex-start !important;
+      align-items: center !important;
       justify-content: flex-end !important;
+      text-align: center !important;
       border: 0 !important;
       margin: 0 !important;
       padding: 0 !important;
