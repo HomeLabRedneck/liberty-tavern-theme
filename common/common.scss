@@ -1586,6 +1586,17 @@ body.navigation-topics {
       color: #8a7862;
     }
   }
+
+  // List views (Latest / Trending / Top) — hide the mobile poster avatar so the injected
+  // badge (rank / poster-initial / stars) is the only left marker, matching desktop, and
+  // shrink the oversized section heading so it fits one line.
+  body.navigation-topics {
+    .topic-list-item .pull-left { display: none !important; }
+    .tavern-list-heading { flex-wrap: wrap !important; }
+    .tavern-list-heading__title { font-size: 21px !important; }
+    .tavern-list-heading__emoji { font-size: 18px !important; }
+    .tavern-list-heading__subtitle { font-size: 9px !important; }
+  }
 }
 
 // Hide the phone-only nav tabs and compose button on tablet/desktop.

@@ -35,7 +35,10 @@ function decorateRow(row, index, view) {
   if (!main) {
     return;
   }
-  const opLink = row.querySelector(".posters a[data-user-card]");
+  // OP link: desktop rows expose it in .posters, mobile rows in .pull-left.
+  const opLink = row.querySelector(
+    ".posters a[data-user-card], .pull-left a[data-user-card]"
+  );
   const name = opLink?.getAttribute("data-user-card") || "";
 
   // Left decoration — rebuild if the view changed (className encodes the view).
