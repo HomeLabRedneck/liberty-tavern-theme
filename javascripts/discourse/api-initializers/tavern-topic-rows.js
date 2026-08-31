@@ -11,13 +11,16 @@
 // like_count for the stars.
 import { apiInitializer } from "discourse/lib/api";
 
-// Discourse has no native topic rating — derive 1–5 stars from the like count.
-function starsFor(likeCount) {
-  const n = likeCount || 0;
-  if (n >= 150) return 5;
-  if (n >= 60) return 4;
-  if (n >= 20) return 3;
-  if (n >= 5) return 2;
+// Discourse has no native topic rating — derive 1–5 stars from the reply count, with
+// views as a capped tiebreaker that only tips topics sitting near a bucket boundary.
+function starsFor(topic) {
+  const replies = topic?.reply_count ?? topic?.posts_count ?? 0;
+  const views = topic?.views ?? 0;
+  const score = replies + Math.min(views / 2000, 4);
+  if (score >= 100) return 5;
+  if (score >= 40) return 4;
+  if (score >= 15) return 3;
+  if (score >= 4) return 2;
   return 1;
 }
 
@@ -55,7 +58,7 @@ function decorateRow(row, index, view, byId) {
       }
     } else if (view === "top") {
       const topic = byId.get(parseInt(row.dataset.topicId, 10));
-      const s = starsFor(topic?.like_count);
+      const s = starsFor(topic);
       badge.innerHTML =
         "★".repeat(s) +
         `<span class="tavern-row-badge__empty">${"★".repeat(5 - s)}</span>`;
