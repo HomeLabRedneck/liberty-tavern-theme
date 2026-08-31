@@ -64,6 +64,15 @@ h2, h3 { font-style: italic; }
     box-shadow: none !important;
   }
 
+  // Icon row: a little larger, with breathing room between icons and a gutter off the
+  // scrollbar (default was ~16px icons touching each other and flush to the window edge).
+  .icons {
+    gap: 6px !important;
+    padding-right: 20px !important;
+    .btn .d-icon { font-size: 20px; }
+    img.avatar { width: 28px; height: 28px; }
+  }
+
   .btn-primary, .sign-up-button {
     background: var(--tavern-brass);
     color: #1C1410;
