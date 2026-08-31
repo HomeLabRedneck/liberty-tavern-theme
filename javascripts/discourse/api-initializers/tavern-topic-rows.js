@@ -17,10 +17,10 @@ function starsFor(topic) {
   const replies = topic?.reply_count ?? topic?.posts_count ?? 0;
   const views = topic?.views ?? 0;
   const score = replies + Math.min(views / 2000, 4);
-  if (score >= 100) return 5;
-  if (score >= 40) return 4;
-  if (score >= 15) return 3;
-  if (score >= 4) return 2;
+  if (score >= 150) return 5;
+  if (score >= 60) return 4;
+  if (score >= 25) return 3;
+  if (score >= 8) return 2;
   return 1;
 }
 
