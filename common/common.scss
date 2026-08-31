@@ -1091,10 +1091,14 @@ body.navigation-topics {
 .tavern-badges__header {
   font-family: var(--font-display);
   font-size: 24px; font-weight: 900; font-style: italic;
+  // line-height:1 so the text starts flush at the top (the default 1.4 line-height was
+  // centering it ~5px down, below the section-heading title). padding-bottom keeps the rule
+  // level with the section-heading rule.
+  line-height: 1;
   letter-spacing: -0.01em;
   color: var(--tavern-ink);
   margin: 0 0 16px;
-  padding-bottom: 8px;
+  padding-bottom: 17px;
   // Clean full-width dark rule under "Badges" (matches the mockup + the "The Rooms" rule).
   border-bottom: 2px solid rgba(28, 20, 16, 0.7);
 }
