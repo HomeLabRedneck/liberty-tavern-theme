@@ -1228,4 +1228,64 @@ body.navigation-topics {
     letter-spacing: 0.08em !important;
     text-transform: uppercase !important;
   }
+
+  // Row layout: the per-view badge (rank / initial-circle / stars, injected by
+  // api-initializers/tavern-topic-rows.js) sits on the left, spanning both text lines.
+  .topic-list-item .main-link {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "badge top" "badge bottom";
+    align-items: center;
+    column-gap: 14px;
+  }
+  .topic-list-item .main-link > .link-top-line { grid-area: top; }
+  .topic-list-item .main-link > .link-bottom-line { grid-area: bottom; }
+
+  .tavern-row-badge {
+    grid-area: badge;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  // Trending — rank number.
+  .tavern-row-badge--hot {
+    min-width: 30px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 24px;
+    color: var(--tavern-brass);
+  }
+  // Latest — category-colored circle with the poster's initial (mini wax-seal).
+  .tavern-row-badge--latest {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--tavern-row-color, var(--tertiary));
+    color: #F5ECD6;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 16px;
+    box-shadow: inset 0 0 0 2px #F5ECD6;
+  }
+  // Top Shelf — star rating (derived from like count in the initializer).
+  .tavern-row-badge--top {
+    color: var(--tavern-brass);
+    font-size: 13px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .tavern-row-badge__empty { color: rgba(212, 152, 56, 0.3); }
+
+  // "· username" (OP) after the category.
+  .tavern-row-op {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6B5A47;
+    margin-left: 8px;
+  }
 }
