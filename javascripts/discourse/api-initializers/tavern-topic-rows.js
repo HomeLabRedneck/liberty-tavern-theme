@@ -1,27 +1,28 @@
 // Per-view topic-row decorations for the discovery list views, matching the mockups:
 //   Trending (hot)      → rank number (1, 2, 3 …)
 //   Latest at the Bar   → a category-colored circle with the poster's initial
-//   Top Shelf (top)     → a 5-star rating derived from the topic's like count
+//   Top Shelf (top)     → a 5-star rating from the row's rank (Top Shelf is already sorted
+//                         best-first, so 5 stars at the top step down the list)
 // Plus a "· username" (OP) after the category on every row. The multi-avatar posters
 // column is hidden and the category is restyled in common.scss §11.
 //
 // This runs as DOM decoration (rather than plugin-outlet connectors) because the Glimmer
-// topic list exposes no stable per-row outlet on this Discourse version. Rows carry
-// data-topic-id, and the topic list model (service:discovery.currentTopicList) supplies
-// like_count for the stars.
+// topic list exposes no stable per-row outlet on this Discourse version.
 import { apiInitializer } from "discourse/lib/api";
 
-// Discourse has no native topic rating — derive 1–5 stars from the reply count, with
-// views as a capped tiebreaker that only tips topics sitting near a bucket boundary.
-function starsFor(topic) {
-  const replies = topic?.reply_count ?? topic?.posts_count ?? 0;
-  const views = topic?.views ?? 0;
-  const score = replies + Math.min(views / 2000, 4);
-  if (score >= 150) return 5;
-  if (score >= 60) return 4;
-  if (score >= 25) return 3;
-  if (score >= 8) return 2;
+// Discourse has no native topic rating. Top Shelf is already sorted best-first by Discourse's
+// monthly top-score, so derive the stars from the row's RANK — 5 stars at the top, stepping down
+// — giving a clean descending "highest-rated" column instead of stars that jump around the list.
+function starsForRank(index) {
+  if (index <= 1) return 5;
+  if (index <= 4) return 4;
+  if (index <= 8) return 3;
+  if (index <= 14) return 2;
   return 1;
+}
+
+function starsMarkup(s) {
+  return "★".repeat(s) + `<span class="tavern-row-badge__empty">${"★".repeat(5 - s)}</span>`;
 }
 
 function currentView(router) {
@@ -29,7 +30,7 @@ function currentView(router) {
   return m ? m[1] : null;
 }
 
-function decorateRow(row, index, view, byId) {
+function decorateRow(row, index, view) {
   const main = row.querySelector(".main-link");
   if (!main) {
     return;
@@ -57,15 +58,13 @@ function decorateRow(row, index, view, byId) {
         badge.style.setProperty("--tavern-row-color", color);
       }
     } else if (view === "top") {
-      const topic = byId.get(parseInt(row.dataset.topicId, 10));
-      const s = starsFor(topic);
-      badge.innerHTML =
-        "★".repeat(s) +
-        `<span class="tavern-row-badge__empty">${"★".repeat(5 - s)}</span>`;
+      badge.innerHTML = starsMarkup(starsForRank(index));
     }
     main.prepend(badge);
   } else if (view === "hot") {
     badge.textContent = index + 1; // keep the rank in sync as rows load
+  } else if (view === "top") {
+    badge.innerHTML = starsMarkup(starsForRank(index)); // keep stars in rank order as rows load
   }
 
   // "· username" after the category.
@@ -80,7 +79,6 @@ function decorateRow(row, index, view, byId) {
 
 export default apiInitializer("1.0", (api) => {
   const router = api.container.lookup("service:router");
-  const discovery = api.container.lookup("service:discovery");
   let observer;
   let scheduled = false;
 
@@ -89,12 +87,9 @@ export default apiInitializer("1.0", (api) => {
     if (!view) {
       return;
     }
-    const byId = new Map(
-      (discovery?.currentTopicList?.topics || []).map((t) => [t.id, t])
-    );
     document
       .querySelectorAll(".topic-list-item")
-      .forEach((row, i) => decorateRow(row, i, view, byId));
+      .forEach((row, i) => decorateRow(row, i, view));
   }
 
   function scheduleRun() {
