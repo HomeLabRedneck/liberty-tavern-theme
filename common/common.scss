@@ -77,7 +77,13 @@ h2, h3 { font-style: italic; }
     height: 40px !important;
     padding: 0 !important;
     box-sizing: border-box !important;
-    .d-icon { font-size: 20px !important; }
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    // The glyphs are square sprites (e.g. #comment is 512×512). Sizing by font-size in a
+    // flat 40px button let the width stretch to fill it (40×20 chat bubble). Pin the glyph
+    // to a fixed 24px square so it keeps its aspect.
+    .d-icon { width: 24px !important; height: 24px !important; font-size: 24px !important; }
   }
   .d-header-icons li.current-user img.avatar {
     width: 32px !important;
