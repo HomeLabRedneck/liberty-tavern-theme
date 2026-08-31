@@ -69,8 +69,8 @@ h2, h3 { font-style: italic; }
   .icons {
     gap: 6px !important;
     padding-right: 20px !important;
-    .btn .d-icon { font-size: 20px; }
-    img.avatar { width: 28px; height: 28px; }
+    .btn .d-icon { font-size: 20px !important; }
+    img.avatar { width: 28px !important; height: 28px !important; }
   }
 
   .btn-primary, .sign-up-button {
