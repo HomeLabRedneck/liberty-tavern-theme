@@ -518,10 +518,16 @@ body.navigation-topics {
   border-radius: 0;
   box-shadow: none;
   margin-bottom: 12px;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
 
   &:first-child { margin-top: 16px !important; border-top: 2px solid rgba(28,20,16,0.7) !important; }
   &:last-child { margin-bottom: 0; }
-  &:hover { box-shadow: none; }
+  // Raise the room card on hover (matches the mockup) — lift + shadow + full hairline border.
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(28, 20, 16, 0.18), inset 0 0 0 1px var(--tavern-rule);
+    z-index: 1;
+  }
 }
 
 .category-boxes .category-box .category-logo { display: none !important; } // empty on this install
