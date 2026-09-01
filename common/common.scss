@@ -1520,8 +1520,10 @@ body.navigation-topics {
       font-size: 19px;
     }
 
-    // Flatten the topic-list table into blocks.
+    // Flatten the topic-list table into blocks. Reset the desktop 64px gutter + shrunk width
+    // on the inner table so the card content fills the full card (was pushed right and narrow).
     .topic-list, tbody, tr { display: block !important; width: auto !important; }
+    .topic-list { margin-left: 0 !important; margin-right: 0 !important; width: 100% !important; }
     td, th { display: block !important; padding: 0 !important; border: 0 !important; width: auto !important; }
 
     // Name — serif, full (no truncation), clearing the top-right count; strip the color swatch.
