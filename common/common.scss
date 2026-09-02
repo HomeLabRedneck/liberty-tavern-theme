@@ -122,6 +122,27 @@ h2, h3 { font-style: italic; }
 
 }
 
+// Topic-page docked header title — center the title + category breadcrumb as one stacked block
+// (Discourse left-aligns it, so it crammed against the logo). Stack via a centered fit-content
+// column; the empty .topic-header-extra spacer is dropped so it doesn't offset the centering.
+.d-header .extra-info-wrapper.two-rows {
+  justify-content: center !important;
+
+  .extra-info { width: 100% !important; }
+  .title-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    row-gap: 1px !important;
+  }
+  .header-title { width: auto !important; max-width: 100% !important; margin: 0 !important; }
+  .categories-wrapper { width: auto !important; margin: 0 !important; }
+  .topic-header-extra { display: none !important; }
+}
+
 // ---- 2a. Logo connector (.tavern-logo) -----------------------
 
 .tavern-logo {
