@@ -1444,31 +1444,6 @@ body.navigation-topics {
   // The trending strip is desktop-only — the phone mockup goes banner → nav → rooms.
   .tavern-trending { display: none !important; }
 
-  // Section-nav tabs (Rooms / Latest / Hot / Top) — component tavern-mobile-nav.gjs.
-  .tavern-mnav {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    padding: 12px 16px 0;
-    margin: 0 0 4px;
-    border-bottom: 1px solid var(--tavern-rule);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    &__tab {
-      flex: 0 0 auto;
-      font-family: var(--font-display);
-      font-style: italic;
-      font-weight: 700;
-      font-size: 19px;
-      color: #6B5A47;
-      text-decoration: none;
-      padding-bottom: 10px;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      &.is-active { color: var(--tavern-oxblood); border-bottom-color: var(--tavern-oxblood); }
-    }
-  }
-
   // Floating compose button — component tavern-compose-fab.gjs.
   .tavern-fab {
     position: fixed;
@@ -1612,8 +1587,40 @@ body.navigation-topics {
   }
 }
 
-// Hide the phone-only nav tabs and compose button on tablet/desktop.
+// The floating compose button is phone-only.
 @media (min-width: 768px) {
-  .tavern-mnav,
   .tavern-fab { display: none !important; }
+}
+
+// Section-nav tabs (Rooms / Latest / Hot / Top) — component tavern-mobile-nav.gjs. They fill the
+// gap where the desktop header pills are hidden (≤1159.98px): shown + styled on phones AND
+// tablets, then hidden at ≥1160px where the desktop pills take over. Without this, the 768–1159px
+// range had no nav at all (desktop pills hidden, mobile tabs hidden).
+@media (max-width: 1159.98px) {
+  .tavern-mnav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 12px 16px 0;
+    margin: 0 0 4px;
+    border-bottom: 1px solid var(--tavern-rule);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    &__tab {
+      flex: 0 0 auto;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 700;
+      font-size: 19px;
+      color: #6B5A47;
+      text-decoration: none;
+      padding-bottom: 10px;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      &.is-active { color: var(--tavern-oxblood); border-bottom-color: var(--tavern-oxblood); }
+    }
+  }
+}
+@media (min-width: 1160px) {
+  .tavern-mnav { display: none !important; }
 }
