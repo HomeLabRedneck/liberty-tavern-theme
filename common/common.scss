@@ -939,6 +939,17 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 // Collapse filter bar — position:fixed nav pills escape overflow clip and stay in header.
 .list-controls { height: 0 !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; overflow: hidden; }
 
+// The staff category-admin gear (New / Reorder Categories) lives in that collapsed bar, so it
+// was clipped — staff lost category management on the Rooms page. Float it out (position:fixed
+// escapes the clip) to the top-right so it stays reachable. Staff-only + categories view only.
+body.navigation-categories .categories-admin-dropdown {
+  position: fixed !important;
+  top: 74px !important;
+  right: 22px !important;
+  height: auto !important;
+  z-index: 500 !important;
+}
+
 // ---- 9. Trending Tonight (standalone strip below banner) ----
 
 .tavern-trending {
