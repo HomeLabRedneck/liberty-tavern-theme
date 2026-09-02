@@ -939,10 +939,11 @@ body:not(.navigation-topics):not(.navigation-categories) .tavern-banner { displa
 // Collapse filter bar — position:fixed nav pills escape overflow clip and stay in header.
 .list-controls { height: 0 !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; overflow: hidden; }
 
-// The staff category-admin gear (New / Reorder Categories) lives in that collapsed bar, so it
-// was clipped — staff lost category management on the Rooms page. Float it out (position:fixed
-// escapes the clip) to the top-right so it stays reachable. Staff-only + categories view only.
-body.navigation-categories .categories-admin-dropdown {
+// The staff category tools live in that collapsed bar, so they were clipped — staff lost category
+// management. Float them out (position:fixed escapes the clip) to the top-right so they stay
+// reachable: the New/Reorder gear on the Rooms index, and the Edit Category gear on a category page.
+body.navigation-categories .categories-admin-dropdown,
+.edit-category {
   position: fixed !important;
   top: 74px !important;
   right: 22px !important;
