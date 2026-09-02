@@ -28,6 +28,16 @@ export default apiInitializer("1.13.0", (api) => {
   api.renderInOutlet("discovery-list-container-top", TavernMobileNav);
   api.renderInOutlet("discovery-list-container-top", TavernComposeFab);
 
+  // The native "Categories" (Rooms) pill only renders on the top-level lists, so the nav loses
+  // "Rooms" inside a category. Add a Rooms pill that shows ONLY on category pages (customFilter
+  // = a category is present), linking back to the rooms list. common.scss §2b positions it first.
+  api.addNavigationBarItem({
+    name: "rooms",
+    displayName: "Rooms",
+    href: "/categories",
+    customFilter: (category) => !!category,
+  });
+
   // Phase 2: rename nav pill labels and Sign In button text
   // NOTE: theme locales/en.yml cannot override js.* core strings (theme locale namespace
   // is isolated). JS patch is the correct approach for an English-only forum.
