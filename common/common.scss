@@ -732,6 +732,14 @@ body.navigation-topics {
   box-shadow: none !important;
 }
 .category-boxes .category-box .subcategories .badge-category::before { display: none !important; }
+// The subcategory chips are real links (each → that subcategory) but read as static labels.
+// Fill them brass on hover so they clearly invite a click.
+.category-boxes .category-box .subcategories a.subcategory { transition: transform 0.1s ease; }
+.category-boxes .category-box .subcategories a.subcategory:hover .badge-category {
+  background: var(--tavern-brass) !important;
+  border-color: var(--tavern-brass) !important;
+}
+.category-boxes .category-box .subcategories a.subcategory:hover .badge-category__name { color: #1C1410 !important; }
 .category-boxes .category-box .subcategories .badge-category__name {
   font-family: var(--font-ui) !important;
   font-style: normal !important;
