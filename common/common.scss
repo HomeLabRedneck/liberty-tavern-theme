@@ -143,6 +143,10 @@ h2, h3 { font-style: italic; }
   .topic-header-extra { display: none !important; }
 }
 
+// Mobile chat channel header — the back-to-channels chevron ships at 11px (easy to miss, reads
+// as "no back button"). Bump it so it's clearly a back control.
+.c-navbar__back-button { font-size: 20px !important; }
+
 // ---- 2a. Logo connector (.tavern-logo) -----------------------
 
 .tavern-logo {
