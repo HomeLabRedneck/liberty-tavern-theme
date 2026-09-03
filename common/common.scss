@@ -147,6 +147,11 @@ h2, h3 { font-style: italic; }
 // as "no back button"). Bump it so it's clearly a back control.
 .c-navbar__back-button { font-size: 20px !important; }
 
+// Chat "← Forum" button (in the logo slot on the chat page) — its arrow ships in dark ink, which
+// is invisible on the dark header, so there was no visible way to leave chat. Force it cream.
+.d-header .back-to-forum,
+.d-header .back-to-forum .d-icon { color: #F5ECD6 !important; }
+
 // ---- 2a. Logo connector (.tavern-logo) -----------------------
 
 .tavern-logo {
