@@ -183,6 +183,16 @@ h2, h3 { font-style: italic; }
   line-height: 1.2;
 }
 
+// Full-width content on EVERY page (not just discovery). Without this, topic and category pages
+// keep a ~1382px centered max-width cap, so on wide/ultrawide monitors the whole layout (sidebar
+// included) floats mid-screen with big empty side margins. Posts keep their own readable width.
+#main-outlet-wrapper {
+  max-width: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 // Strip .container constraints on homepage so banner + trending go full-width.
 // Both components supply their own internal padding; .container padding is redundant.
 body.navigation-categories,
