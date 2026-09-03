@@ -197,6 +197,11 @@ h2, h3 { font-style: italic; }
   margin-right: 0 !important;
 }
 
+// Same for the HEADER's inner .wrap — otherwise the logo/title/icons stay capped at 1382px and
+// centered on topic/category pages, so on an ultrawide the top bar sits indented and out of line
+// with the full-width content below. Un-cap it so the header aligns edge-to-edge everywhere.
+.d-header .wrap { max-width: none !important; }
+
 // Strip .container constraints on homepage so banner + trending go full-width.
 // Both components supply their own internal padding; .container padding is redundant.
 body.navigation-categories,
