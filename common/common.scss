@@ -1485,29 +1485,6 @@ body.navigation-topics {
   // The trending strip is desktop-only — the phone mockup goes banner → nav → rooms.
   .tavern-trending { display: none !important; }
 
-  // Floating compose button — component tavern-compose-fab.gjs.
-  .tavern-fab {
-    position: fixed;
-    right: 18px;
-    bottom: 20px;
-    z-index: 900;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: none;
-    background: var(--tavern-oxblood);
-    color: #F5ECD6;
-    font-size: 30px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 18px rgba(28, 20, 16, 0.35);
-    cursor: pointer;
-    &:hover { filter: brightness(1.08); }
-    &:active { transform: translateY(1px); }
-  }
-
   // Room cards — compact to the phone mockup: colored initial badge (tavern-mobile-cards.js),
   // name, description, count top-right, and ONE quoted latest thread (hide subcategories +
   // the extra topics). The mobile category is a topic-list table, so flatten it to blocks.
@@ -1628,9 +1605,40 @@ body.navigation-topics {
   }
 }
 
-// The floating compose button is phone-only.
+// Floating compose button — component tavern-compose-fab.gjs. Base style is global (hidden by
+// default); visibility is opened per viewport/view below.
+.tavern-fab {
+  display: none;
+  position: fixed;
+  right: 18px;
+  bottom: 20px;
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--tavern-oxblood);
+  color: #F5ECD6;
+  font-size: 30px;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(28, 20, 16, 0.35);
+  cursor: pointer;
+  &:hover { filter: brightness(1.08); }
+  &:active { transform: translateY(1px); }
+}
+
+// Phones: show it on every discovery view (matches the mobile design).
+@media (max-width: 767.98px) {
+  .tavern-fab { display: flex; }
+}
+
+// Desktop/tablet: only on the topic-list views (Latest / Trending / Top Shelf) and category /
+// subcategory pages — not the Rooms index (it has the banner CTA) or non-discovery pages.
 @media (min-width: 768px) {
-  .tavern-fab { display: none !important; }
+  body.navigation-topics .tavern-fab,
+  body.navigation-category .tavern-fab { display: flex; }
 }
 
 // Section-nav tabs (Rooms / Latest / Hot / Top) — component tavern-mobile-nav.gjs. They fill the
