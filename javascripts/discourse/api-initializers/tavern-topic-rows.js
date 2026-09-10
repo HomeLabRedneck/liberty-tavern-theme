@@ -54,7 +54,23 @@ function decorateRow(row, index, view) {
     if (view === "hot") {
       badge.textContent = index + 1;
     } else if (view === "latest") {
-      badge.textContent = (name[0] || "•").toUpperCase();
+      // Two markers in one badge: the OP's initial (shown on desktop) and the OP's avatar
+      // (shown on phones — common.scss §12). CSS picks which per viewport, so no resize JS.
+      const letter = document.createElement("span");
+      letter.className = "tavern-row-initial";
+      letter.textContent = (name[0] || "•").toUpperCase();
+      badge.appendChild(letter);
+      // OP avatar — an uploaded image or Discourse's own letter-avatar; always present.
+      const avatar = row.querySelector(".pull-left img.avatar, .posters img.avatar");
+      if (avatar?.src) {
+        const img = document.createElement("img");
+        img.className = "tavern-row-avatar";
+        img.src = avatar.src;
+        img.alt = "";
+        img.loading = "lazy";
+        badge.appendChild(img);
+        badge.classList.add("tavern-row-badge--has-avatar");
+      }
       const wrap = row.querySelector(".badge-category__wrapper");
       const color = wrap?.style.getPropertyValue("--category-badge-color")?.trim();
       if (color) {
