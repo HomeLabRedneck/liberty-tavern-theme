@@ -207,6 +207,18 @@ h2, h3 { font-style: italic; }
 // with the full-width content below. Un-cap it so the header aligns edge-to-edge everywhere.
 .d-header .wrap { max-width: none !important; }
 
+// Topic pages: the post reading column is a fixed ~714px, so once #main-outlet-wrapper is
+// un-capped (above) the posts+timeline grid stretches across the whole ultrawide monitor —
+// posts pinned left, timeline flung to the far right, a big dead gutter between them. Re-cap
+// and center JUST the topic post grid (.container.posts exists only on topic pages, so the
+// list/home views stay full-width). Below ~1100px it still fills the width; above it, it caps
+// and centers so wide screens read as intentional instead of flung apart.
+.container.posts {
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 // Strip .container constraints on homepage so banner + trending go full-width.
 // Both components supply their own internal padding; .container padding is redundant.
 body.navigation-categories,
